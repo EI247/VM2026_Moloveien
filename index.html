@@ -245,6 +245,66 @@ body{background:#EEF4FB;color:var(--text-primary);}
 footer{background:#F8FBFE;border-top-color:var(--blue-border);}
 footer strong{color:#B8860B;}
 
+
+/* ── MOBILTILPASNING ── */
+@media(max-width:760px){
+  body{font-size:14px;}
+  .hero{padding:24px 14px 22px;}
+  .hero-eyebrow{font-size:10px;letter-spacing:4px;margin-bottom:4px;}
+  .hero-title{font-size:clamp(42px,16vw,64px);letter-spacing:1px;}
+  .hero-subtitle{font-size:12px;letter-spacing:5px;margin-bottom:18px;}
+  .hero-stats{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 12px;}
+  .hero-divider{display:none;}
+  .hero-stat{background:rgba(255,255,255,.42);border:1px solid rgba(185,201,223,.75);border-radius:10px;padding:9px 6px;}
+  .hero-stat-value{font-size:28px;}
+  .hero-stat-label{font-size:9px;letter-spacing:2px;}
+  .ticker-bar{padding:6px 0;}
+  .ticker-item{font-size:11px;letter-spacing:1.4px;padding:0 22px;}
+  .container{padding:0 12px;}
+  .section{padding:26px 0;}
+  .section-header{gap:8px;margin-bottom:14px;align-items:flex-start;}
+  .section-title{font-size:24px;line-height:1;}
+  .section-badge{font-size:10px;letter-spacing:2px;padding:3px 8px;}
+  .tabs{display:grid;grid-template-columns:1fr;gap:7px;border-bottom:0;margin-bottom:16px;}
+  .tab{border:1px solid var(--blue-border);border-radius:10px;margin-bottom:0;text-align:center;background:#fff;padding:10px 12px;font-size:12px;}
+  .tab.active{border-color:var(--gold-bright);background:#FFF8E4;}
+  .leaderboard{gap:9px;}
+  .leader-card{grid-template-columns:38px 1fr;gap:11px;padding:12px 13px;border-radius:10px;}
+  .rank-badge{width:32px;height:32px;font-size:16px;}
+  .leader-name{font-size:19px;margin-bottom:5px;}
+  .leader-picks{gap:4px;margin-bottom:6px;}
+  .pick-chip{font-size:10px;padding:2px 6px;line-height:1.35;}
+  .leader-score-area{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;text-align:left;border-top:1px solid var(--blue-border);padding-top:9px;margin-top:2px;}
+  .leader-total{font-size:34px;}
+  .score-breakdown{gap:6px;}
+  .score-part-val{font-size:12px;}
+  .score-part-lbl{font-size:8px;}
+  .detail-grid{grid-template-columns:1fr;gap:10px;}
+  .detail-card-header{padding:11px 13px;}
+  .detail-card-name{font-size:19px;}
+  .detail-card-score{font-size:23px;}
+  .detail-body{padding:12px 13px;}
+  .tip-row{gap:10px;align-items:flex-start;}
+  .tip-label{font-size:9px;min-width:86px;}
+  .tip-value{font-size:13px;line-height:1.35;}
+  .groups-mini{grid-template-columns:repeat(3,1fr);gap:5px;}
+  .group-mini-item{padding:6px 4px;}
+  .group-mini-team{font-size:10px;}
+  .points-strip{display:grid;grid-template-columns:1fr;gap:8px;background:transparent;border:0;}
+  .points-item{border:1px solid var(--blue-border);border-radius:10px;background:var(--blue-card);padding:15px 12px;}
+  .points-pts{font-size:32px;}
+  .points-desc{font-size:10px;line-height:1.45;}
+}
+
+@media(max-width:390px){
+  .hero-stats{grid-template-columns:1fr 1fr;gap:8px;}
+  .hero-stat-value{font-size:24px;}
+  .leader-card{padding:11px 10px;}
+  .leader-score-area{display:block;}
+  .score-breakdown{justify-content:flex-start;margin-top:6px;flex-wrap:wrap;}
+  .groups-mini{grid-template-columns:repeat(2,1fr);}
+}
+
 </style>
 </head>
 <body>
@@ -634,7 +694,7 @@ const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"�
 const ALL_TEAMS=Object.values(GROUPS).flat();
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo","Erling Haaland"];
 
-const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jan","winner":"","topscorer":"","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
+const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
 let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
 function normalizeStateShape(data, preferDefaults=false){
   const base=JSON.parse(JSON.stringify(DEFAULT_STATE));
@@ -687,13 +747,8 @@ function calcScore(p){
   if(state.results.topscorer&&p.topscorer===state.results.topscorer)tp=5;
   return{groupPts:gp,winnerPts:wp,topPts:tp,total:gp+wp+tp};
 }
-function isUntippedJan(p){
-  return p.name==='Jan'&&!p.winner&&!p.topscorer&&Object.values(p.groups||{}).every(v=>!v);
-}
 function render(){
   const ranked=state.participants.map((p,idx)=>({...p,_idx:idx,score:calcScore(p)})).sort((a,b)=>{
-    if(isUntippedJan(a)&&!isUntippedJan(b))return 1;
-    if(!isUntippedJan(a)&&isUntippedJan(b))return -1;
     return b.score.total-a.score.total||a._idx-b._idx;
   });
   document.getElementById('stat-players').textContent=ranked.length;
