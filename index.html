@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -286,7 +287,7 @@ footer strong{color:var(--gold-bright);}
   <div class="section-header">
     <div class="section-badge">Live</div>
     <h2 class="section-title">Ledertavle</h2>
-    <div class="live-badge"><div class="live-dot"></div>Oppdateres daglig</div>
+    <div class="live-badge"><div class="live-dot"></div><span id="live-status">Henter live-data...</span></div>
     <div class="section-line"></div>
   </div>
 
@@ -476,7 +477,84 @@ function addParticipant(){const i=document.querySelectorAll('.participant-editor
 function removeParticipant(i){saveData();state.participants.splice(i,1);localStorage.setItem('vm2026',JSON.stringify(state));buildAdminForm();render();}
 function toggleAdmin(){const p=document.getElementById('adminPanel');p.classList.toggle('open');if(p.classList.contains('open'))buildAdminForm();}
 function switchTab(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('tab-'+id).classList.add('active');}
+// ── LIVE RESULTS: openfootball/worldcup.json (gratis, ingen API-nøkkel) ──────
+const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia","Bosnia-Herzegovina":"Bosnia and Herzegovina","Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde","Curacao":"Curaçao","USA":"United States"};
+function normName(n){return NAME_MAP[n]||n;}
+
+function calcAdvanced(matches){
+  const gp={};
+  matches.forEach(m=>{
+    if(!m.group||!m.score)return;
+    const g=m.group.replace("Group ","").trim();
+    const t1=normName(m.team1&&m.team1.name?m.team1.name:m.team1);
+    const t2=normName(m.team2&&m.team2.name?m.team2.name:m.team2);
+    const s=m.score.ft||m.score;
+    if(!s||s[0]==null)return;
+    if(!gp[g])gp[g]={};
+    if(!gp[g][t1])gp[g][t1]={pts:0,gd:0,gf:0};
+    if(!gp[g][t2])gp[g][t2]={pts:0,gd:0,gf:0};
+    gp[g][t1].gf+=s[0];gp[g][t2].gf+=s[1];
+    gp[g][t1].gd+=(s[0]-s[1]);gp[g][t2].gd+=(s[1]-s[0]);
+    if(s[0]>s[1]){gp[g][t1].pts+=3;}else if(s[0]<s[1]){gp[g][t2].pts+=3;}else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
+  });
+  const advanced={};
+  const thirds=[];
+  Object.entries(gp).forEach(([grp,teams])=>{
+    const sorted=Object.entries(teams).sort((a,b)=>b[1].pts-a[1].pts||b[1].gd-a[1].gd||b[1].gf-a[1].gf);
+    const totalPts=sorted.reduce((a,[,s])=>a+s.pts,0);
+    if(sorted.length>=2&&totalPts>=3){
+      advanced[grp]=[sorted[0][0]];
+      if(totalPts>=6)advanced[grp].push(sorted[1][0]);
+    }
+    if(sorted.length>=3&&totalPts>=9)thirds.push({team:sorted[2][0],...sorted[2][1],grp});
+  });
+  if(thirds.length===12){
+    thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{
+      if(!advanced[t.grp])advanced[t.grp]=[];
+      if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);
+    });
+  }
+  return advanced;
+}
+
+function findWinnerScorer(matches){
+  let winner="",topscorer="";
+  const fin=matches.find(m=>(m.round==="Final"||m.round==="Matchday 63")&&m.score&&m.score.ft);
+  if(fin){const s=fin.score.ft;const w=s[0]>s[1]?fin.team1:fin.team2;winner=normName(w&&w.name?w.name:w);}
+  const sc={};
+  matches.forEach(m=>[...(m.goals1||[]),...(m.goals2||[])].forEach(g=>{
+    if(g.name&&!g.name.includes("o.g."))sc[g.name]=(sc[g.name]||0)+1;
+  }));
+  const top=Object.entries(sc).sort((a,b)=>b[1]-a[1]);
+  if(top.length)topscorer=top[0][0];
+  return{winner,topscorer};
+}
+
+async function fetchLiveResults(){
+  const el=document.getElementById("live-status");
+  try{
+    const r=await fetch("https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json");
+    if(!r.ok)throw new Error();
+    const data=await r.json();
+    const played=(data.matches||[]).filter(m=>m.score&&(m.score.ft||m.score)[0]!=null);
+    if(played.length===0){
+      if(el)el.textContent="⏳ Turneringen starter 11. juni";
+      return;
+    }
+    state.results.advancedGroups=calcAdvanced(played);
+    const{winner,topscorer}=findWinnerScorer(played);
+    if(winner)state.results.winner=winner;
+    if(topscorer)state.results.topscorer=topscorer;
+    if(el)el.textContent=played.length+" kamper spilt · "+new Date().toLocaleTimeString("no-NO");
+    render();
+  }catch(e){
+    if(el)el.textContent="⚠️ Live-data utilgjengelig";
+  }
+}
+
 loadState();render();
+fetchLiveResults();
+setInterval(fetchLiveResults,5*60*1000);
 </script>
 </body>
 </html>
