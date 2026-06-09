@@ -45,7 +45,7 @@ body{background:var(--blue-dark);color:var(--text-primary);font-family:'Barlow',
 
 /* ── TICKER ── */
 .ticker-bar{background:linear-gradient(90deg,var(--gold-light),var(--gold-bright),var(--gold-light));color:#000;padding:7px 0;overflow:hidden;}
-.ticker-inner{display:flex;white-space:nowrap;animation:ticker 35s linear infinite;}
+.ticker-inner{display:flex;align-items:center;white-space:nowrap;animation:ticker 35s linear infinite;}
 .ticker-item{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;padding:0 36px;}
 .ticker-dot{color:#7A5800;margin:0 8px;}
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -278,15 +278,13 @@ footer strong{color:#B8860B;}
 
 <!-- TICKER -->
 <div class="ticker-bar">
-  <div class="ticker-inner">
-    <span class="ticker-item">🏆 VM 2026 <span class="ticker-dot">·</span> USA · Canada · Mexico</span>
-    <span class="ticker-item">⚽ 48 lag <span class="ticker-dot">·</span> 12 grupper <span class="ticker-dot">·</span> 104 kamper</span>
-    
-    <span class="ticker-item">⭐ 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
-    <span class="ticker-item">🏆 VM 2026 <span class="ticker-dot">·</span> USA · Canada · Mexico</span>
-    <span class="ticker-item">⚽ 48 lag <span class="ticker-dot">·</span> 12 grupper <span class="ticker-dot">·</span> 104 kamper</span>
-    
-    <span class="ticker-item">⭐ 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
+  <div class="ticker-inner" id="tickerInner">
+    <span class="ticker-item">VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk</span>
+    <span class="ticker-item">Dagens kamper vises her når kampdata er tilgjengelig</span>
+    <span class="ticker-item">Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
+    <span class="ticker-item">VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk</span>
+    <span class="ticker-item">Dagens kamper vises her når kampdata er tilgjengelig</span>
+    <span class="ticker-item">Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
   </div>
 </div>
 
@@ -303,10 +301,9 @@ footer strong{color:#B8860B;}
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="switchTab(&#39;leaderboard&#39;,this)">Rangering</div>
-    <div class="tab" onclick="switchTab(&#39;details&#39;,this)">Tips &amp; detaljer</div>
-    <div class="tab" onclick="switchTab(&#39;groups&#39;,this)">Grupper</div>
-    <div class="tab" onclick="switchTab(&#39;rules&#39;,this)">Poengregler</div>
+    <div class="tab active" onclick="switchTab('leaderboard',this)">Rangering</div>
+    <div class="tab" onclick="switchTab('details',this)">Tips &amp; detaljer</div>
+    <div class="tab" onclick="switchTab('rules',this)">Poengregler</div>
   </div>
 
   <div id="tab-leaderboard" class="tab-pane active"><div class="leaderboard" id="leaderboard-list"><div class="leader-card rank-1">
@@ -608,7 +605,6 @@ footer strong{color:#B8860B;}
         <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
       </div>
     </div></div></div>
-  <div id="tab-groups" class="tab-pane"><div class="groups-grid" id="groups-grid"><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe A</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇲🇽</span><span>Mexico</span><span class="team-star">★</span></div><div class="group-team "><span>🇿🇦</span><span>South Africa</span></div><div class="group-team "><span>🇰🇷</span><span>Korea Republic</span></div><div class="group-team "><span>🇨🇿</span><span>Czechia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe B</span><span class="group-status">4 lag</span></div><div class="group-team "><span>🇨🇦</span><span>Canada</span></div><div class="group-team favorite"><span>🇨🇭</span><span>Switzerland</span><span class="team-star">★</span></div><div class="group-team "><span>🇶🇦</span><span>Qatar</span></div><div class="group-team "><span>🇧🇦</span><span>Bosnia and Herzegovina</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe C</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇧🇷</span><span>Brazil</span><span class="team-star">★</span></div><div class="group-team "><span>🇲🇦</span><span>Morocco</span></div><div class="group-team "><span>🇭🇹</span><span>Haiti</span></div><div class="group-team "><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span>Scotland</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe D</span><span class="group-status">4 lag</span></div><div class="group-team "><span>🇺🇸</span><span>United States</span></div><div class="group-team "><span>🇵🇾</span><span>Paraguay</span></div><div class="group-team "><span>🇦🇺</span><span>Australia</span></div><div class="group-team favorite"><span>🇹🇷</span><span>Türkiye</span><span class="team-star">★</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe E</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇩🇪</span><span>Germany</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇼</span><span>Curaçao</span></div><div class="group-team "><span>🇨🇮</span><span>Côte d'Ivoire</span></div><div class="group-team "><span>🇪🇨</span><span>Ecuador</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe F</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇳🇱</span><span>Netherlands</span><span class="team-star">★</span></div><div class="group-team "><span>🇯🇵</span><span>Japan</span></div><div class="group-team "><span>🇸🇪</span><span>Sweden</span></div><div class="group-team "><span>🇹🇳</span><span>Tunisia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe G</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇧🇪</span><span>Belgium</span><span class="team-star">★</span></div><div class="group-team "><span>🇪🇬</span><span>Egypt</span></div><div class="group-team "><span>🇮🇷</span><span>IR Iran</span></div><div class="group-team "><span>🇳🇿</span><span>New Zealand</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe H</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇪🇸</span><span>Spain</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇻</span><span>Cabo Verde</span></div><div class="group-team "><span>🇸🇦</span><span>Saudi Arabia</span></div><div class="group-team "><span>🇺🇾</span><span>Uruguay</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe I</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇫🇷</span><span>France</span><span class="team-star">★</span></div><div class="group-team "><span>🇸🇳</span><span>Senegal</span></div><div class="group-team "><span>🇮🇶</span><span>Iraq</span></div><div class="group-team "><span>🇳🇴</span><span>Norway</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe J</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇦🇷</span><span>Argentina</span><span class="team-star">★</span></div><div class="group-team "><span>🇩🇿</span><span>Algeria</span></div><div class="group-team "><span>🇦🇹</span><span>Austria</span></div><div class="group-team "><span>🇯🇴</span><span>Jordan</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe K</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇵🇹</span><span>Portugal</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇩</span><span>DR Congo</span></div><div class="group-team "><span>🇺🇿</span><span>Uzbekistan</span></div><div class="group-team "><span>🇨🇴</span><span>Colombia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe L</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span>England</span><span class="team-star">★</span></div><div class="group-team "><span>🇭🇷</span><span>Croatia</span></div><div class="group-team "><span>🇬🇭</span><span>Ghana</span></div><div class="group-team "><span>🇵🇦</span><span>Panama</span></div></div></div></div>
   <div id="tab-rules" class="tab-pane">
     <div class="points-strip">
       <div class="points-item"><div class="points-pts">2 <span>p</span></div><div class="points-desc">Riktig lag fra gruppe</div></div>
@@ -702,7 +698,7 @@ function render(){
   });
   document.getElementById('stat-players').textContent=ranked.length;
   document.getElementById('stat-pot').textContent=ranked.length*100;
-  renderLeaderboard(ranked);renderDetails(ranked);renderGroups();
+  renderLeaderboard(ranked);renderDetails(ranked);
 }
 function renderLeaderboard(ranked){
   const el=document.getElementById('leaderboard-list');
@@ -767,11 +763,28 @@ function renderDetails(ranked){
 }
 function renderGroups(){
   const el=document.getElementById('groups-grid');
+  if(!el)return;
   el.innerHTML=Object.entries(GROUPS).map(([letter,teams])=>{
-    const rows=teams.map(t=>{const fav=FAVORITES[letter]===t;return`<div class="group-team ${fav?'favorite':''}"><span>${FLAGS[t]||'🏳'}</span><span>${t}</span>${fav?'<span class="team-star">★</span>':''}</div>`;}).join('');
+    const rows=teams.map(t=>{const fav=FAVORITES[letter]===t;return`<div class="group-team ${fav?'favorite':''}"><span>${FLAGS[t]||'🏳'}</span><span>${t}</span></div>`;}).join('');
     return`<div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe ${letter}</span><span class="group-status">4 lag</span></div>${rows}</div>`;
   }).join('');
 }
+
+function bindTabs(){
+  document.querySelectorAll('.tab').forEach(tab=>{
+    const raw=tab.getAttribute('onclick')||'';
+    let id='';
+    if(raw.includes('leaderboard'))id='leaderboard';
+    else if(raw.includes('details'))id='details';
+    else if(raw.includes('rules'))id='rules';
+    if(!id)return;
+    tab.addEventListener('click',function(e){
+      e.preventDefault();
+      switchTab(id,this);
+    });
+  });
+}
+
 function switchTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
@@ -831,6 +844,82 @@ function findWinnerScorer(matches){
   return{winner,topscorer};
 }
 
+
+
+function htmlEscape(value){
+  return String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function teamName(team){return normName(team&&team.name?team.name:team);}
+function getTippedScorers(){
+  return new Set((state.participants||[]).map(p=>p.topscorer).filter(Boolean));
+}
+function matchScore(m){
+  const s=m.score&&(m.score.ft||m.score);
+  return s&&s[0]!=null?s:null;
+}
+function goalMinute(g){
+  return g.minute||g.min||g.time||g.at||'';
+}
+function cleanGoalName(name){
+  return String(name||'').replace(/\s*\(o\.g\.\)\s*/i,'').trim();
+}
+function getGoalsForTicker(m){
+  const t1=teamName(m.team1);
+  const t2=teamName(m.team2);
+  return [
+    ...((m.goals1||[]).map(g=>({...g,team:t1}))),
+    ...((m.goals2||[]).map(g=>({...g,team:t2})))
+  ].filter(g=>g.name&&!String(g.name).includes('o.g.'));
+}
+function setTickerItems(items){
+  const el=document.getElementById('tickerInner');
+  if(!el)return;
+  const fallback=[
+    'VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk',
+    'Dagens kamper vises her når kampdata er tilgjengelig',
+    'Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer'
+  ];
+  const list=(items&&items.length?items:fallback);
+  const doubled=[...list,...list];
+  el.innerHTML=doubled.map(item=>`<span class="ticker-item">${item}</span>`).join('');
+}
+function updateTicker(matches){
+  const played=(matches||[]).filter(m=>matchScore(m));
+  if(!played.length){setTickerItems([]);return;}
+  const tipped=getTippedScorers();
+  const recent=[...played].slice(-10).reverse();
+  const items=[];
+
+  recent.forEach(m=>{
+    const s=matchScore(m);
+    const t1=teamName(m.team1);
+    const t2=teamName(m.team2);
+    const scoreText=`${htmlEscape(t1)} ${s[0]}–${s[1]} ${htmlEscape(t2)}`;
+    getGoalsForTicker(m).forEach(g=>{
+      const name=cleanGoalName(g.name);
+      if(tipped.has(name)){
+        const min=goalMinute(g);
+        items.push(`Toppscorertips: ${htmlEscape(name)} scoret${min?` ${htmlEscape(min)}’`:''} for ${htmlEscape(g.team)} <span class="ticker-dot">·</span> ${scoreText}`);
+      }
+    });
+  });
+
+  if(items.length<4){
+    recent.forEach(m=>{
+      const s=matchScore(m);
+      const t1=teamName(m.team1);
+      const t2=teamName(m.team2);
+      const scorers=getGoalsForTicker(m).map(g=>cleanGoalName(g.name)).filter(Boolean).slice(0,4);
+      const scorerText=scorers.length?` <span class="ticker-dot">·</span> Mål: ${htmlEscape(scorers.join(', '))}`:'';
+      items.push(`${htmlEscape(t1)} ${s[0]}–${s[1]} ${htmlEscape(t2)}${scorerText}`);
+    });
+  }
+
+  setTickerItems(items.slice(0,10));
+}
+
+
+
 async function fetchLiveResults(){
   const el=document.getElementById("live-status");
   try{
@@ -839,9 +928,11 @@ async function fetchLiveResults(){
     const data=await r.json();
     const played=(data.matches||[]).filter(m=>m.score&&(m.score.ft||m.score)[0]!=null);
     if(played.length===0){
+      updateTicker(data.matches||[]);
       if(el)el.textContent="⏳ Turneringen starter 11. juni";
       return;
     }
+    updateTicker(data.matches||[]);
     state.results.advancedGroups=calcAdvanced(played);
     const{winner,topscorer}=findWinnerScorer(played);
     if(winner)state.results.winner=winner;
@@ -853,7 +944,7 @@ async function fetchLiveResults(){
   }
 }
 
-loadState();render();
+loadState();render();bindTabs();
 fetchLiveResults();
 setInterval(fetchLiveResults,5*60*1000);
 </script>
