@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="no">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0049)file:///Users/eirikisaken/Downloads/VM/index.html -->
+<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VM 2026 – Jobbkonkurranse</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 :root{--gold:#C9A227;--gold-light:#E8C44A;--gold-bright:#FFD700;--green:#00C853;--red:#FF1744;
 --blue-dark:#080C18;--blue-mid:#0D1B35;--blue-card:#0F1D38;--blue-border:#1A3362;
@@ -215,9 +215,9 @@ footer strong{color:var(--gold-bright);}
   <h1 class="hero-title">VM <span>2026</span></h1>
   <p class="hero-subtitle">Jobbkonkurranse</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-value" id="stat-players">0</div><div class="hero-stat-label">Deltakere</div></div>
+    <div class="hero-stat"><div class="hero-stat-value" id="stat-players">9</div><div class="hero-stat-label">Deltakere</div></div>
     <div class="hero-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-value" id="stat-pot">0</div><div class="hero-stat-label">Kr i potten</div></div>
+    <div class="hero-stat"><div class="hero-stat-value" id="stat-pot">900</div><div class="hero-stat-label">Kr i potten</div></div>
     <div class="hero-divider"></div>
     <div class="hero-stat"><div class="hero-stat-value">48</div><div class="hero-stat-label">Lag</div></div>
     <div class="hero-divider"></div>
@@ -244,7 +244,7 @@ footer strong{color:var(--gold-bright);}
 <div class="section">
 
   <div class="admin-toggle">
-    <button class="btn btn-outline" onclick="toggleAdmin()">⚙ Administrer tips & resultater</button>
+    <button class="btn btn-outline" onclick="toggleAdmin()">⚙ Administrer tips &amp; resultater</button>
   </div>
 
   <!-- ADMIN PANEL -->
@@ -286,20 +286,317 @@ footer strong{color:var(--gold-bright);}
   <div class="section-header">
     <div class="section-badge">Live</div>
     <h2 class="section-title">Ledertavle</h2>
-    <div class="live-badge"><div class="live-dot"></div><span id="live-status">Henter live-data...</span></div>
+    <div class="live-badge"><div class="live-dot"></div><span id="live-status">⏳ Turneringen starter 11. juni</span></div>
     <div class="section-line"></div>
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('leaderboard',this)">Rangering</div>
-    <div class="tab" onclick="switchTab('details',this)">Tips & detaljer</div>
-    <div class="tab" onclick="switchTab('groups',this)">Grupper</div>
-    <div class="tab" onclick="switchTab('rules',this)">Poengregler</div>
+    <div class="tab active" onclick="switchTab(&#39;leaderboard&#39;,this)">Rangering</div>
+    <div class="tab" onclick="switchTab(&#39;details&#39;,this)">Tips &amp; detaljer</div>
+    <div class="tab" onclick="switchTab(&#39;groups&#39;,this)">Grupper</div>
+    <div class="tab" onclick="switchTab(&#39;rules&#39;,this)">Poengregler</div>
   </div>
 
-  <div id="tab-leaderboard" class="tab-pane active"><div class="leaderboard" id="leaderboard-list"></div></div>
-  <div id="tab-details" class="tab-pane"><div class="detail-grid" id="details-grid"></div></div>
-  <div id="tab-groups" class="tab-pane"><div class="groups-grid" id="groups-grid"></div></div>
+  <div id="tab-leaderboard" class="tab-pane active"><div class="leaderboard" id="leaderboard-list"><div class="leader-card rank-1">
+      <div class="rank-badge">1</div>
+      <div>
+        <div class="leader-name">Eirik</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 Spain</span>
+          <span class="pick-chip ">⚽ Harry Kane</span>
+          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card rank-2">
+      <div class="rank-badge">2</div>
+      <div>
+        <div class="leader-name">Jon Magnar</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 Spain</span>
+          <span class="pick-chip ">⚽ Ousmane Dembélé</span>
+          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇳🇴 Norway</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card rank-3">
+      <div class="rank-badge">3</div>
+      <div>
+        <div class="leader-name">Magnus</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 Norway</span>
+          <span class="pick-chip ">⚽ Erling Haaland</span>
+          <span class="pick-chip ">🇰🇷 Korea Republic</span><span class="pick-chip ">🇶🇦 Qatar</span><span class="pick-chip ">🇭🇹 Haiti</span><span class="pick-chip ">🇹🇷 Türkiye</span><span class="pick-chip ">🇨🇼 Curaçao</span><span class="pick-chip ">🇹🇳 Tunisia</span><span class="pick-chip ">🇳🇿 New Zealand</span><span class="pick-chip ">🇨🇻 Cabo Verde</span><span class="pick-chip ">🇮🇶 Iraq</span><span class="pick-chip ">🇯🇴 Jordan</span><span class="pick-chip ">🇺🇿 Uzbekistan</span><span class="pick-chip ">🇵🇦 Panama</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">4</div>
+      <div>
+        <div class="leader-name">Christian</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 Spain</span>
+          <span class="pick-chip ">⚽ Harry Kane</span>
+          <span class="pick-chip ">🇰🇷 Korea Republic</span><span class="pick-chip ">🇧🇦 Bosnia and Herzegovina</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">5</div>
+      <div>
+        <div class="leader-name">Kenneth</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 France</span>
+          <span class="pick-chip ">⚽ Harry Kane</span>
+          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">6</div>
+      <div>
+        <div class="leader-name">Tore</div>
+        <div class="leader-picks">
+          
+          
+          
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">7</div>
+      <div>
+        <div class="leader-name">Michael</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 France</span>
+          <span class="pick-chip ">⚽ Michael Olise</span>
+          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">8</div>
+      <div>
+        <div class="leader-name">Jan</div>
+        <div class="leader-picks">
+          
+          
+          
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div><div class="leader-card ">
+      <div class="rank-badge">9</div>
+      <div>
+        <div class="leader-name">Sture</div>
+        <div class="leader-picks">
+          <span class="pick-chip ">🏆 England</span>
+          <span class="pick-chip ">⚽ Harry Kane</span>
+          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇳🇴 Norway</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="leader-score-area">
+        <div class="leader-score-label">Totalpoeng</div>
+        <div class="leader-total">0</div>
+        <div class="score-breakdown">
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
+          <div class="score-sep">·</div>
+          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
+        </div>
+      </div>
+    </div></div></div>
+  <div id="tab-details" class="tab-pane"><div class="detail-grid" id="details-grid"><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Eirik</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Jon Magnar</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Ousmane Dembélé </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Magnus</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇳🇴 Norway </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Erling Haaland </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇶🇦 Qatar</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇭🇹 Haiti</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇹🇷 Türkiye</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇨🇼 Curaçao</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇹🇳 Tunisia</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇳🇿 New Zealand</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇨🇻 Cabo Verde</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇮🇶 Iraq</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇯🇴 Jordan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇺🇿 Uzbekistan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🇵🇦 Panama</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Christian</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇧🇦 Bosnia and Herzegovina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Kenneth</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Tore</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Michael</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Michael Olise </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Jan</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Sture</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div></div></div>
+  <div id="tab-groups" class="tab-pane"><div class="groups-grid" id="groups-grid"><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe A</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇲🇽</span><span>Mexico</span><span class="team-star">★</span></div><div class="group-team "><span>🇿🇦</span><span>South Africa</span></div><div class="group-team "><span>🇰🇷</span><span>Korea Republic</span></div><div class="group-team "><span>🇨🇿</span><span>Czechia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe B</span><span class="group-status">4 lag</span></div><div class="group-team "><span>🇨🇦</span><span>Canada</span></div><div class="group-team favorite"><span>🇨🇭</span><span>Switzerland</span><span class="team-star">★</span></div><div class="group-team "><span>🇶🇦</span><span>Qatar</span></div><div class="group-team "><span>🇧🇦</span><span>Bosnia and Herzegovina</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe C</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇧🇷</span><span>Brazil</span><span class="team-star">★</span></div><div class="group-team "><span>🇲🇦</span><span>Morocco</span></div><div class="group-team "><span>🇭🇹</span><span>Haiti</span></div><div class="group-team "><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span>Scotland</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe D</span><span class="group-status">4 lag</span></div><div class="group-team "><span>🇺🇸</span><span>United States</span></div><div class="group-team "><span>🇵🇾</span><span>Paraguay</span></div><div class="group-team "><span>🇦🇺</span><span>Australia</span></div><div class="group-team favorite"><span>🇹🇷</span><span>Türkiye</span><span class="team-star">★</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe E</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇩🇪</span><span>Germany</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇼</span><span>Curaçao</span></div><div class="group-team "><span>🇨🇮</span><span>Côte d'Ivoire</span></div><div class="group-team "><span>🇪🇨</span><span>Ecuador</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe F</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇳🇱</span><span>Netherlands</span><span class="team-star">★</span></div><div class="group-team "><span>🇯🇵</span><span>Japan</span></div><div class="group-team "><span>🇸🇪</span><span>Sweden</span></div><div class="group-team "><span>🇹🇳</span><span>Tunisia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe G</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇧🇪</span><span>Belgium</span><span class="team-star">★</span></div><div class="group-team "><span>🇪🇬</span><span>Egypt</span></div><div class="group-team "><span>🇮🇷</span><span>IR Iran</span></div><div class="group-team "><span>🇳🇿</span><span>New Zealand</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe H</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇪🇸</span><span>Spain</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇻</span><span>Cabo Verde</span></div><div class="group-team "><span>🇸🇦</span><span>Saudi Arabia</span></div><div class="group-team "><span>🇺🇾</span><span>Uruguay</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe I</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇫🇷</span><span>France</span><span class="team-star">★</span></div><div class="group-team "><span>🇸🇳</span><span>Senegal</span></div><div class="group-team "><span>🇮🇶</span><span>Iraq</span></div><div class="group-team "><span>🇳🇴</span><span>Norway</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe J</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇦🇷</span><span>Argentina</span><span class="team-star">★</span></div><div class="group-team "><span>🇩🇿</span><span>Algeria</span></div><div class="group-team "><span>🇦🇹</span><span>Austria</span></div><div class="group-team "><span>🇯🇴</span><span>Jordan</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe K</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🇵🇹</span><span>Portugal</span><span class="team-star">★</span></div><div class="group-team "><span>🇨🇩</span><span>DR Congo</span></div><div class="group-team "><span>🇺🇿</span><span>Uzbekistan</span></div><div class="group-team "><span>🇨🇴</span><span>Colombia</span></div></div><div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe L</span><span class="group-status">4 lag</span></div><div class="group-team favorite"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span>England</span><span class="team-star">★</span></div><div class="group-team "><span>🇭🇷</span><span>Croatia</span></div><div class="group-team "><span>🇬🇭</span><span>Ghana</span></div><div class="group-team "><span>🇵🇦</span><span>Panama</span></div></div></div></div>
   <div id="tab-rules" class="tab-pane">
     <div class="points-strip">
       <div class="points-item"><div class="points-pts">2 <span>p</span></div><div class="points-desc">Riktig lag fra gruppe</div></div>
@@ -320,7 +617,7 @@ footer strong{color:var(--gold-bright);}
 </div>
 </div>
 
-<footer><div class="container"><p>VM 2026 <strong>Jobbkonkurranse</strong> · Data lagres lokalt i nettleseren · &copy; 2026</p></div></footer>
+<footer><div class="container"><p>VM 2026 <strong>Jobbkonkurranse</strong> · Data lagres lokalt i nettleseren · © 2026</p></div></footer>
 
 <script>
 const GROUPS={A:["Mexico","South Africa","Korea Republic","Czechia"],B:["Canada","Switzerland","Qatar","Bosnia and Herzegovina"],C:["Brazil","Morocco","Haiti","Scotland"],D:["United States","Paraguay","Australia","Türkiye"],E:["Germany","Curaçao","Côte d'Ivoire","Ecuador"],F:["Netherlands","Japan","Sweden","Tunisia"],G:["Belgium","Egypt","IR Iran","New Zealand"],H:["Spain","Cabo Verde","Saudi Arabia","Uruguay"],I:["France","Senegal","Iraq","Norway"],J:["Argentina","Algeria","Austria","Jordan"],K:["Portugal","DR Congo","Uzbekistan","Colombia"],L:["England","Croatia","Ghana","Panama"]};
@@ -555,5 +852,6 @@ loadState();render();
 fetchLiveResults();
 setInterval(fetchLiveResults,5*60*1000);
 </script>
-</body>
-</html>
+
+
+</div></body></html>
