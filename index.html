@@ -194,6 +194,57 @@ footer strong{color:var(--gold-bright);}
   
   
 }
+
+
+/* ── LYSERE DESIGNOVERRIDE ──
+   Kun farge-/kontrastjusteringer. Struktur og funksjoner er uendret. */
+:root{
+  --gold:#B8860B;
+  --gold-light:#F6D778;
+  --gold-bright:#D99A00;
+  --green:#168A46;
+  --red:#D7263D;
+  --blue-dark:#EEF4FB;
+  --blue-mid:#FFFFFF;
+  --blue-card:#FFFFFF;
+  --blue-border:#CBD8EA;
+  --text-primary:#132238;
+  --text-secondary:#5F6F86;
+  --accent:#1677A8;
+}
+body{background:#EEF4FB;color:var(--text-primary);}
+.hero{background:linear-gradient(180deg,#FFFFFF 0%,#F2F7FC 58%,#EEF4FB 100%);}
+.hero-bg{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(22,119,168,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(217,154,0,.10) 0%,transparent 70%);}
+.hero-title,.section-title,.leader-name,.score-part-val,.tip-value,.group-team.favorite,.empty-title{color:#132238;}
+.hero-subtitle,.hero-stat-label,.section-badge + .section-title + .live-badge + .section-line,.tab,.score-bar-label,.leader-score-label,.score-part-lbl,.tip-label,.group-status,.points-desc,.empty-desc,footer{color:var(--text-secondary);}
+.section-badge{background:#FFE8A3;color:#3A2A00;border:1px solid #F2C24D;}
+.ticker-bar{background:linear-gradient(90deg,#FFE7A0,#FFD45A,#FFE7A0);}
+.tabs{border-bottom-color:var(--blue-border);}
+.tab:hover{color:#132238;}
+.tab.active{color:#B8860B;border-bottom-color:#B8860B;}
+.leader-card,.detail-card,.group-card,.points-strip,.admin-panel,.participant-editor,.results-section{background:#FFFFFF;border-color:var(--blue-border);box-shadow:0 8px 22px rgba(29,51,85,.06);}
+.leader-card.rank-1{background:linear-gradient(90deg,rgba(255,214,90,.22) 0%,#FFFFFF 48%);border-color:rgba(217,154,0,.35);}
+.rank-badge{background:#F6F9FD;border-color:var(--blue-border);color:#132238;}
+.pick-chip{background:#F3F6FA;color:#4D5D73;border-color:#DDE6F2;}
+.pick-chip.hit{background:#E8F6EE;color:var(--green);border-color:#BCE4CA;}
+.pick-chip.winner{background:#FFF4C8;color:#9A6A00;border-color:#EBC75D;}
+.score-bar-track{background:#E3EAF4;}
+.detail-card-header,.group-card-header{background:#F6F9FD;border-bottom-color:var(--blue-border);}
+.detail-card-name,.group-letter,.participant-num,.admin-panel h3,.points-pts{color:#B8860B;}
+.group-mini-item,.group-team{background:#F7FAFD;color:#5F6F86;border-bottom-color:#E7EEF7;}
+.group-mini-item.correct{background:#E8F6EE;border-color:#BCE4CA;}
+.group-mini-item.correct .group-mini-team,.tip-value.correct{color:var(--green);}
+.form-input,.form-select{background:#FFFFFF;border-color:#B9C9DF;color:#132238;}
+.form-input:focus,.form-select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(22,119,168,.10);}
+.form-select option{background:#FFFFFF;color:#132238;}
+.btn-outline{background:#FFFFFF;color:#384860;border-color:#B9C9DF;}
+.btn-outline:hover{border-color:var(--accent);color:#132238;background:#F7FAFD;}
+.btn-green{background:#E8F6EE;color:#168A46;border-color:#BCE4CA;}
+.btn-red{background:#FDECEF;color:#B71D32;border-color:#F3B9C2;}
+.live-badge{background:#FDECEF;border-color:#F3B9C2;color:#B71D32;}
+footer{background:#F8FBFE;border-top-color:var(--blue-border);}
+footer strong{color:#B8860B;}
+
 </style>
 </head>
 <body>
@@ -248,7 +299,7 @@ footer strong{color:var(--gold-bright);}
   </div>
 
   <!-- ADMIN PANEL -->
-  <div class="admin-panel open" id="adminPanel">
+  <div class="admin-panel" id="adminPanel">
     <h3>⚙ Administrasjonspanel</h3>
     <div class="admin-section">
       <h4>Deltakere og tips</h4>
@@ -689,9 +740,60 @@ const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"�
 const ALL_TEAMS=Object.values(GROUPS).flat();
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo","Erling Haaland"];
 
-const DEFAULT_STATE={"participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"","topscorer":"","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jan","winner":"","topscorer":"","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}},{"name":"Sture","winner":"","topscorer":"","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
+const DEFAULT_STATE={"dataVersion":"2026-06-09-csv-utfylling-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jan","winner":"","topscorer":"","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
 let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
-function loadState(){try{const s=localStorage.getItem('vm2026');if(s)state=JSON.parse(s);}catch(e){}}
+function normalizeStateShape(data, preferDefaults=false){
+  const base=JSON.parse(JSON.stringify(DEFAULT_STATE));
+  const incoming=data&&typeof data==='object'?data:{};
+  const incomingParticipants=Array.isArray(incoming.participants)?incoming.participants:[];
+  const defaultByName=new Map(base.participants.map(p=>[p.name,p]));
+  const incomingByName=new Map();
+  incomingParticipants.forEach(p=>{
+    const name=(p&&p.name?p.name:'').trim();
+    if(name)incomingByName.set(name,p);
+  });
+  const mergedParticipants=[];
+  const seen=new Set();
+  base.participants.forEach(defaultP=>{
+    const savedP=incomingByName.get(defaultP.name);
+    if(savedP){
+      const primary=preferDefaults?defaultP:savedP;
+      const secondary=preferDefaults?savedP:defaultP;
+      mergedParticipants.push({
+        ...secondary,
+        ...primary,
+        name:defaultP.name,
+        groups:{...(secondary.groups||{}),...(primary.groups||{})}
+      });
+    }else{
+      mergedParticipants.push(defaultP);
+    }
+    seen.add(defaultP.name);
+  });
+  incomingParticipants.forEach(p=>{
+    const name=(p&&p.name?p.name:'').trim();
+    if(!name||seen.has(name))return;
+    mergedParticipants.push({name,winner:p.winner||'',topscorer:p.topscorer||'',groups:{A:'',B:'',C:'',D:'',E:'',F:'',G:'',H:'',I:'',J:'',K:'',L:'',...(p.groups||{})}});
+  });
+  return{
+    ...base,
+    ...incoming,
+    dataVersion:base.dataVersion,
+    participants:mergedParticipants,
+    results:{...base.results,...(incoming.results||{}),advancedGroups:{...base.results.advancedGroups,...((incoming.results||{}).advancedGroups||{})}}
+  };
+}
+function loadState(){
+  try{
+    const s=localStorage.getItem('vm2026');
+    const saved=s?JSON.parse(s):null;
+    const preferDefaults=!saved||saved.dataVersion!==DEFAULT_STATE.dataVersion;
+    state=normalizeStateShape(saved||DEFAULT_STATE,preferDefaults);
+    localStorage.setItem('vm2026',JSON.stringify(state));
+  }catch(e){
+    state=normalizeStateShape(DEFAULT_STATE,true);
+  }
+}
 function saveData(){
   state.participants=[];
   document.querySelectorAll('.participant-editor').forEach(ed=>{
@@ -715,7 +817,7 @@ function saveData(){
   setTimeout(()=>m.style.display='none',2000);
   render();
 }
-function clearAll(){if(!confirm('Slette alle data?'))return;localStorage.removeItem('vm2026');state={participants:[],results:{winner:'',topscorer:'',advancedGroups:{}}};buildAdminForm();render();}
+function clearAll(){if(!confirm('Slette alle data?'))return;localStorage.removeItem('vm2026');state={dataVersion:DEFAULT_STATE.dataVersion,participants:[],results:{winner:'',topscorer:'',advancedGroups:{}}};buildAdminForm();render();}
 function calcScore(p){
   let gp=0,wp=0,tp=0;
   for(const[g,t]of Object.entries(p.groups)){if(t&&(state.results.advancedGroups[g]||[]).includes(t))gp+=2;}
@@ -835,7 +937,21 @@ function buildParticipantEditor(p,i){
 function addParticipant(){const i=document.querySelectorAll('.participant-editor').length;buildParticipantEditor({name:'',winner:'',topscorer:'',groups:{}},i);}
 function removeParticipant(i){saveData();state.participants.splice(i,1);localStorage.setItem('vm2026',JSON.stringify(state));buildAdminForm();render();}
 function toggleAdmin(){const p=document.getElementById('adminPanel');p.classList.toggle('open');if(p.classList.contains('open'))buildAdminForm();}
-function switchTab(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('tab-'+id).classList.add('active');}
+function safeSaveData(){
+  try{
+    if(document.querySelector('.participant-editor')&&document.getElementById('res-winner'))saveData();
+  }catch(e){
+    try{localStorage.setItem('vm2026',JSON.stringify(state));}catch(err){}
+  }
+}
+function switchTab(id,el){
+  safeSaveData();
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+window.addEventListener('beforeunload',()=>{safeSaveData();});
 // ── LIVE RESULTS: openfootball/worldcup.json (gratis, ingen API-nøkkel) ──────
 const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia","Bosnia-Herzegovina":"Bosnia and Herzegovina","Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde","Curacao":"Curaçao","USA":"United States"};
 function normName(n){return NAME_MAP[n]||n;}
