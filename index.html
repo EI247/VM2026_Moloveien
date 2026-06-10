@@ -634,26 +634,16 @@ const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"�
 const ALL_TEAMS=Object.values(GROUPS).flat();
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo","Erling Haaland"];
 
-const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}},{"name":"Jan","winner":"France","topscorer":"Lamine Yamal","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
+const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jan","winner":"France","topscorer":"Lamine Yamal","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
 let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
 function loadState(){
-  // Participants always come from DEFAULT_STATE (source of truth).
-  // Only results (scores/advanced groups) are persisted in localStorage.
-  // VERSION bump forces a clean reset if old cached data exists.
-  const VERSION='v4-tore-jan';
-  state=JSON.parse(JSON.stringify(DEFAULT_STATE));
-  try{
-    const cachedVersion=localStorage.getItem('vm2026_v');
-    const s=localStorage.getItem('vm2026');
-    if(s && cachedVersion===VERSION){
-      const saved=JSON.parse(s);
-      if(saved.results) state.results=saved.results;
-    } else {
-      // Clear old cache, start fresh
-      localStorage.removeItem('vm2026');
-      localStorage.setItem('vm2026_v', VERSION);
-    }
-  }catch(e){}
+  // ALWAYS use DEFAULT_STATE — participants are the single source of truth
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  // Only load saved results (live scores) from localStorage
+  try {
+    const saved = localStorage.getItem('vm2026_results');
+    if(saved) state.results = JSON.parse(saved);
+  } catch(e) {}
 }
 function calcScore(p){
   let gp=0,wp=0,tp=0;
@@ -767,8 +757,7 @@ function switchTab(id,el){
   document.getElementById('tab-'+id).classList.add('active');
 }
 // ── LIVE RESULTS: football-data.org API (oppdateres hvert minutt under kamper) ──
-const FD_KEY = '7b2d55d621084fd68891bd1e16bad0b7';
-const FD_BASE = 'https://api.football-data.org/v4';
+const FD_PROXY = 'https://young-queen-ae70.eirik-main.workers.dev';
 
 const NAME_MAP = {
   "Mexico":"Mexico","South Africa":"South Africa","Korea Republic":"Korea Republic",
@@ -783,9 +772,7 @@ const NAME_MAP = {
 function normName(n){ return n ? (NAME_MAP[n] || n) : n; }
 
 async function fdFetch(path){
-  const r = await fetch(FD_BASE + path, {
-    headers: { 'X-Auth-Token': FD_KEY }
-  });
+  const r = await fetch(FD_PROXY + '?path=' + encodeURIComponent(path));
   if(!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }
