@@ -199,16 +199,9 @@ body{background:#F1F5F9 !important;}
 .carousel-tag.group{background:#1e3a8a;color:#fff;}
 .carousel-tag.scorer{background:#C9A227;color:#fff;}
 .carousel-tag.injury{background:#6b21a8;color:#fff;}
-.carousel-headline{
-  font-size:11px;font-weight:700;color:#94a3b8;
-  text-transform:uppercase;letter-spacing:1px;
-  margin-bottom:8px;
-}
-.carousel-sub{
-  font-size:19px;font-weight:300;color:#0f172a;
-  line-height:1.55;
-}
-.carousel-sub strong{font-weight:800;color:#0f172a;}
+.carousel-headline{font-size:18px;font-weight:800;color:#0f172a;line-height:1.3;margin-bottom:10px;letter-spacing:-.2px;}
+.carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
+.carousel-sub strong{font-weight:700;color:#0f172a;}
 
 /* Controls */
 .carousel-controls{display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0;}
@@ -235,7 +228,7 @@ body{background:#F1F5F9 !important;}
 @media(max-width:700px){
   .carousel-slide{padding:20px 16px 18px;gap:14px;}
   .carousel-avatar{width:58px;height:58px;font-size:28px;}
-  .carousel-sub{font-size:15px;}
+  .carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
   .carousel-masthead-date{display:none;}
   .carousel-masthead-title{letter-spacing:2px;font-size:10px;}
   .carousel-masthead-label{font-size:11px;}
@@ -406,7 +399,7 @@ footer strong{color:var(--text2);}
   .res-grid{grid-template-columns:1fr;}
   .carousel-slide{padding:16px 16px 14px;gap:14px;}
   .carousel-avatar{width:52px;height:52px;font-size:26px;}
-  .carousel-sub{font-size:13px;line-height:1.5;}
+  .carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
   .carousel-masthead-date{display:none;}
   .carousel-masthead-title{font-size:9px;letter-spacing:2px;}
   .hero-inner{max-width:100%;}
@@ -478,9 +471,14 @@ footer strong{color:var(--text2);}
   </div>
 </div>
 
-<!-- NEWS CAROUSEL -->
-<div class="carousel-wrap" id="carousel-wrap">
-  <div class="carousel-breaking-bar"><div class="carousel-breaking-dot"></div>Breaking News</div>
+<!-- BREAKING NEWS CAROUSEL -->
+<div class="carousel-outer" id="carousel-wrap">
+  <div class="carousel-masthead">
+    <div class="carousel-masthead-label"><div class="carousel-masthead-dot"></div>Breaking News</div>
+    <div class="carousel-masthead-title">VM 2026 · Jobbkonkurransen</div>
+    <div class="carousel-masthead-date">10. juni 2026</div>
+    <div class="carousel-masthead-counter" id="carousel-counter">1 / 7</div>
+  </div>
   <div class="carousel-inner" id="carousel-inner"></div>
   <div class="carousel-progress"><div class="carousel-progress-fill" id="carousel-progress"></div></div>
 </div>
@@ -997,11 +995,11 @@ function goToSlide(idx){
   if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
   document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const prog=document.getElementById('carousel-progress');
-  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 12s linear';prog.style.width='100%';},30);}
+  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 16s linear';prog.style.width='100%';},30);}
   const ctr=document.getElementById('carousel-counter');
   if(ctr)ctr.textContent=(idx+1)+' / '+NEWS.length;
   clearTimeout(carouselTimer);
-  carouselTimer=setTimeout(()=>carouselNext(),12000);
+  carouselTimer=setTimeout(()=>carouselNext(),16000);
 }
 function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
 function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
@@ -1091,11 +1089,11 @@ function goToSlide(idx){
   if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
   document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const prog=document.getElementById('carousel-progress');
-  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 12s linear';prog.style.width='100%';},30);}
+  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 16s linear';prog.style.width='100%';},30);}
   const ctr=document.getElementById('carousel-counter');
   if(ctr)ctr.textContent=(idx+1)+' / '+NEWS.length;
   clearTimeout(carouselTimer);
-  carouselTimer=setTimeout(()=>carouselNext(),12000);
+  carouselTimer=setTimeout(()=>carouselNext(),16000);
 }
 function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
 function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
@@ -1114,4 +1112,26 @@ fetchLiveResults();
 setInterval(fetchLiveResults,5*60*1000);
 </script>
 </body>
-</html>
+</html>const NEWS=[
+  {tag:"breaking",tagLabel:"I dag",avatar:"🏟️",
+   headline:"VM 2026 åpner i kveld på Azteca",
+   sub:"Mexico møter Sør-Afrika i turneringens første kamp. 8 av 9 deltakere har tippet <strong>Mexico</strong> videre fra gruppe A – så om Mexico ryker er det bare <strong>Magnus</strong> som ler hele veien til kassen."},
+  {tag:"scorer",tagLabel:"Toppscorer-kamp",avatar:"🐐",
+   headline:"Messi scoret på oppvarming foran 88 000 tilskuere",
+   sub:"Argentina-stjernen viste strålende form i siste treningskamp. <strong>Tore</strong> har satset på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for <strong>Tore</strong>."},
+  {tag:"group",tagLabel:"Gruppe I",avatar:"🦌",
+   headline:"Haaland bekreftet i Norges startelleven mot Frankrike",
+   sub:"Norges store VM-håp er frisk og spilleklar. <strong>Magnus</strong> er den eneste som har tippet Norge videre fra gruppe I. Toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."},
+  {tag:"group",tagLabel:"Gruppe H",avatar:"⭐",
+   headline:"Yamal i Spanias startelleven – 16 år og allerede VM-favoritt",
+   sub:"<strong>Jan</strong> tippet Yamal som toppscorer mens alle andre så en annen vei. <strong>Eirik</strong>, <strong>Jon Magnar</strong> og <strong>Christian</strong> tippet Spania til å vinne hele turneringen – de burde sende <strong>Jan</strong> en blomsterbukett."},
+  {tag:"injury",tagLabel:"Skade",avatar:"🤕",
+   headline:"Mbappé utelatt fra Frankrikes åpningskamp",
+   sub:"Frankrike-kapteinen starter på benken 13. juni med muskelskade. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen på benken i kamp én. God stemning i den leiren."},
+  {tag:"group",tagLabel:"Gruppe C",avatar:"🕺",
+   headline:"Brasil i storform i Houston – Vinícius Jr. brennhet",
+   sub:"Samba-guttene så fenomenale ut på trening og er solide favoritter. 7 av 9 deltakere har tippet Brasil videre – eneste unntak er <strong>Magnus</strong>, som har tippet Haiti og Morocco. <strong>Magnus</strong> lever farlig."},
+  {tag:"group",tagLabel:"Gruppe J",avatar:"🏆",
+   headline:"Messi jager tredje VM-tittel med Argentina",
+   sub:"Regjerende mester stiller med verdens beste spiller for en siste dans. <strong>Tore</strong> er den eneste som tror Argentina går hele veien til finaleseier. Den som ler sist, ler best."}
+];
