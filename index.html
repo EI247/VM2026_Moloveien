@@ -414,6 +414,16 @@ footer strong{color:var(--text2);}
 .cc-norway{background:linear-gradient(135deg,rgba(239,43,45,.06) 0%,rgba(0,40,104,.05) 100%) !important;}
 .cc-portugal{background:linear-gradient(135deg,rgba(0,102,0,.06) 0%,rgba(255,0,0,.04) 100%) !important;}
 .cc-germany{background:linear-gradient(135deg,rgba(0,0,0,.03) 0%,rgba(221,0,0,.03) 50%,rgba(255,204,0,.05) 100%) !important;}
+
+/* ── COUNTRY CARD COLOURS ── */
+.cc-spain{background:linear-gradient(135deg,rgba(198,11,30,.06) 0%,rgba(241,191,0,.04) 100%) !important;}
+.cc-france{background:linear-gradient(135deg,rgba(0,35,149,.07) 0%,rgba(237,41,57,.04) 100%) !important;}
+.cc-brazil{background:linear-gradient(135deg,rgba(0,156,59,.06) 0%,rgba(255,223,0,.05) 100%) !important;}
+.cc-england{background:linear-gradient(135deg,rgba(204,0,0,.05) 0%,rgba(240,240,240,.04) 100%) !important;}
+.cc-argentina{background:linear-gradient(135deg,rgba(116,172,223,.08) 0%,rgba(255,255,255,.02) 100%) !important;}
+.cc-norway{background:linear-gradient(135deg,rgba(239,43,45,.06) 0%,rgba(0,40,104,.05) 100%) !important;}
+.cc-portugal{background:linear-gradient(135deg,rgba(0,102,0,.06) 0%,rgba(255,0,0,.04) 100%) !important;}
+.cc-germany{background:linear-gradient(135deg,rgba(0,0,0,.03) 0%,rgba(221,0,0,.03) 50%,rgba(255,204,0,.05) 100%) !important;}
 </style>
 </head>
 <body>
@@ -586,6 +596,7 @@ const GROUPS={A:["Mexico","South Africa","Korea Republic","Czechia"],B:["Canada"
 const FAVORITES={A:"Mexico",B:"Switzerland",C:"Brazil",D:"Türkiye",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"};
 const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Switzerland":"🇨🇭","Qatar":"🇶🇦","Bosnia and Herzegovina":"🇧🇦","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Côte d'Ivoire":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","IR Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cabo Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
 const ALL_TEAMS=Object.values(GROUPS).flat();
+const WINNER_COLORS={"Spain":"cc-spain","France":"cc-france","Brazil":"cc-brazil","England":"cc-england","Argentina":"cc-argentina","Norway":"cc-norway","Portugal":"cc-portugal","Germany":"cc-germany"};
 const WINNER_COLORS={"Spain":"cc-spain","France":"cc-france","Brazil":"cc-brazil","England":"cc-england","Argentina":"cc-argentina","Norway":"cc-norway","Portugal":"cc-portugal","Germany":"cc-germany"};
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo"];
 
@@ -931,8 +942,7 @@ function saveData(){
   setTimeout(()=>m.style.display='none',2000);
   render();
 }
-function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');
-
+function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');loadState();render();}
 
 // ── NEWS CAROUSEL ────────────────────────────────────────────────────────
 const NEWS = [
