@@ -245,66 +245,6 @@ body{background:#EEF4FB;color:var(--text-primary);}
 footer{background:#F8FBFE;border-top-color:var(--blue-border);}
 footer strong{color:#B8860B;}
 
-
-/* ── MOBILTILPASNING ── */
-@media(max-width:760px){
-  body{font-size:14px;}
-  .hero{padding:24px 14px 22px;}
-  .hero-eyebrow{font-size:10px;letter-spacing:4px;margin-bottom:4px;}
-  .hero-title{font-size:clamp(42px,16vw,64px);letter-spacing:1px;}
-  .hero-subtitle{font-size:12px;letter-spacing:5px;margin-bottom:18px;}
-  .hero-stats{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 12px;}
-  .hero-divider{display:none;}
-  .hero-stat{background:rgba(255,255,255,.42);border:1px solid rgba(185,201,223,.75);border-radius:10px;padding:9px 6px;}
-  .hero-stat-value{font-size:28px;}
-  .hero-stat-label{font-size:9px;letter-spacing:2px;}
-  .ticker-bar{padding:6px 0;}
-  .ticker-item{font-size:11px;letter-spacing:1.4px;padding:0 22px;}
-  .container{padding:0 12px;}
-  .section{padding:26px 0;}
-  .section-header{gap:8px;margin-bottom:14px;align-items:flex-start;}
-  .section-title{font-size:24px;line-height:1;}
-  .section-badge{font-size:10px;letter-spacing:2px;padding:3px 8px;}
-  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;border-bottom:0;margin-bottom:16px;}
-  .tab{border:1px solid var(--blue-border);border-radius:10px;margin-bottom:0;text-align:center;background:#fff;padding:10px 12px;font-size:12px;}
-  .tab.active{border-color:var(--gold-bright);background:#FFF8E4;}
-  .leaderboard{gap:9px;}
-  .leader-card{grid-template-columns:38px 1fr;gap:11px;padding:12px 13px;border-radius:10px;}
-  .rank-badge{width:32px;height:32px;font-size:16px;}
-  .leader-name{font-size:19px;margin-bottom:5px;}
-  .leader-picks{gap:4px;margin-bottom:6px;}
-  .pick-chip{font-size:10px;padding:2px 6px;line-height:1.35;}
-  .leader-score-area{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;text-align:left;border-top:1px solid var(--blue-border);padding-top:9px;margin-top:2px;}
-  .leader-total{font-size:34px;}
-  .score-breakdown{gap:6px;}
-  .score-part-val{font-size:12px;}
-  .score-part-lbl{font-size:8px;}
-  .detail-grid{grid-template-columns:1fr;gap:10px;}
-  .detail-card-header{padding:11px 13px;}
-  .detail-card-name{font-size:19px;}
-  .detail-card-score{font-size:23px;}
-  .detail-body{padding:12px 13px;}
-  .tip-row{gap:10px;align-items:flex-start;}
-  .tip-label{font-size:9px;min-width:86px;}
-  .tip-value{font-size:13px;line-height:1.35;}
-  .groups-mini{grid-template-columns:repeat(3,1fr);gap:5px;}
-  .group-mini-item{padding:6px 4px;}
-  .group-mini-team{font-size:10px;}
-  .points-strip{display:grid;grid-template-columns:1fr;gap:8px;background:transparent;border:0;}
-  .points-item{border:1px solid var(--blue-border);border-radius:10px;background:var(--blue-card);padding:15px 12px;}
-  .points-pts{font-size:32px;}
-  .points-desc{font-size:10px;line-height:1.45;}
-}
-
-@media(max-width:390px){
-  .hero-stats{grid-template-columns:1fr 1fr;gap:8px;}
-  .hero-stat-value{font-size:24px;}
-  .leader-card{padding:11px 10px;}
-  .leader-score-area{display:block;}
-  .score-breakdown{justify-content:flex-start;margin-top:6px;flex-wrap:wrap;}
-  .groups-mini{grid-template-columns:repeat(2,1fr);}
-}
-
 </style>
 </head>
 <body>
@@ -362,6 +302,7 @@ footer strong{color:#B8860B;}
 
   <div class="tabs">
     <div class="tab active" onclick="switchTab('leaderboard',this)">Rangering</div>
+    <div class="tab" onclick="switchTab('details',this)">Tips &amp; detaljer</div>
     <div class="tab" onclick="switchTab('rules',this)">Poengregler</div>
   </div>
 
@@ -591,6 +532,79 @@ footer strong{color:#B8860B;}
         </div>
       </div>
     </div></div></div>
+  <div id="tab-details" class="tab-pane"><div class="detail-grid" id="details-grid"><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Eirik</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Jon Magnar</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Ousmane Dembélé </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Magnus</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇳🇴 Norway </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Erling Haaland </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇶🇦 Qatar</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇭🇹 Haiti</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇹🇷 Türkiye</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇨🇼 Curaçao</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇹🇳 Tunisia</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇳🇿 New Zealand</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇨🇻 Cabo Verde</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇮🇶 Iraq</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇯🇴 Jordan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇺🇿 Uzbekistan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🇵🇦 Panama</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Christian</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇧🇦 Bosnia and Herzegovina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Kenneth</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Tore</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Michael</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Michael Olise </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Jan</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
+      </div>
+    </div><div class="detail-card">
+      <div class="detail-card-header"><div class="detail-card-name">Sture</div><div class="detail-card-score">0 <span>poeng</span></div></div>
+      <div class="detail-body">
+        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England </span></div>
+        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
+        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
+        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
+      </div>
+    </div></div></div>
   <div id="tab-rules" class="tab-pane">
     <div class="points-strip">
       <div class="points-item"><div class="points-pts">2 <span>p</span></div><div class="points-desc">Riktig lag fra gruppe</div></div>
@@ -620,51 +634,26 @@ const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"�
 const ALL_TEAMS=Object.values(GROUPS).flat();
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo","Erling Haaland"];
 
-const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
+const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}},{"name":"Jan","winner":"France","topscorer":"Lamine Yamal","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
 let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
-function normalizeStateShape(data, preferDefaults=false){
-  const base=JSON.parse(JSON.stringify(DEFAULT_STATE));
-  const incoming=data&&typeof data==='object'?data:{};
-  const incomingParticipants=Array.isArray(incoming.participants)?incoming.participants:[];
-  const defaultByName=new Map(base.participants.map(p=>[p.name,p]));
-  const incomingByName=new Map();
-  incomingParticipants.forEach(p=>{
-    const name=(p&&p.name?p.name:'').trim();
-    if(name)incomingByName.set(name,p);
-  });
-  const mergedParticipants=[];
-  const seen=new Set();
-  base.participants.forEach(defaultP=>{
-    const savedP=incomingByName.get(defaultP.name);
-    if(savedP){
-      const primary=preferDefaults?defaultP:savedP;
-      const secondary=preferDefaults?savedP:defaultP;
-      mergedParticipants.push({
-        ...secondary,
-        ...primary,
-        name:defaultP.name,
-        groups:{...(secondary.groups||{}),...(primary.groups||{})}
-      });
-    }else{
-      mergedParticipants.push(defaultP);
-    }
-    seen.add(defaultP.name);
-  });
-  incomingParticipants.forEach(p=>{
-    const name=(p&&p.name?p.name:'').trim();
-    if(!name||seen.has(name))return;
-    mergedParticipants.push({name,winner:p.winner||'',topscorer:p.topscorer||'',groups:{A:'',B:'',C:'',D:'',E:'',F:'',G:'',H:'',I:'',J:'',K:'',L:'',...(p.groups||{})}});
-  });
-  return{
-    ...base,
-    ...incoming,
-    dataVersion:base.dataVersion,
-    participants:mergedParticipants,
-    results:{...base.results,...(incoming.results||{}),advancedGroups:{...base.results.advancedGroups,...((incoming.results||{}).advancedGroups||{})}}
-  };
-}
 function loadState(){
-  state=normalizeStateShape(DEFAULT_STATE,true);
+  // Participants always come from DEFAULT_STATE (source of truth).
+  // Only results (scores/advanced groups) are persisted in localStorage.
+  // VERSION bump forces a clean reset if old cached data exists.
+  const VERSION='v4-tore-jan';
+  state=JSON.parse(JSON.stringify(DEFAULT_STATE));
+  try{
+    const cachedVersion=localStorage.getItem('vm2026_v');
+    const s=localStorage.getItem('vm2026');
+    if(s && cachedVersion===VERSION){
+      const saved=JSON.parse(s);
+      if(saved.results) state.results=saved.results;
+    } else {
+      // Clear old cache, start fresh
+      localStorage.removeItem('vm2026');
+      localStorage.setItem('vm2026_v', VERSION);
+    }
+  }catch(e){}
 }
 function calcScore(p){
   let gp=0,wp=0,tp=0;
@@ -673,13 +662,18 @@ function calcScore(p){
   if(state.results.topscorer&&p.topscorer===state.results.topscorer)tp=5;
   return{groupPts:gp,winnerPts:wp,topPts:tp,total:gp+wp+tp};
 }
+function isUntippedJan(p){
+  return p.name==='Jan'&&!p.winner&&!p.topscorer&&Object.values(p.groups||{}).every(v=>!v);
+}
 function render(){
   const ranked=state.participants.map((p,idx)=>({...p,_idx:idx,score:calcScore(p)})).sort((a,b)=>{
+    if(isUntippedJan(a)&&!isUntippedJan(b))return 1;
+    if(!isUntippedJan(a)&&isUntippedJan(b))return -1;
     return b.score.total-a.score.total||a._idx-b._idx;
   });
   document.getElementById('stat-players').textContent=ranked.length;
   document.getElementById('stat-pot').textContent=ranked.length*100;
-  renderLeaderboard(ranked);
+  renderLeaderboard(ranked);renderDetails(ranked);
 }
 function renderLeaderboard(ranked){
   const el=document.getElementById('leaderboard-list');
@@ -756,6 +750,7 @@ function bindTabs(){
     const raw=tab.getAttribute('onclick')||'';
     let id='';
     if(raw.includes('leaderboard'))id='leaderboard';
+    else if(raw.includes('details'))id='details';
     else if(raw.includes('rules'))id='rules';
     if(!id)return;
     tab.addEventListener('click',function(e){
@@ -772,27 +767,46 @@ function switchTab(id,el){
   document.getElementById('tab-'+id).classList.add('active');
 }
 // ── LIVE RESULTS: openfootball/worldcup.json (gratis, ingen API-nøkkel) ──────
-const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia","Bosnia-Herzegovina":"Bosnia and Herzegovina","Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde","Curacao":"Curaçao","USA":"United States"};
-function normName(n){return NAME_MAP[n]||n;}
+// 2026 JSON bruker "rounds"-struktur: {rounds:[{name,matches:[...]}]}
+const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia",
+  "Bosnia-Herzegovina":"Bosnia and Herzegovina","Bosnia & Herzegovina":"Bosnia and Herzegovina",
+  "Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde",
+  "Curacao":"Curaçao","USA":"United States","IR Iran":"IR Iran"};
+function normName(n){if(!n)return n;return NAME_MAP[n]||n;}
+
+function flattenMatches(data){
+  // Handle both {matches:[]} and {rounds:[{matches:[]}]} structures
+  if(data.matches)return data.matches;
+  if(data.rounds){
+    const all=[];
+    data.rounds.forEach(r=>{ if(r.matches)r.matches.forEach(m=>{ all.push({...m,round:r.name}); }); });
+    return all;
+  }
+  return[];
+}
 
 function calcAdvanced(matches){
   const gp={};
   matches.forEach(m=>{
-    if(!m.group||!m.score)return;
+    if(!m.group)return;
     const g=m.group.replace("Group ","").trim();
+    // 2026 format uses team1/team2 as strings OR {name,code}
     const t1=normName(m.team1&&m.team1.name?m.team1.name:m.team1);
     const t2=normName(m.team2&&m.team2.name?m.team2.name:m.team2);
-    const s=m.score.ft||m.score;
-    if(!s||s[0]==null)return;
+    // 2026 format: score1/score2 OR score:{ft:[x,y]}
+    let s1=null,s2=null;
+    if(m.score&&m.score.ft){s1=m.score.ft[0];s2=m.score.ft[1];}
+    else if(m.score1!=null&&m.score2!=null){s1=m.score1;s2=m.score2;}
+    if(s1==null||s2==null)return;
     if(!gp[g])gp[g]={};
     if(!gp[g][t1])gp[g][t1]={pts:0,gd:0,gf:0};
     if(!gp[g][t2])gp[g][t2]={pts:0,gd:0,gf:0};
-    gp[g][t1].gf+=s[0];gp[g][t2].gf+=s[1];
-    gp[g][t1].gd+=(s[0]-s[1]);gp[g][t2].gd+=(s[1]-s[0]);
-    if(s[0]>s[1]){gp[g][t1].pts+=3;}else if(s[0]<s[1]){gp[g][t2].pts+=3;}else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
+    gp[g][t1].gf+=s1;gp[g][t2].gf+=s2;
+    gp[g][t1].gd+=(s1-s2);gp[g][t2].gd+=(s2-s1);
+    if(s1>s2)gp[g][t1].pts+=3;else if(s1<s2)gp[g][t2].pts+=3;
+    else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
   });
-  const advanced={};
-  const thirds=[];
+  const advanced={};const thirds=[];
   Object.entries(gp).forEach(([grp,teams])=>{
     const sorted=Object.entries(teams).sort((a,b)=>b[1].pts-a[1].pts||b[1].gd-a[1].gd||b[1].gf-a[1].gf);
     const totalPts=sorted.reduce((a,[,s])=>a+s.pts,0);
@@ -802,125 +816,61 @@ function calcAdvanced(matches){
     }
     if(sorted.length>=3&&totalPts>=9)thirds.push({team:sorted[2][0],...sorted[2][1],grp});
   });
-  if(thirds.length===12){
-    thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{
-      if(!advanced[t.grp])advanced[t.grp]=[];
-      if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);
-    });
-  }
+  // Best 8 third-placed teams also advance in 2026 format
+  if(thirds.length===12)thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{
+    if(!advanced[t.grp])advanced[t.grp]=[];
+    if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);
+  });
   return advanced;
 }
 
 function findWinnerScorer(matches){
   let winner="",topscorer="";
-  const fin=matches.find(m=>(m.round==="Final"||m.round==="Matchday 63")&&m.score&&m.score.ft);
-  if(fin){const s=fin.score.ft;const w=s[0]>s[1]?fin.team1:fin.team2;winner=normName(w&&w.name?w.name:w);}
+  const fin=matches.find(m=>{
+    const rnd=(m.round||"").toLowerCase();
+    return(rnd.includes("final")&&!rnd.includes("third"))&&(m.score1!=null||(m.score&&m.score.ft));
+  });
+  if(fin){
+    let s1,s2;
+    if(fin.score&&fin.score.ft){s1=fin.score.ft[0];s2=fin.score.ft[1];}
+    else{s1=fin.score1;s2=fin.score2;}
+    const w=s1>s2?fin.team1:fin.team2;
+    winner=normName(w&&w.name?w.name:w);
+  }
   const sc={};
-  matches.forEach(m=>[...(m.goals1||[]),...(m.goals2||[])].forEach(g=>{
-    if(g.name&&!g.name.includes("o.g."))sc[g.name]=(sc[g.name]||0)+1;
-  }));
+  matches.forEach(m=>{
+    const goals=[...(m.goals1||[]),...(m.goals2||[])];
+    goals.forEach(g=>{if(g.name&&!g.name.includes("og")&&!g.name.includes("o.g."))sc[g.name]=(sc[g.name]||0)+1;});
+  });
   const top=Object.entries(sc).sort((a,b)=>b[1]-a[1]);
   if(top.length)topscorer=top[0][0];
   return{winner,topscorer};
 }
 
-
-
-function htmlEscape(value){
-  return String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-}
-function teamName(team){return normName(team&&team.name?team.name:team);}
-function getTippedScorers(){
-  return new Set((state.participants||[]).map(p=>p.topscorer).filter(Boolean));
-}
-function matchScore(m){
-  const s=m.score&&(m.score.ft||m.score);
-  return s&&s[0]!=null?s:null;
-}
-function goalMinute(g){
-  return g.minute||g.min||g.time||g.at||'';
-}
-function cleanGoalName(name){
-  return String(name||'').replace(/\s*\(o\.g\.\)\s*/i,'').trim();
-}
-function getGoalsForTicker(m){
-  const t1=teamName(m.team1);
-  const t2=teamName(m.team2);
-  return [
-    ...((m.goals1||[]).map(g=>({...g,team:t1}))),
-    ...((m.goals2||[]).map(g=>({...g,team:t2})))
-  ].filter(g=>g.name&&!String(g.name).includes('o.g.'));
-}
-function setTickerItems(items){
-  const el=document.getElementById('tickerInner');
-  if(!el)return;
-  const fallback=[
-    'VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk',
-    'Dagens kamper vises her når kampdata er tilgjengelig',
-    'Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer'
-  ];
-  const list=(items&&items.length?items:fallback);
-  const doubled=[...list,...list];
-  el.innerHTML=doubled.map(item=>`<span class="ticker-item">${item}</span>`).join('');
-}
-function updateTicker(matches){
-  const played=(matches||[]).filter(m=>matchScore(m));
-  if(!played.length){setTickerItems([]);return;}
-  const tipped=getTippedScorers();
-  const recent=[...played].slice(-10).reverse();
-  const items=[];
-
-  recent.forEach(m=>{
-    const s=matchScore(m);
-    const t1=teamName(m.team1);
-    const t2=teamName(m.team2);
-    const scoreText=`${htmlEscape(t1)} ${s[0]}–${s[1]} ${htmlEscape(t2)}`;
-    getGoalsForTicker(m).forEach(g=>{
-      const name=cleanGoalName(g.name);
-      if(tipped.has(name)){
-        const min=goalMinute(g);
-        items.push(`Toppscorertips: ${htmlEscape(name)} scoret${min?` ${htmlEscape(min)}’`:''} for ${htmlEscape(g.team)} <span class="ticker-dot">·</span> ${scoreText}`);
-      }
-    });
-  });
-
-  if(items.length<4){
-    recent.forEach(m=>{
-      const s=matchScore(m);
-      const t1=teamName(m.team1);
-      const t2=teamName(m.team2);
-      const scorers=getGoalsForTicker(m).map(g=>cleanGoalName(g.name)).filter(Boolean).slice(0,4);
-      const scorerText=scorers.length?` <span class="ticker-dot">·</span> Mål: ${htmlEscape(scorers.join(', '))}`:'';
-      items.push(`${htmlEscape(t1)} ${s[0]}–${s[1]} ${htmlEscape(t2)}${scorerText}`);
-    });
-  }
-
-  setTickerItems(items.slice(0,10));
-}
-
-
-
 async function fetchLiveResults(){
   const el=document.getElementById("live-status");
   try{
     const r=await fetch("https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json");
-    if(!r.ok)throw new Error();
+    if(!r.ok)throw new Error("HTTP "+r.status);
     const data=await r.json();
-    const played=(data.matches||[]).filter(m=>m.score&&(m.score.ft||m.score)[0]!=null);
+    const allMatches=flattenMatches(data);
+    const played=allMatches.filter(m=>{
+      if(m.score&&m.score.ft)return m.score.ft[0]!=null;
+      return m.score1!=null&&m.score2!=null;
+    });
     if(played.length===0){
-      updateTicker(data.matches||[]);
-      if(el)el.textContent="⏳ Turneringen starter 11. juni";
+      if(el)el.textContent="⏳ Starter 11. juni · "+allMatches.length+" kamper planlagt";
       return;
     }
-    updateTicker(data.matches||[]);
     state.results.advancedGroups=calcAdvanced(played);
     const{winner,topscorer}=findWinnerScorer(played);
     if(winner)state.results.winner=winner;
     if(topscorer)state.results.topscorer=topscorer;
-    if(el)el.textContent=played.length+" kamper spilt · "+new Date().toLocaleTimeString("no-NO");
+    const now=new Date().toLocaleTimeString("no-NO",{hour:"2-digit",minute:"2-digit"});
+    if(el)el.textContent=played.length+" kamper spilt · oppdatert "+now;
     render();
   }catch(e){
-    if(el)el.textContent="⚠️ Live-data utilgjengelig";
+    if(el)el.textContent="⏳ Starter 11. juni 2026";
   }
 }
 
