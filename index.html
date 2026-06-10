@@ -1,650 +1,428 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///Users/eirikisaken/Downloads/VM/index.html -->
-<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="no">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VM 2026 – Jobbkonkurranse</title>
-<link href="file:///Users/eirikisaken/Downloads/VM/index_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A227;--gold-light:#E8C44A;--gold-bright:#FFD700;--green:#00C853;--red:#FF1744;
---blue-dark:#080C18;--blue-mid:#0D1B35;--blue-card:#0F1D38;--blue-border:#1A3362;
---text-primary:#FFFFFF;--text-secondary:#7A90B8;--accent:#1A9ED4;}
+:root{
+  --gold:#D4A017;--gold-light:#F5C842;--gold-bg:#FFFBEB;--gold-border:#FDE68A;
+  --green:#16A34A;--green-bg:#F0FDF4;--green-border:#BBF7D0;--green-light:#DCFCE7;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-border:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-border:#BFDBFE;
+  --orange:#EA580C;--orange-bg:#FFF7ED;--orange-border:#FED7AA;
+  --purple:#7C3AED;--purple-bg:#F5F3FF;--purple-border:#DDD6FE;
+  --bg:#F1F5F9;--surface:#FFFFFF;--surface2:#F8FAFC;--surface3:#F1F5F9;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --text:#0F172A;--text2:#475569;--text3:#94A3B8;--text4:#CBD5E1;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.07),0 2px 6px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
+  --r:14px;--r-sm:10px;--r-xs:7px;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--blue-dark);color:var(--text-primary);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* ── HERO ── */
-.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:40px 20px 36px;background:linear-gradient(180deg,#050810 0%,#08101E 50%,var(--blue-dark) 100%);}
-.hero-bg{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(26,158,212,.1) 0%,transparent 70%),
-             radial-gradient(ellipse 50% 40% at 50% 100%,rgba(201,162,39,.06) 0%,transparent 70%);}
-.ray{position:absolute;top:-60px;width:1px;height:700px;transform-origin:top center;opacity:.08;animation:sweep 9s ease-in-out infinite;}
-.ray-1{left:22%;background:linear-gradient(180deg,var(--gold-bright),transparent);animation-delay:0s;transform:rotate(-22deg);}
-.ray-2{left:38%;background:linear-gradient(180deg,var(--accent),transparent);animation-delay:2s;transform:rotate(-6deg);}
-.ray-3{right:38%;background:linear-gradient(180deg,var(--accent),transparent);animation-delay:4s;transform:rotate(6deg);}
-.ray-4{right:22%;background:linear-gradient(180deg,var(--gold-bright),transparent);animation-delay:6s;transform:rotate(22deg);}
-@keyframes sweep{0%,100%{opacity:.04;}50%{opacity:.14;}}
-
-/* Trophy area */
-
-.trophy-center{z-index:2;filter:drop-shadow(0 0 30px rgba(201,162,39,.6)) drop-shadow(0 10px 40px rgba(201,162,39,.3));animation:tfloat 4.5s ease-in-out infinite;}
-@keyframes tfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-
-
-
-
-
-.hero-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:7px;color:var(--gold);margin-bottom:5px;}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,11vw,100px);letter-spacing:3px;line-height:.88;text-align:center;color:#fff;margin-bottom:5px;}
-.hero-title span{color:var(--gold-bright);}
-.hero-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:9px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:28px;}
-.hero-stats{display:flex;gap:32px;align-items:center;}
-.hero-stat{text-align:center;}
-.hero-stat-value{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold-bright);line-height:1;}
-.hero-stat-label{font-size:10px;letter-spacing:3px;color:var(--text-secondary);text-transform:uppercase;margin-top:2px;}
-.hero-divider{width:1px;height:34px;background:var(--blue-border);}
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0F2156 0%,#1E40AF 50%,#1D4ED8 75%,#0EA5E9 100%);
+  padding:48px 20px 44px;text-align:center;
+}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;}
+.trophy-wrap{margin-bottom:16px;filter:drop-shadow(0 8px 32px rgba(0,0,0,.4));animation:tfloat 4s ease-in-out infinite;display:inline-block;}
+@keyframes tfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:3px;color:rgba(255,255,255,.9);text-transform:uppercase;margin-bottom:12px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,12vw,100px);letter-spacing:2px;line-height:.88;color:#fff;margin-bottom:4px;}
+.hero-title span{color:#FCD34D;}
+.hero-sub{font-size:13px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.hero-stats{display:inline-flex;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);border-radius:16px;overflow:hidden;}
+.hero-stat{padding:14px 22px;text-align:center;border-right:1px solid rgba(255,255,255,.12);}
+.hero-stat:last-child{border-right:none;}
+.hsv{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#FCD34D;line-height:1;}
+.hsl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px;}
 
 /* ── TICKER ── */
-.ticker-bar{background:linear-gradient(90deg,var(--gold-light),var(--gold-bright),var(--gold-light));color:#000;padding:7px 0;overflow:hidden;}
-.ticker-inner{display:flex;align-items:center;white-space:nowrap;animation:ticker 35s linear infinite;}
-.ticker-item{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;padding:0 36px;}
-.ticker-dot{color:#7A5800;margin:0 8px;}
-@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker{background:linear-gradient(90deg,#D97706,#F59E0B,#D97706);padding:7px 0;overflow:hidden;}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 40s linear infinite;}
+.ti{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;padding:0 32px;}
+.ts{color:rgba(255,255,255,.4);margin:0 4px;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ── LAYOUT ── */
-.container{max-width:1100px;margin:0 auto;padding:0 20px;}
-.section{padding:44px 0;}
-.section-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
-.section-badge{background:var(--gold-bright);color:#000;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;padding:3px 10px;border-radius:2px;}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:#fff;}
-.section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--blue-border),transparent);}
-.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,23,68,.12);border:1px solid rgba(255,23,68,.35);padding:4px 10px;border-radius:20px;font-size:10px;letter-spacing:2px;font-weight:700;color:var(--red);text-transform:uppercase;}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.2s ease-in-out infinite;}
+.container{max-width:1080px;margin:0 auto;padding:0 20px;}
+.section{padding:36px 0;}
+
+/* ── SECTION HEAD ── */
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.sh-tag{background:var(--blue);color:#fff;font-size:9px;font-weight:800;letter-spacing:2.5px;padding:3px 9px;border-radius:4px;text-transform:uppercase;}
+.sh-title{font-size:18px;font-weight:800;color:var(--text);}
+.sh-line{flex:1;height:1px;background:var(--border);}
+.live-pill{display:inline-flex;align-items:center;gap:5px;background:var(--red-bg);border:1px solid var(--red-border);padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--red);text-transform:uppercase;}
+.ld{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 1.2s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
 
 /* ── TABS ── */
-.tabs{display:flex;border-bottom:2px solid var(--blue-border);margin-bottom:24px;flex-wrap:wrap;}
-.tab{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);padding:11px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
-.tab:hover{color:#fff;}
-.tab.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright);}
+.tabs{display:flex;gap:2px;background:var(--surface3);padding:4px;border-radius:11px;width:fit-content;margin-bottom:20px;}
+.tab{font-size:12px;font-weight:600;letter-spacing:.3px;color:var(--text2);padding:8px 18px;border-radius:8px;cursor:pointer;transition:all .15s;border:none;background:none;}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.6);}
+.tab.active{background:var(--surface);color:var(--blue);box-shadow:var(--shadow);font-weight:700;}
 .tab-pane{display:none;}
 .tab-pane.active{display:block;}
 
-/* ── LEADERBOARD ── */
-.leaderboard{display:flex;flex-direction:column;gap:11px;}
-.leader-card{position:relative;display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:18px;background:var(--blue-card);border:1px solid var(--blue-border);border-radius:8px;padding:15px 22px;overflow:hidden;transition:transform .2s,border-color .2s;cursor:pointer;}
-.leader-card:hover{transform:translateX(3px);border-color:var(--accent);}
-.leader-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:8px 0 0 8px;}
-.rank-1::before{background:linear-gradient(180deg,#FFD700,#FF8C00);}
-.rank-2::before{background:linear-gradient(180deg,#C0C0C0,#787878);}
-.rank-3::before{background:linear-gradient(180deg,#CD7F32,#8B4513);}
-.leader-card.rank-1{border-color:rgba(255,215,0,.28);background:linear-gradient(90deg,rgba(255,215,0,.05) 0%,var(--blue-card) 45%);}
-.rank-badge{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:19px;border:2px solid var(--blue-border);background:var(--blue-mid);flex-shrink:0;}
-.rank-1 .rank-badge{border-color:var(--gold-bright);color:var(--gold-bright);}
-.rank-2 .rank-badge{border-color:#C0C0C0;color:#C0C0C0;}
-.rank-3 .rank-badge{border-color:#CD7F32;color:#CD7F32;}
-.leader-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;letter-spacing:1px;color:#fff;margin-bottom:4px;}
-.leader-picks{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px;}
-.pick-chip{font-size:11px;font-weight:600;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--text-secondary);border:1px solid rgba(255,255,255,.09);}
-.pick-chip.hit{background:rgba(0,200,83,.13);color:var(--green);border-color:rgba(0,200,83,.28);}
-.pick-chip.winner{background:rgba(255,215,0,.1);color:var(--gold-bright);border-color:rgba(255,215,0,.28);}
-.leader-score-area{text-align:right;}
-.leader-total{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:var(--gold-bright);}
-.rank-1 .leader-total{text-shadow:0 0 25px rgba(255,215,0,.4);}
-.leader-score-label{font-size:10px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:5px;}
-.score-breakdown{display:flex;gap:7px;justify-content:flex-end;}
-.score-part{text-align:center;}
-.score-part-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#fff;}
-.score-part-lbl{font-size:9px;letter-spacing:1px;color:var(--text-secondary);text-transform:uppercase;}
-.score-sep{color:var(--blue-border);font-size:16px;align-self:center;}
-.score-bar-wrap{margin-top:5px;}
-.score-bar-label{display:flex;justify-content:space-between;font-size:10px;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
-.score-bar-track{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;}
-.score-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold-bright));border-radius:2px;transition:width 1.2s ease;}
+
+/* ── NEWS CAROUSEL ── */
+
+.carousel-avatar{width:76px;height:76px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:38px;background:var(--surface2);border:2px solid var(--border);}
+.carousel-wrap{background:linear-gradient(135deg,#0F2156 0%,#1E3A8A 60%,#1D4ED8 100%);padding:0;overflow:hidden;position:relative;}
+.carousel-inner{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.carousel-slide{min-width:100%;padding:28px 36px 26px;display:flex;align-items:flex-start;gap:24px;box-sizing:border-box;}
+.carousel-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:8px;white-space:nowrap;}
+.carousel-tag.breaking{background:#DC2626;color:#fff;}
+.carousel-tag.group{background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);}
+.carousel-tag.scorer{background:#D97706;color:#fff;}
+.carousel-tag.injury{background:#7C3AED;color:#fff;}
+.carousel-headline{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);line-height:1.3;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+.carousel-sub{font-size:17px;font-weight:600;color:#fff;line-height:1.45;}
+
+.carousel-left{flex:1;}
+.carousel-controls{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:4px;}
+.carousel-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1;}
+.carousel-btn:hover{background:rgba(255,255,255,.2);}
+.carousel-dots{display:flex;gap:5px;align-items:center;}
+.carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;}
+.carousel-dot.active{background:#fff;width:16px;border-radius:3px;}
+.carousel-progress{position:absolute;bottom:0;left:0;height:2px;background:rgba(255,255,255,.3);transition:none;}
+.carousel-progress-fill{height:100%;background:#FCD34D;transition:width 5s linear;}
+/* ── LEADER CARD ── */
+.leaderboard{display:flex;flex-direction:column;gap:8px;}
+.lcard{
+  position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:0;overflow:hidden;
+  box-shadow:var(--shadow);transition:all .2s;
+}
+.lcard:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.lcard.rank-1{border-color:var(--gold-border);background:linear-gradient(135deg,var(--gold-bg) 0%,var(--surface) 50%);}
+.lcard.rank-2{border-color:#E2E8F0;}
+.lcard.no-tips{opacity:.6;background:var(--surface2);}
+.lcard-inner{display:grid;grid-template-columns:64px 1fr auto;align-items:stretch;gap:0;}
+
+/* rank col */
+.lcard-rank{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:16px 0;border-right:1px solid var(--border);min-width:64px;
+  background:rgba(0,0,0,.02);
+}
+.rank-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--text3);}
+.rank-1 .rank-num{color:var(--gold);}
+.rank-2 .rank-num{color:#94A3B8;}
+.rank-3 .rank-num{color:#C2410C;}
+.rank-delta{font-size:10px;font-weight:700;margin-top:2px;}
+.delta-up{color:var(--green);}
+.delta-down{color:var(--red);}
+.delta-same{color:var(--text4);}
+
+/* main col */
+.lcard-main{padding:14px 18px;display:flex;flex-direction:column;gap:8px;}
+.lcard-name{font-size:17px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px;}
+.lcard-badges{display:flex;flex-wrap:wrap;gap:5px;}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:5px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);}
+.chip.hit{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
+.chip.gold-chip{background:var(--gold-bg);color:#92400E;border-color:var(--gold-border);}
+.chip.scorer{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border);}
+.chip.scorer.hit{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
+.chip.dead{background:var(--red-bg);color:var(--red);border-color:var(--red-border);}
+.chip.live-now{background:#7C3AED;color:#fff;border-color:#7C3AED;animation:pulse-chip .8s ease-in-out infinite;}
+@keyframes pulse-chip{0%,100%{opacity:1;}50%{opacity:.7;}}
+
+/* bar */
+.lcard-bar{display:flex;align-items:center;gap:10px;}
+.bar-track{flex:1;height:5px;background:var(--surface3);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.bar-fill.top{background:linear-gradient(90deg,#2563EB,#7C3AED);}
+.bar-fill.mid{background:linear-gradient(90deg,#0EA5E9,#2563EB);}
+.bar-fill.low{background:linear-gradient(90deg,#94A3B8,#CBD5E1);}
+.bar-pct{font-size:10px;font-weight:700;color:var(--text3);min-width:28px;text-align:right;}
+
+/* score col */
+.lcard-score{padding:14px 20px 14px 16px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:4px;border-left:1px solid var(--border);min-width:110px;}
+.score-total{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:var(--text);}
+.rank-1 .score-total{color:var(--gold);}
+.score-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.score-parts{display:flex;gap:6px;}
+.sp{text-align:center;}
+.sp-v{font-size:12px;font-weight:800;color:var(--text2);}
+.sp-l{font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text4);}
+.sp-sep{color:var(--border2);font-size:12px;align-self:center;}
+
+/* max possible tag */
+.max-tag{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.max-tag.danger{background:var(--red-bg);color:var(--red);border-color:var(--red-border);}
+.max-tag.warning{background:var(--orange-bg);color:var(--orange);border-color:var(--orange-border);}
 
 /* ── DETAILS ── */
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.detail-card{background:var(--blue-card);border:1px solid var(--blue-border);border-radius:8px;overflow:hidden;}
-.detail-card-header{background:rgba(255,215,0,.05);border-bottom:1px solid var(--blue-border);padding:13px 18px;display:flex;justify-content:space-between;align-items:center;}
-.detail-card-name{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:1px;color:var(--gold-bright);}
-.detail-card-score{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:#fff;}
-.detail-card-score span{font-size:12px;color:var(--text-secondary);font-weight:400;}
-.detail-body{padding:15px 18px;}
-.tip-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.dcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.dcard-head{background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;}
+.dcard-name{font-size:15px;font-weight:800;color:var(--text);}
+.dcard-pts{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--blue);}
+.dcard-pts span{font-size:11px;font-family:'Inter',sans-serif;font-weight:500;color:var(--text3);}
+.dcard-body{padding:14px 16px;}
+.tip-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--surface3);}
 .tip-row:last-child{border-bottom:none;}
-.tip-label{font-size:10px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;font-weight:600;}
-.tip-value{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:#fff;text-align:right;}
-.tip-value.correct{color:var(--green);}
-.groups-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:10px;}
-.group-mini-item{background:rgba(255,255,255,.04);border-radius:4px;padding:5px 5px;text-align:center;}
-.group-mini-letter{font-size:8px;letter-spacing:1px;color:var(--text-secondary);text-transform:uppercase;}
-.group-mini-team{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;color:#fff;margin-top:1px;line-height:1.2;}
-.group-mini-item.correct{background:rgba(0,200,83,.09);border:1px solid rgba(0,200,83,.22);}
-.group-mini-item.correct .group-mini-team{color:var(--green);}
+.tip-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);}
+.tip-val{font-size:13px;font-weight:700;color:var(--text);}
+.tip-val.ok{color:var(--green);}
+.tip-val.pending{color:var(--text3);}
+.gmini{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:10px;}
+.gm{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:5px;text-align:center;}
+.gm-l{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);}
+.gm-t{font-size:9px;font-weight:700;color:var(--text);margin-top:1px;line-height:1.2;}
+.gm.ok{background:var(--green-bg);border-color:var(--green-border);}
+.gm.ok .gm-t{color:var(--green);}
+.gm.empty .gm-t{color:var(--text4);}
 
 /* ── GROUPS ── */
-.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:9px;}
-.group-card{background:var(--blue-card);border:1px solid var(--blue-border);border-radius:6px;overflow:hidden;}
-.group-card-header{background:rgba(255,255,255,.03);padding:7px 13px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--blue-border);}
-.group-letter{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:var(--gold-bright);}
-.group-status{font-size:9px;letter-spacing:2px;color:var(--text-secondary);text-transform:uppercase;}
-.group-team{display:flex;align-items:center;gap:8px;padding:5px 13px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid rgba(255,255,255,.03);}
-.group-team:last-child{border-bottom:none;}
-.group-team.favorite{color:#fff;font-weight:500;}
-.team-star{margin-left:auto;font-size:10px;color:var(--gold);}
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;}
+.group-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;box-shadow:var(--shadow);}
+.group-head{background:var(--surface2);border-bottom:1px solid var(--border);padding:7px 13px;display:flex;justify-content:space-between;align-items:center;}
+.group-ltr{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--blue);letter-spacing:1px;}
+.group-st{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.group-team{display:flex;flex-direction:column;padding:7px 13px;border-bottom:1px solid var(--surface3);}
+
+.adv-team{background:var(--green-bg);}
+
+
+
 
 /* ── POINTS ── */
-.points-strip{display:flex;background:var(--blue-card);border:1px solid var(--blue-border);border-radius:8px;overflow:hidden;}
-.points-item{flex:1;padding:20px;text-align:center;border-right:1px solid var(--blue-border);}
-.points-item:last-child{border-right:none;}
-.points-pts{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold-bright);line-height:1;}
-.points-pts span{font-size:15px;color:var(--text-secondary);font-family:'Barlow',sans-serif;font-weight:300;}
-.points-desc{font-size:11px;letter-spacing:1.5px;color:var(--text-secondary);text-transform:uppercase;margin-top:4px;}
+.pts-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.pts-item{padding:20px;text-align:center;border-right:1px solid var(--border);}
+.pts-item:last-child{border-right:none;}
+.pts-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--blue);line-height:1;}
+.pts-num span{font-size:16px;color:var(--text3);font-family:'Inter',sans-serif;font-weight:300;}
+.pts-desc{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-top:5px;}
 
-/* ── ADMIN ── */
-.admin-toggle{display:flex;justify-content:flex-end;margin-bottom:14px;}
-.btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;border-radius:4px;border:none;cursor:pointer;transition:all .2s;}
-.btn-outline{background:transparent;color:var(--text-secondary);border:1px solid var(--blue-border);}
-.btn-outline:hover{border-color:var(--accent);color:#fff;}
-.btn-green{background:rgba(0,200,83,.12);color:var(--green);border:1px solid rgba(0,200,83,.28);}
-.btn-green:hover{background:rgba(0,200,83,.22);}
-.btn-red{background:rgba(255,23,68,.1);color:var(--red);border:1px solid rgba(255,23,68,.28);font-size:11px;padding:6px 12px;}
-.btn-red:hover{background:rgba(255,23,68,.2);}
-.admin-panel{background:var(--blue-card);border:1px solid var(--blue-border);border-radius:8px;padding:22px;margin-bottom:26px;display:none;}
-.admin-panel.open{display:block;}
-.admin-panel h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--gold-bright);margin-bottom:16px;}
-.admin-section{margin-bottom:22px;}
-.admin-section h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid var(--blue-border);}
-.participant-editor{background:rgba(255,255,255,.02);border:1px solid var(--blue-border);border-radius:6px;padding:14px;margin-bottom:10px;}
-.participant-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;}
-.participant-num{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--gold-bright);letter-spacing:1px;}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:9px;}
-.form-group{display:flex;flex-direction:column;gap:4px;}
-.form-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);font-weight:600;}
-.form-input,.form-select{background:rgba(255,255,255,.05);border:1px solid var(--blue-border);color:#fff;font-family:'Barlow',sans-serif;font-size:12px;padding:7px 9px;border-radius:4px;outline:none;transition:border-color .2s;}
-.form-input:focus,.form-select:focus{border-color:var(--accent);}
-.form-select option{background:#1a2a4a;color:#fff;}
-.groups-form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px;}
-.group-form-item{display:flex;flex-direction:column;gap:3px;}
-.group-form-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;}
-.results-section{background:rgba(255,215,0,.03);border:1px solid rgba(255,215,0,.13);border-radius:6px;padding:14px;}
-.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px;}
-.advanced-groups-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
-.advanced-group{display:flex;flex-direction:column;gap:2px;}
-.advanced-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);font-weight:600;}
-.admin-note{font-size:11px;color:var(--text-secondary);margin-top:7px;font-style:italic;}
-.save-bar{display:flex;gap:9px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--blue-border);}
-.save-msg{font-size:11px;color:var(--green);display:none;}
-.empty-state{text-align:center;padding:55px 20px;color:var(--text-secondary);}
-.empty-icon{font-size:44px;margin-bottom:14px;}
-.empty-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:#fff;margin-bottom:7px;}
-.empty-desc{font-size:13px;line-height:1.7;}
+/* ── CONSENSUS BOX ── */
+.consensus{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:16px;}
+.consensus-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.consensus-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+.consensus-item{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 4px;text-align:center;}
+.consensus-grp{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text3);}
+.consensus-team{font-size:9px;font-weight:700;color:var(--text);margin-top:2px;line-height:1.2;}
+.consensus-pct{font-size:8px;color:var(--text3);margin-top:1px;}
+.consensus-item.all{background:var(--green-bg);border-color:var(--green-border);}
+.consensus-item.all .consensus-team{color:var(--green);}
+.consensus-item.split{background:var(--orange-bg);border-color:var(--orange-border);}
 
-footer{border-top:1px solid var(--blue-border);padding:28px 0;text-align:center;color:var(--text-secondary);font-size:11px;letter-spacing:2px;text-transform:uppercase;}
-footer strong{color:var(--gold-bright);}
-@media(max-width:680px){
-  .detail-grid{grid-template-columns:1fr;}
-  .leader-card{grid-template-columns:42px 1fr;}
-  .leader-score-area{display:none;}
-  .groups-form-grid{grid-template-columns:repeat(3,1fr);}
-  .results-grid{grid-template-columns:1fr;}
-  .advanced-groups-grid{grid-template-columns:repeat(3,1fr);}
-  .points-strip{flex-wrap:wrap;}
-  .points-item{flex:1 1 45%;}
-  .hero-stats{gap:18px;}
-  
-  
+.insight-icon-txt{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;padding:3px 8px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:4px;display:inline-block;}
+footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--text3);font-size:11px;letter-spacing:1px;}
+footer strong{color:var(--text2);}
+
+@media(max-width:700px){
+  .detail-grid{grid-template-columns:1fr 1fr;}
+  .lcard-inner{grid-template-columns:52px 1fr;}
+  .lcard-score{display:none;}
+  .ggrid{grid-template-columns:repeat(3,1fr);}
+  .res-grid{grid-template-columns:1fr;}
+  .adv-grid{grid-template-columns:repeat(3,1fr);}
+  .pts-grid{grid-template-columns:1fr 1fr;}
+  .consensus-grid{grid-template-columns:repeat(4,1fr);}
 }
-
-
-/* ── LYSERE DESIGNOVERRIDE ──
-   Kun farge-/kontrastjusteringer. Struktur og funksjoner er uendret. */
-:root{
-  --gold:#B8860B;
-  --gold-light:#F6D778;
-  --gold-bright:#D99A00;
-  --green:#168A46;
-  --red:#D7263D;
-  --blue-dark:#EEF4FB;
-  --blue-mid:#FFFFFF;
-  --blue-card:#FFFFFF;
-  --blue-border:#CBD8EA;
-  --text-primary:#132238;
-  --text-secondary:#5F6F86;
-  --accent:#1677A8;
-}
-body{background:#EEF4FB;color:var(--text-primary);}
-.hero{background:linear-gradient(180deg,#FFFFFF 0%,#F2F7FC 58%,#EEF4FB 100%);}
-.hero-bg{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(22,119,168,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(217,154,0,.10) 0%,transparent 70%);}
-.hero-title,.section-title,.leader-name,.score-part-val,.tip-value,.group-team.favorite,.empty-title{color:#132238;}
-.hero-subtitle,.hero-stat-label,.section-badge + .section-title + .live-badge + .section-line,.tab,.score-bar-label,.leader-score-label,.score-part-lbl,.tip-label,.group-status,.points-desc,.empty-desc,footer{color:var(--text-secondary);}
-.section-badge{background:#FFE8A3;color:#3A2A00;border:1px solid #F2C24D;}
-.ticker-bar{background:linear-gradient(90deg,#FFE7A0,#FFD45A,#FFE7A0);}
-.tabs{border-bottom-color:var(--blue-border);}
-.tab:hover{color:#132238;}
-.tab.active{color:#B8860B;border-bottom-color:#B8860B;}
-.leader-card,.detail-card,.group-card,.points-strip,.admin-panel,.participant-editor,.results-section{background:#FFFFFF;border-color:var(--blue-border);box-shadow:0 8px 22px rgba(29,51,85,.06);}
-.leader-card.rank-1{background:linear-gradient(90deg,rgba(255,214,90,.22) 0%,#FFFFFF 48%);border-color:rgba(217,154,0,.35);}
-.rank-badge{background:#F6F9FD;border-color:var(--blue-border);color:#132238;}
-.pick-chip{background:#F3F6FA;color:#4D5D73;border-color:#DDE6F2;}
-.pick-chip.hit{background:#E8F6EE;color:var(--green);border-color:#BCE4CA;}
-.pick-chip.winner{background:#FFF4C8;color:#9A6A00;border-color:#EBC75D;}
-.score-bar-track{background:#E3EAF4;}
-.detail-card-header,.group-card-header{background:#F6F9FD;border-bottom-color:var(--blue-border);}
-.detail-card-name,.group-letter,.participant-num,.admin-panel h3,.points-pts{color:#B8860B;}
-.group-mini-item,.group-team{background:#F7FAFD;color:#5F6F86;border-bottom-color:#E7EEF7;}
-.group-mini-item.correct{background:#E8F6EE;border-color:#BCE4CA;}
-.group-mini-item.correct .group-mini-team,.tip-value.correct{color:var(--green);}
-.form-input,.form-select{background:#FFFFFF;border-color:#B9C9DF;color:#132238;}
-.form-input:focus,.form-select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(22,119,168,.10);}
-.form-select option{background:#FFFFFF;color:#132238;}
-.btn-outline{background:#FFFFFF;color:#384860;border-color:#B9C9DF;}
-.btn-outline:hover{border-color:var(--accent);color:#132238;background:#F7FAFD;}
-.btn-green{background:#E8F6EE;color:#168A46;border-color:#BCE4CA;}
-.btn-red{background:#FDECEF;color:#B71D32;border-color:#F3B9C2;}
-.live-badge{background:#FDECEF;border-color:#F3B9C2;color:#B71D32;}
-footer{background:#F8FBFE;border-top-color:var(--blue-border);}
-footer strong{color:#B8860B;}
-
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════════ -->
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="ray ray-1"></div><div class="ray ray-2"></div>
-  <div class="ray ray-3"></div><div class="ray ray-4"></div>
-
-  <!-- LEGENDS + TROPHY ROW -->
-  <div style="display:flex;justify-content:center;margin-bottom:20px;">
-    <div class="legend-strip">
-  </div>
-
-  <p class="hero-eyebrow">FIFA World Cup 2026</p>
-  <h1 class="hero-title">VM <span>2026</span></h1>
-  <p class="hero-subtitle">Jobbkonkurranse</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-value" id="stat-players">9</div><div class="hero-stat-label">Deltakere</div></div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-value" id="stat-pot">900</div><div class="hero-stat-label">Kr i potten</div></div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-value">48</div><div class="hero-stat-label">Lag</div></div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-value">12</div><div class="hero-stat-label">Grupper</div></div>
+  <div class="hero-inner">
+    <div class="trophy-wrap">
+      <svg width="90" height="140" viewBox="0 0 130 200" fill="none">
+        <defs>
+          <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7A5900"/><stop offset="20%" stop-color="#C9A227"/><stop offset="45%" stop-color="#FFE680"/><stop offset="65%" stop-color="#FFD700"/><stop offset="80%" stop-color="#C9A227"/><stop offset="100%" stop-color="#7A5900"/></linearGradient>
+          <linearGradient id="tg2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#5A4000"/><stop offset="30%" stop-color="#B8860B"/><stop offset="50%" stop-color="#FFD700"/><stop offset="70%" stop-color="#B8860B"/><stop offset="100%" stop-color="#5A4000"/></linearGradient>
+          <linearGradient id="tg3" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#7A5900"/><stop offset="40%" stop-color="#C9A227"/><stop offset="100%" stop-color="#FFE680"/></linearGradient>
+          <linearGradient id="tg4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3a2800"/><stop offset="50%" stop-color="#6a4a00"/><stop offset="100%" stop-color="#3a2800"/></linearGradient>
+          <filter id="glo"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <path d="M 28 20 Q 27 15 65 13 Q 103 15 102 20 L 100 55 Q 96 80 85 92 Q 78 100 75 108 L 72 115 L 58 115 L 55 108 Q 52 100 45 92 Q 34 80 30 55 Z" fill="url(#tg3)" filter="url(#glo)"/>
+        <path d="M 28 20 L 30 55 Q 34 80 45 92 Q 52 100 55 108 L 58 115 L 65 115 L 65 13 Q 45 14 28 20Z" fill="rgba(0,0,0,0.18)"/>
+        <path d="M 26 21 Q 65 10 104 21 L 102 28 Q 65 17 28 28Z" fill="url(#tg1)"/>
+        <path d="M 38 55 Q 34 48 36 38 Q 38 30 44 35 Q 46 32 50 34 Q 56 32 58 38 Q 60 44 56 52 Q 52 58 48 60Z" fill="url(#tg2)"/>
+        <path d="M 36 40 Q 28 32 30 24" stroke="url(#tg1)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M 38 58 Q 36 65 38 72 L 44 72 L 46 58Z" fill="url(#tg2)"/>
+        <path d="M 92 55 Q 96 48 94 38 Q 92 30 86 35 Q 84 32 80 34 Q 74 32 72 38 Q 70 44 74 52 Q 78 58 82 60Z" fill="url(#tg2)"/>
+        <path d="M 94 40 Q 102 32 100 24" stroke="url(#tg1)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <circle cx="65" cy="30" r="16" fill="url(#tg1)" stroke="rgba(255,235,100,0.4)" stroke-width="0.5"/>
+        <path d="M 49 30 Q 57 24 65 30 Q 73 36 81 30" stroke="rgba(255,255,255,0.2)" stroke-width="0.7" fill="none"/>
+        <path d="M 50 35 Q 57 30 65 35 Q 73 40 80 35" stroke="rgba(255,255,255,0.2)" stroke-width="0.7" fill="none"/>
+        <ellipse cx="60" cy="24" rx="5" ry="3" fill="rgba(255,255,255,0.15)"/>
+        <rect x="57" y="115" width="16" height="22" rx="2" fill="url(#tg2)"/>
+        <rect x="58" y="122" width="14" height="4" rx="1" fill="url(#tg1)"/>
+        <path d="M 50 137 L 80 137 L 82 144 L 48 144Z" fill="url(#tg1)"/>
+        <path d="M 44 144 L 86 144 L 89 153 L 41 153Z" fill="url(#tg2)"/>
+        <path d="M 38 153 L 92 153 L 96 163 L 34 163Z" fill="url(#tg1)"/>
+        <path d="M 30 163 L 100 163 L 104 175 L 26 175Z" fill="url(#tg4)"/>
+        <rect x="26" y="175" width="78" height="7" rx="2" fill="url(#tg4)"/>
+        <rect x="34" y="155" width="62" height="6" rx="1" fill="#1a4a1a" opacity=".4"/>
+        <path d="M 55 20 Q 50 55 52 110" stroke="rgba(255,255,200,0.15)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="hero-pill">FIFA World Cup 2026</div>
+    <div class="hero-title">VM <span>2026</span></div>
+    <div class="hero-sub">Jobbkonkurranse</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hsv" id="h-players">0</div><div class="hsl">Deltakere</div></div>
+      <div class="hero-stat"><div class="hsv" id="h-pot">0</div><div class="hsl">Kr i potten</div></div>
+      <div class="hero-stat"><div class="hsv">48</div><div class="hsl">Lag</div></div>
+      <div class="hero-stat"><div class="hsv">12</div><div class="hsl">Grupper</div></div>
+    </div>
   </div>
 </div>
 
 <!-- TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-inner" id="tickerInner">
-    <span class="ticker-item">VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk</span>
-    <span class="ticker-item">Dagens kamper vises her når kampdata er tilgjengelig</span>
-    <span class="ticker-item">Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
-    <span class="ticker-item">VM 2026 <span class="ticker-dot">·</span> Kampoversikt og resultater oppdateres automatisk</span>
-    <span class="ticker-item">Dagens kamper vises her når kampdata er tilgjengelig</span>
-    <span class="ticker-item">Poeng: 2p gruppelag <span class="ticker-dot">·</span> 15p VM-vinner <span class="ticker-dot">·</span> 5p toppscorer</span>
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti">VM 2026 <span class="ts">·</span> USA · Canada · Mexico</span>
+    <span class="ti">48 lag <span class="ts">·</span> 12 grupper <span class="ts">·</span> 104 kamper</span>
+    <span class="ti">2p gruppelag <span class="ts">·</span> 15p VM-vinner <span class="ts">·</span> 5p toppscorer</span>
+    <span class="ti">Kampstart 11. juni 2026</span>
+    <span class="ti">VM 2026 <span class="ts">·</span> USA · Canada · Mexico</span>
+    <span class="ti">48 lag <span class="ts">·</span> 12 grupper <span class="ts">·</span> 104 kamper</span>
+    <span class="ti">2p gruppelag <span class="ts">·</span> 15p VM-vinner <span class="ts">·</span> 5p toppscorer</span>
+    <span class="ti">Kampstart 11. juni 2026</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════ MAIN ══ -->
+<!-- NEWS CAROUSEL -->
+<div class="carousel-wrap" id="carousel-wrap">
+  <div class="carousel-breaking-bar"><div class="carousel-breaking-dot"></div>Breaking News</div>
+  <div class="carousel-inner" id="carousel-inner"></div>
+  <div class="carousel-progress"><div class="carousel-progress-fill" id="carousel-progress"></div></div>
+</div>
+
 <div class="container">
 <div class="section">
-
-  <!-- SECTION HEADER -->
-  <div class="section-header">
-    <div class="section-badge">Live</div>
-    <h2 class="section-title">Ledertavle</h2>
-    <div class="live-badge"><div class="live-dot"></div><span id="live-status">⏳ Turneringen starter 11. juni</span></div>
-    <div class="section-line"></div>
+  <!-- SECTION HEAD -->
+  <div class="sh">
+    <div class="sh-tag">Live</div>
+    <h2 class="sh-title">Ledertavle</h2>
+    <div class="live-pill"><div class="ld"></div><span id="live-status">Henter data…</span></div>
+    <div class="sh-line"></div>
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('leaderboard',this)">Rangering</div>
-    <div class="tab" onclick="switchTab('details',this)">Tips &amp; detaljer</div>
-    <div class="tab" onclick="switchTab('rules',this)">Poengregler</div>
+    <button class="tab active" onclick="switchTab('leaderboard',this)">Rangering</button>
+    <button class="tab" onclick="switchTab('details',this)">Tips & detaljer</button>
+    <button class="tab" onclick="switchTab('groups',this)">Grupper</button>
+    <button class="tab" onclick="switchTab('rules',this)">Regler</button>
   </div>
 
-  <div id="tab-leaderboard" class="tab-pane active"><div class="leaderboard" id="leaderboard-list"><div class="leader-card rank-1">
-      <div class="rank-badge">1</div>
-      <div>
-        <div class="leader-name">Eirik</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 Spain</span>
-          <span class="pick-chip ">⚽ Harry Kane</span>
-          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card rank-2">
-      <div class="rank-badge">2</div>
-      <div>
-        <div class="leader-name">Jon Magnar</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 Spain</span>
-          <span class="pick-chip ">⚽ Ousmane Dembélé</span>
-          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇳🇴 Norway</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card rank-3">
-      <div class="rank-badge">3</div>
-      <div>
-        <div class="leader-name">Magnus</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 Norway</span>
-          <span class="pick-chip ">⚽ Erling Haaland</span>
-          <span class="pick-chip ">🇰🇷 Korea Republic</span><span class="pick-chip ">🇶🇦 Qatar</span><span class="pick-chip ">🇭🇹 Haiti</span><span class="pick-chip ">🇹🇷 Türkiye</span><span class="pick-chip ">🇨🇼 Curaçao</span><span class="pick-chip ">🇹🇳 Tunisia</span><span class="pick-chip ">🇳🇿 New Zealand</span><span class="pick-chip ">🇨🇻 Cabo Verde</span><span class="pick-chip ">🇮🇶 Iraq</span><span class="pick-chip ">🇯🇴 Jordan</span><span class="pick-chip ">🇺🇿 Uzbekistan</span><span class="pick-chip ">🇵🇦 Panama</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">4</div>
-      <div>
-        <div class="leader-name">Christian</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 Spain</span>
-          <span class="pick-chip ">⚽ Harry Kane</span>
-          <span class="pick-chip ">🇰🇷 Korea Republic</span><span class="pick-chip ">🇧🇦 Bosnia and Herzegovina</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">5</div>
-      <div>
-        <div class="leader-name">Kenneth</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 France</span>
-          <span class="pick-chip ">⚽ Harry Kane</span>
-          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">6</div>
-      <div>
-        <div class="leader-name">Tore</div>
-        <div class="leader-picks">
-          
-          
-          
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">7</div>
-      <div>
-        <div class="leader-name">Michael</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 France</span>
-          <span class="pick-chip ">⚽ Michael Olise</span>
-          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇫🇷 France</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">8</div>
-      <div>
-        <div class="leader-name">Jan</div>
-        <div class="leader-picks">
-          
-          
-          
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div><div class="leader-card ">
-      <div class="rank-badge">9</div>
-      <div>
-        <div class="leader-name">Sture</div>
-        <div class="leader-picks">
-          <span class="pick-chip ">🏆 England</span>
-          <span class="pick-chip ">⚽ Harry Kane</span>
-          <span class="pick-chip ">🇲🇽 Mexico</span><span class="pick-chip ">🇨🇭 Switzerland</span><span class="pick-chip ">🇧🇷 Brazil</span><span class="pick-chip ">🇺🇸 United States</span><span class="pick-chip ">🇩🇪 Germany</span><span class="pick-chip ">🇳🇱 Netherlands</span><span class="pick-chip ">🇧🇪 Belgium</span><span class="pick-chip ">🇪🇸 Spain</span><span class="pick-chip ">🇳🇴 Norway</span><span class="pick-chip ">🇦🇷 Argentina</span><span class="pick-chip ">🇵🇹 Portugal</span><span class="pick-chip ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>0 / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">0</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">0</div><div class="score-part-lbl">Scorer</div></div>
-        </div>
-      </div>
-    </div></div></div>
-  <div id="tab-details" class="tab-pane"><div class="detail-grid" id="details-grid"><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Eirik</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Jon Magnar</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Ousmane Dembélé </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Magnus</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇳🇴 Norway </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Erling Haaland </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇶🇦 Qatar</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇭🇹 Haiti</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇹🇷 Türkiye</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇨🇼 Curaçao</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇹🇳 Tunisia</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇳🇿 New Zealand</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇨🇻 Cabo Verde</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇮🇶 Iraq</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇯🇴 Jordan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇺🇿 Uzbekistan</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🇵🇦 Panama</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Christian</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇪🇸 Spain </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇰🇷 Korea Republic</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇧🇦 Bosnia and Herzegovina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Kenneth</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Tore</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Michael</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🇫🇷 France </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Michael Olise </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇫🇷 France</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Jan</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value "> — </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">— </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item"><div class="group-mini-letter">Grp A</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp B</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp C</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp D</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp E</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp F</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp G</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp H</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp I</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp J</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp K</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div><div class="group-mini-item"><div class="group-mini-letter">Grp L</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div></div>
-      </div>
-    </div><div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">Sture</div><div class="detail-card-score">0 <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England </span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ">Harry Kane </span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">0 p</span></div>
-        <div class="groups-mini"><div class="group-mini-item "><div class="group-mini-letter">Grp A</div><div class="group-mini-team">🇲🇽 Mexico</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp B</div><div class="group-mini-team">🇨🇭 Switzerland</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp C</div><div class="group-mini-team">🇧🇷 Brazil</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp D</div><div class="group-mini-team">🇺🇸 United States</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp E</div><div class="group-mini-team">🇩🇪 Germany</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp F</div><div class="group-mini-team">🇳🇱 Netherlands</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp G</div><div class="group-mini-team">🇧🇪 Belgium</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp H</div><div class="group-mini-team">🇪🇸 Spain</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp I</div><div class="group-mini-team">🇳🇴 Norway</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp J</div><div class="group-mini-team">🇦🇷 Argentina</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp K</div><div class="group-mini-team">🇵🇹 Portugal</div></div><div class="group-mini-item "><div class="group-mini-letter">Grp L</div><div class="group-mini-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div></div></div>
-      </div>
-    </div></div></div>
+  <!-- LEADERBOARD TAB -->
+  <div id="tab-leaderboard" class="tab-pane active">
+    <div class="leaderboard" id="leaderboard-list"></div>
+  </div>
+
+  <!-- DETAILS TAB -->
+  <div id="tab-details" class="tab-pane">
+    <div class="detail-grid" id="details-grid"></div>
+  </div>
+
+  <!-- GROUPS TAB -->
+  <div id="tab-groups" class="tab-pane">
+    <div class="groups-grid" id="groups-grid"></div>
+  </div>
+
+  <!-- RULES TAB -->
   <div id="tab-rules" class="tab-pane">
-    <div class="points-strip">
-      <div class="points-item"><div class="points-pts">2 <span>p</span></div><div class="points-desc">Riktig lag fra gruppe</div></div>
-      <div class="points-item"><div class="points-pts">15 <span>p</span></div><div class="points-desc">Riktig VM-vinner</div></div>
-      <div class="points-item"><div class="points-pts">5 <span>p</span></div><div class="points-desc">Riktig toppscorer</div></div>
-      <div class="points-item"><div class="points-pts">100 <span>kr</span></div><div class="points-desc">Innsats per person</div></div>
+    <div class="pts-grid">
+      <div class="pts-item"><div class="pts-num">2 <span>p</span></div><div class="pts-desc">Riktig lag fra gruppe</div></div>
+      <div class="pts-item"><div class="pts-num">15 <span>p</span></div><div class="pts-desc">Riktig VM-vinner</div></div>
+      <div class="pts-item"><div class="pts-num">5 <span>p</span></div><div class="pts-desc">Riktig toppscorer</div></div>
+      <div class="pts-item"><div class="pts-num">100 <span>kr</span></div><div class="pts-desc">Innsats per person</div></div>
     </div>
-    <div style="margin-top:18px;background:var(--blue-card);border:1px solid var(--blue-border);border-radius:8px;padding:20px;">
-      <p style="font-size:13px;line-height:1.9;color:var(--text-secondary);">
-        <strong style="color:#fff;">Gruppepoeng:</strong> 2 poeng for hvert lag som går videre fra gruppen – inkl. beste tredjeplass.<br><br>
-        <strong style="color:#fff;">VM-vinnerpoeng:</strong> 15 poeng for riktig VM-vinner. Økt fra 10 for bedre spenning helt til slutt.<br><br>
-        <strong style="color:#fff;">Toppscorerpoeng:</strong> 5 poeng for riktig toppscorer. Kan vises foreløpig underveis.<br><br>
-        <strong style="color:var(--gold-bright);">Maks mulig: 24 + 15 + 5 = 44 poeng</strong>
+    <div style="margin-top:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);">
+      <p style="font-size:13px;line-height:1.9;color:var(--text2);">
+        <strong style="color:var(--text)">Gruppepoeng:</strong> 2 poeng for hvert lag som går videre – inkl. beste tredjeplass.<br><br>
+        <strong style="color:var(--text)">VM-vinnerpoeng:</strong> 15 poeng for riktig VM-vinner.<br><br>
+        <strong style="color:var(--text)">Toppscorerpoeng:</strong> 5 poeng for riktig toppscorer. Oppdateres automatisk under turneringen.<br><br>
+        <strong style="color:var(--blue)">Maks mulig: 24 + 15 + 5 = 44 poeng</strong>
       </p>
     </div>
   </div>
 
 </div>
 </div>
+<footer>
+  <div class="container">
+    <p id="footer-txt" onclick="footerClick()" style="cursor:default;user-select:none;">
+      VM 2026 <strong>Jobbkonkurranse</strong> · Live data via football-data.org · &copy; 2026
+    </p>
+  </div>
+</footer>
 
-<footer><div class="container"><p>VM 2026 <strong>Jobbkonkurranse</strong> · Offentlig visning · © 2026</p></div></footer>
+<!-- HIDDEN ADMIN MODAL -->
+<div id="adminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--surface);border-radius:var(--r);padding:24px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <span style="font-size:14px;font-weight:800;color:var(--text)">Administrasjon</span>
+      <button onclick="closeAdmin()" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text3);line-height:1;">×</button>
+    </div>
+    <div class="asec">
+      <h4>Resultater</h4>
+      <div class="res-box">
+        <div class="res-grid">
+          <div class="fg"><label class="fl">VM-vinner</label><select class="fs" id="res-winner" onchange="saveData()"><option value="">— Ikke avgjort —</option></select></div>
+          <div class="fg"><label class="fl">Toppscorer</label><select class="fs" id="res-topscorer" onchange="saveData()"><option value="">— Ikke avgjort —</option></select></div>
+        </div>
+        <div class="adv-l" style="margin-bottom:7px">Lag videre fra gruppe</div>
+        <div class="adv-grid" id="advEditor"></div>
+        <p class="anote">Poeng beregnes automatisk.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+      <button class="btn btn-green" onclick="saveData()">Lagre</button>
+      <span class="save-msg" id="saveMsg" style="font-size:11px;font-weight:700;color:var(--green);display:none;">Lagret</span>
+      <button class="btn btn-danger" onclick="clearAll()" style="margin-left:auto">Nullstill</button>
+    </div>
+  </div>
+</div>
 
 <script>
+// ── DATA ────────────────────────────────────────────────────────────────────
 const GROUPS={A:["Mexico","South Africa","Korea Republic","Czechia"],B:["Canada","Switzerland","Qatar","Bosnia and Herzegovina"],C:["Brazil","Morocco","Haiti","Scotland"],D:["United States","Paraguay","Australia","Türkiye"],E:["Germany","Curaçao","Côte d'Ivoire","Ecuador"],F:["Netherlands","Japan","Sweden","Tunisia"],G:["Belgium","Egypt","IR Iran","New Zealand"],H:["Spain","Cabo Verde","Saudi Arabia","Uruguay"],I:["France","Senegal","Iraq","Norway"],J:["Argentina","Algeria","Austria","Jordan"],K:["Portugal","DR Congo","Uzbekistan","Colombia"],L:["England","Croatia","Ghana","Panama"]};
 const FAVORITES={A:"Mexico",B:"Switzerland",C:"Brazil",D:"Türkiye",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"};
 const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Switzerland":"🇨🇭","Qatar":"🇶🇦","Bosnia and Herzegovina":"🇧🇦","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Côte d'Ivoire":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","IR Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cabo Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
 const ALL_TEAMS=Object.values(GROUPS).flat();
-const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo","Erling Haaland"];
+const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo"];
 
-const DEFAULT_STATE={"dataVersion":"2026-06-09-public-no-admin-1","participants":[{"name":"Eirik","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jon Magnar","winner":"Spain","topscorer":"Ousmane Dembélé","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Magnus","winner":"Norway","topscorer":"Erling Haaland","groups":{"A":"Korea Republic","B":"Qatar","C":"Haiti","D":"Türkiye","E":"Curaçao","F":"Tunisia","G":"New Zealand","H":"Cabo Verde","I":"Iraq","J":"Jordan","K":"Uzbekistan","L":"Panama"}},{"name":"Christian","winner":"Spain","topscorer":"Harry Kane","groups":{"A":"Korea Republic","B":"Bosnia and Herzegovina","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Kenneth","winner":"France","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Tore","winner":"Argentina","topscorer":"Julián Álvarez","groups":{"A":"Mexico","B":"Switzerland","C":"Morocco","D":"Türkiye","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Michael","winner":"France","topscorer":"Michael Olise","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"France","J":"Argentina","K":"Portugal","L":"England"}},{"name":"Jan","winner":"France","topscorer":"Lamine Yamal","groups":{"A":"","B":"","C":"","D":"","E":"","F":"","G":"","H":"","I":"","J":"","K":"","L":""}},{"name":"Sture","winner":"England","topscorer":"Harry Kane","groups":{"A":"Mexico","B":"Switzerland","C":"Brazil","D":"United States","E":"Germany","F":"Netherlands","G":"Belgium","H":"Spain","I":"Norway","J":"Argentina","K":"Portugal","L":"England"}}],"results":{"winner":"","topscorer":"","advancedGroups":{}}};
-let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
+const DEFAULT_PARTICIPANTS=[
+  {name:"Eirik",winner:"Spain",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Jon Magnar",winner:"Spain",topscorer:"Ousmane Dembélé",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"Norway",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Magnus",winner:"Norway",topscorer:"Erling Haaland",groups:{A:"Korea Republic",B:"Qatar",C:"Haiti",D:"Türkiye",E:"Curaçao",F:"Tunisia",G:"New Zealand",H:"Cabo Verde",I:"Iraq",J:"Jordan",K:"Uzbekistan",L:"Panama"}},
+  {name:"Christian",winner:"Spain",topscorer:"Harry Kane",groups:{A:"Korea Republic",B:"Bosnia and Herzegovina",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Kenneth",winner:"France",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Tore",winner:"Argentina",topscorer:"Julián Álvarez",groups:{A:"Mexico",B:"Switzerland",C:"Morocco",D:"Türkiye",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Michael",winner:"France",topscorer:"Michael Olise",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
+  {name:"Jan",winner:"France",topscorer:"Lamine Yamal",groups:{A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:"",I:"",J:"",K:"",L:""}},
+  {name:"Sture",winner:"England",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"Norway",J:"Argentina",K:"Portugal",L:"England"}}
+];
+
+let state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
+// Previous rankings for delta arrows
+let prevRanks={};
+
 function loadState(){
-  // ALWAYS use DEFAULT_STATE — participants are the single source of truth
-  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
-  // Only load saved results (live scores) from localStorage
-  try {
-    const saved = localStorage.getItem('vm2026_results');
-    if(saved) state.results = JSON.parse(saved);
-  } catch(e) {}
+  state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
+  try{const s=localStorage.getItem('vm2026_results');if(s)state.results=JSON.parse(s);}catch(e){}
 }
+
+function hasTips(p){return !!(p.winner||p.topscorer||Object.values(p.groups||{}).some(v=>v));}
+
 function calcScore(p){
   let gp=0,wp=0,tp=0;
   for(const[g,t]of Object.entries(p.groups)){if(t&&(state.results.advancedGroups[g]||[]).includes(t))gp+=2;}
@@ -652,225 +430,510 @@ function calcScore(p){
   if(state.results.topscorer&&p.topscorer===state.results.topscorer)tp=5;
   return{groupPts:gp,winnerPts:wp,topPts:tp,total:gp+wp+tp};
 }
-function isUntippedJan(p){
-  return p.name==='Jan'&&!p.winner&&!p.topscorer&&Object.values(p.groups||{}).every(v=>!v);
+
+function calcMax(p){
+  // Max possible: remaining un-decided groups + winner + scorer
+  const adv=state.results.advancedGroups;
+  let max=calcScore(p).total;
+  // Undecided groups where they have a pick
+  for(const[g,t]of Object.entries(p.groups)){
+    if(!t)continue;
+    const decided=(adv[g]||[]).length>=2;// group fully decided
+    if(!decided&&!(adv[g]||[]).includes(t))max+=2;// still possible
+  }
+  if(!state.results.winner&&p.winner)max+=15;
+  if(!state.results.topscorer&&p.topscorer)max+=5;
+  return max;
 }
+
+// ── RENDER ────────────────────────────────────────────────────────────────
 function render(){
-  const ranked=state.participants.map((p,idx)=>({...p,_idx:idx,score:calcScore(p)})).sort((a,b)=>{
-    if(isUntippedJan(a)&&!isUntippedJan(b))return 1;
-    if(!isUntippedJan(a)&&isUntippedJan(b))return -1;
-    return b.score.total-a.score.total||a._idx-b._idx;
-  });
-  document.getElementById('stat-players').textContent=ranked.length;
-  document.getElementById('stat-pot').textContent=ranked.length*100;
-  renderLeaderboard(ranked);renderDetails(ranked);
+  const withTips=state.participants.filter(hasTips).map(p=>({...p,score:calcScore(p),max:calcMax(p)})).sort((a,b)=>b.score.total-a.score.total||a.name.localeCompare(b.name));
+  const noTips=state.participants.filter(p=>!hasTips(p)).map(p=>({...p,score:{groupPts:0,winnerPts:0,topPts:0,total:0},max:44}));
+  const ranked=[...withTips,...noTips];
+
+  document.getElementById('h-players').textContent=state.participants.length;
+  document.getElementById('h-pot').textContent=state.participants.length*100;
+
+  renderLeaderboard(ranked,withTips.length);
+  renderDetails(ranked);
+  renderGroups();
+
+  // Save ranks for next delta
+  ranked.forEach((p,i)=>{prevRanks[p.name]=i+1;});
 }
-function renderLeaderboard(ranked){
+
+
+
+
+function renderLeaderboard(ranked,tipsCount){
   const el=document.getElementById('leaderboard-list');
-  if(!ranked.length){el.innerHTML=`<div class="empty-state"><div class="empty-icon">🏟️</div><div class="empty-title">Ingen deltakere ennå</div><div class="empty-desc">Ingen deltakere er lagt inn ennå.</div></div>`;return;}
+  if(!ranked.length){el.innerHTML=`<div class="empty"><div class="empty-icon">🏟️</div><div class="empty-ttl">Ingen deltakere</div></div>`;return;}
+  const adv=state.results.advancedGroups;
+  const leaderPts=ranked[0]?ranked[0].score.total:0;
+
   el.innerHTML=ranked.map((p,i)=>{
-    const rank=i+1,rc=rank<=3?`rank-${rank}`:'';
+    const rank=hasTips(p)?i+1:null;
+    const rc=rank===1?'rank-1':rank===2?'rank-2':rank===3?'rank-3':'';
+    const noT=!hasTips(p);
     const pct=Math.round((p.score.total/44)*100);
-    const adv=state.results.advancedGroups;
-    const chips=Object.entries(p.groups).map(([g,t])=>{if(!t)return'';const hit=(adv[g]||[]).includes(t);return`<span class="pick-chip ${hit?'hit':''}">${FLAGS[t]||''} ${t}</span>`;}).join('');
+    const barCls=pct>=60?'top':pct>=30?'mid':'low';
+
+    // Delta
+    const prev=prevRanks[p.name];
+    let deltaHtml='';
+    if(prev&&rank){
+      if(prev>rank)deltaHtml=`<span class="rank-delta delta-up">▲${prev-rank}</span>`;
+      else if(prev<rank)deltaHtml=`<span class="rank-delta delta-down">▼${rank-prev}</span>`;
+      else deltaHtml=`<span class="rank-delta delta-same">—</span>`;
+    }
+
+    // Max possible tag
+    let maxTag='';
+    if(hasTips(p)&&state.results.advancedGroups&&Object.keys(state.results.advancedGroups).length>0){
+      if(p.max<leaderPts)maxTag=`<span class="max-tag danger">Ute</span>`;
+      else if(p.max===leaderPts&&rank!==1)maxTag=`<span class="max-tag warning">Maks ${p.max}p</span>`;
+      else maxTag=`<span class="max-tag">Maks ${p.max}p</span>`;
+    }
+
+    // Winner chip
     const wok=state.results.winner&&p.winner===state.results.winner;
     const sok=state.results.topscorer&&p.topscorer===state.results.topscorer;
-    return`<div class="leader-card ${rc}">
-      <div class="rank-badge">${rank}</div>
-      <div>
-        <div class="leader-name">${p.name}</div>
-        <div class="leader-picks">
-          ${p.winner?`<span class="pick-chip ${wok?'winner':''}">🏆 ${p.winner}</span>`:''}
-          ${p.topscorer?`<span class="pick-chip ${sok?'hit':''}">⚽ ${p.topscorer}</span>`:''}
-          ${chips}
+    const winChip=p.winner?`<span class="chip ${wok?'gold-chip':''}">${p.winner}</span>`:'';
+    const scorChip=p.topscorer?`<span class="chip scorer ${sok?'hit':''}">⚽ ${p.topscorer}${sok?' ✓':''}</span>`:'';
+
+    // Group chips — only show hits and current leader
+    const grpChips=Object.entries(p.groups).map(([g,t])=>{
+      if(!t)return'';
+      const hit=(adv[g]||[]).includes(t);
+      if(hit)return`<span class="chip hit">${FLAGS[t]||''} ${t} ✓</span>`;
+      return'';
+    }).join('');
+
+    return`<div class="lcard ${rc} ${noT?'no-tips':''}">
+      <div class="lcard-inner">
+        <div class="lcard-rank">
+          <div class="rank-num">${rank||'—'}</div>
+          ${deltaHtml}
         </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Poeng</span><span>${p.score.total} / 44</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div>
+        <div class="lcard-main">
+          <div class="lcard-name">${p.name} ${maxTag}</div>
+          <div class="lcard-badges">
+            ${noT?'<span class="chip" style="color:var(--text3)">Ingen tips registrert ennå</span>':`${winChip}${scorChip}${grpChips}`}
+          </div>
+          ${hasTips(p)?`<div class="lcard-bar">
+            <div class="bar-track"><div class="bar-fill ${barCls}" style="width:${pct}%"></div></div>
+            <div class="bar-pct">${p.score.total}p</div>
+          </div>`:''}
         </div>
-      </div>
-      <div class="leader-score-area">
-        <div class="leader-score-label">Totalpoeng</div>
-        <div class="leader-total">${p.score.total}</div>
-        <div class="score-breakdown">
-          <div class="score-part"><div class="score-part-val">${p.score.groupPts}</div><div class="score-part-lbl">Grupper</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">${p.score.winnerPts}</div><div class="score-part-lbl">Vinner</div></div>
-          <div class="score-sep">·</div>
-          <div class="score-part"><div class="score-part-val">${p.score.topPts}</div><div class="score-part-lbl">Scorer</div></div>
+        <div class="lcard-score">
+          <div class="score-lbl">Poeng</div>
+          <div class="score-total">${hasTips(p)?p.score.total:'—'}</div>
+          ${hasTips(p)?`<div class="score-parts">
+            <div class="sp"><div class="sp-v">${p.score.groupPts}</div><div class="sp-l">Grp</div></div>
+            <div class="sp-sep">·</div>
+            <div class="sp"><div class="sp-v">${p.score.winnerPts}</div><div class="sp-l">Vinner</div></div>
+            <div class="sp-sep">·</div>
+            <div class="sp"><div class="sp-v">${p.score.topPts}</div><div class="sp-l">Scorer</div></div>
+          </div>`:''}
         </div>
       </div>
     </div>`;
   }).join('');
 }
+
 function renderDetails(ranked){
   const el=document.getElementById('details-grid');
-  if(!ranked.length){el.innerHTML='';return;}
   const adv=state.results.advancedGroups;
-  el.innerHTML=ranked.map(p=>{
+  el.innerHTML=ranked.filter(hasTips).map(p=>{
     const gi=Object.entries(p.groups).map(([g,t])=>{
-      if(!t)return`<div class="group-mini-item"><div class="group-mini-letter">Grp ${g}</div><div class="group-mini-team" style="color:var(--text-secondary)">—</div></div>`;
+      if(!t)return`<div class="gm empty"><div class="gm-l">Grp ${g}</div><div class="gm-t">—</div></div>`;
       const ok=(adv[g]||[]).includes(t);
-      return`<div class="group-mini-item ${ok?'correct':''}"><div class="group-mini-letter">Grp ${g}</div><div class="group-mini-team">${FLAGS[t]||''} ${t}</div></div>`;
+      return`<div class="gm ${ok?'ok':''}"><div class="gm-l">Grp ${g}</div><div class="gm-t">${FLAGS[t]||''} ${t}</div></div>`;
     }).join('');
     const wok=state.results.winner&&p.winner===state.results.winner;
     const sok=state.results.topscorer&&p.topscorer===state.results.topscorer;
-    return`<div class="detail-card">
-      <div class="detail-card-header"><div class="detail-card-name">${p.name}</div><div class="detail-card-score">${p.score.total} <span>poeng</span></div></div>
-      <div class="detail-body">
-        <div class="tip-row"><span class="tip-label">VM-vinner</span><span class="tip-value ${wok?'correct':''}">${FLAGS[p.winner]||''} ${p.winner||'—'} ${wok?'✓':''}</span></div>
-        <div class="tip-row"><span class="tip-label">Toppscorer</span><span class="tip-value ${sok?'correct':''}">${p.topscorer||'—'} ${sok?'✓':''}</span></div>
-        <div class="tip-row"><span class="tip-label">Gruppepoeng</span><span class="tip-value">${p.score.groupPts} p</span></div>
-        <div class="groups-mini">${gi}</div>
+    return`<div class="dcard">
+      <div class="dcard-head"><div class="dcard-name">${p.name}</div><div class="dcard-pts">${p.score.total} <span>poeng</span></div></div>
+      <div class="dcard-body">
+        <div class="tip-row"><span class="tip-lbl">VM-vinner</span><span class="tip-val ${wok?'ok':''}">${FLAGS[p.winner]||''} ${p.winner||'—'} ${wok?'✓':''}</span></div>
+        <div class="tip-row"><span class="tip-lbl">Toppscorer</span><span class="tip-val ${sok?'ok':''}">${p.topscorer||'—'} ${sok?'✓':''}</span></div>
+        <div class="tip-row"><span class="tip-lbl">Maks mulig</span><span class="tip-val">${p.max} p</span></div>
+        <div class="tip-row"><span class="tip-lbl">Gruppepoeng</span><span class="tip-val">${p.score.groupPts} p</span></div>
+        <div class="gmini">${gi}</div>
       </div>
     </div>`;
   }).join('');
 }
+
+// Advancement probability % per team (source: RotoWire/ESPN/DTAI models, pre-tournament)
+const ADV_PROB={
+  // Group A
+  "Mexico":80,"Korea Republic":55,"Czechia":52,"South Africa":13,
+  // Group B
+  "Switzerland":74,"Canada":70,"Qatar":32,"Bosnia and Herzegovina":24,
+  // Group C
+  "Brazil":88,"Morocco":62,"Scotland":34,"Haiti":16,
+  // Group D
+  "United States":58,"Türkiye":56,"Paraguay":45,"Australia":41,
+  // Group E
+  "Germany":90,"Ecuador":52,"Côte d'Ivoire":41,"Curaçao":17,
+  // Group F
+  "Netherlands":78,"Japan":66,"Sweden":40,"Tunisia":16,
+  // Group G
+  "Belgium":76,"IR Iran":62,"Egypt":46,"New Zealand":16,
+  // Group H
+  "Spain":92,"Uruguay":55,"Saudi Arabia":36,"Cabo Verde":17,
+  // Group I
+  "France":85,"Senegal":58,"Norway":42,"Iraq":15,
+  // Group J
+  "Argentina":89,"Austria":52,"Algeria":40,"Jordan":19,
+  // Group K
+  "Portugal":88,"Colombia":62,"DR Congo":32,"Uzbekistan":18,
+  // Group L
+  "England":84,"Croatia":58,"Ghana":36,"Panama":22
+};
+
 function renderGroups(){
   const el=document.getElementById('groups-grid');
-  if(!el)return;
+  const adv=state.results.advancedGroups;
   el.innerHTML=Object.entries(GROUPS).map(([letter,teams])=>{
-    const rows=teams.map(t=>{const fav=FAVORITES[letter]===t;return`<div class="group-team ${fav?'favorite':''}"><span>${FLAGS[t]||'🏳'}</span><span>${t}</span></div>`;}).join('');
-    return`<div class="group-card"><div class="group-card-header"><span class="group-letter">Gruppe ${letter}</span><span class="group-status">4 lag</span></div>${rows}</div>`;
+    // Sort by probability descending (pre-tournament), or by actual points if games played
+    const grpAdv=adv[letter]||[];
+    const sorted=[...teams].sort((a,b)=>(ADV_PROB[b]||0)-(ADV_PROB[a]||0));
+    const rows=sorted.map(t=>{
+      const prob=ADV_PROB[t]||0;
+      const isAdv=grpAdv.includes(t);
+      const barW=prob;
+      const barCol=prob>=70?'#16A34A':prob>=45?'#2563EB':prob>=25?'#EA580C':'#94A3B8';
+      return`<div class="group-team ${isAdv?'adv-team':''}">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;">
+          <span style="font-size:14px">${FLAGS[t]||'🏳'}</span>
+          <span style="font-size:12px;font-weight:${isAdv?'700':'500'};color:${isAdv?'var(--green)':'var(--text2)'}">${t}</span>
+          ${isAdv?'<span style="font-size:9px;font-weight:700;color:var(--green);margin-left:auto;padding:1px 5px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:3px;">Videre</span>':''}
+        </div>
+        ${!isAdv?`<div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <div style="flex:1;height:3px;background:var(--surface3);border-radius:2px;overflow:hidden;">
+            <div style="width:${barW}%;height:100%;background:${barCol};border-radius:2px;"></div>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:${barCol};min-width:28px;text-align:right;">${prob}%</span>
+        </div>`:''}
+      </div>`;
+    }).join('');
+    return`<div class="group-card"><div class="group-head"><span class="group-ltr">Gruppe ${letter}</span><span class="group-st">4 lag</span></div>${rows}</div>`;
   }).join('');
 }
 
-function bindTabs(){
-  document.querySelectorAll('.tab').forEach(tab=>{
-    const raw=tab.getAttribute('onclick')||'';
-    let id='';
-    if(raw.includes('leaderboard'))id='leaderboard';
-    else if(raw.includes('details'))id='details';
-    else if(raw.includes('rules'))id='rules';
-    if(!id)return;
-    tab.addEventListener('click',function(e){
-      e.preventDefault();
-      switchTab(id,this);
-    });
-  });
-}
+// ── ADMIN ─────────────────────────────────────────────────────────────────
 
-function switchTab(id,el){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-}
-// ── LIVE RESULTS: football-data.org API (oppdateres hvert minutt under kamper) ──
-const FD_PROXY = 'https://young-queen-ae70.eirik-main.workers.dev';
 
-const NAME_MAP = {
-  "Mexico":"Mexico","South Africa":"South Africa","Korea Republic":"Korea Republic",
-  "Czech Republic":"Czechia","Czechia":"Czechia","Bosnia and Herzegovina":"Bosnia and Herzegovina",
-  "Ivory Coast":"Côte d'Ivoire","Cote d'Ivoire":"Côte d'Ivoire","Côte d'Ivoire":"Côte d'Ivoire",
-  "Turkey":"Türkiye","Türkiye":"Türkiye","Cape Verde":"Cabo Verde","Cabo Verde":"Cabo Verde",
-  "Curaçao":"Curaçao","Curacao":"Curaçao","United States":"United States","USA":"United States",
-  "IR Iran":"IR Iran","Iran":"IR Iran","Bosnia & Herzegovina":"Bosnia and Herzegovina",
-  "Korea Republic":"Korea Republic","South Korea":"Korea Republic",
-  "DR Congo":"DR Congo","Congo DR":"DR Congo"
-};
-function normName(n){ return n ? (NAME_MAP[n] || n) : n; }
+
+
+
+
+
+
+
+function switchTab(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById('tab-'+id).classList.add('active');}
+
+// ── LIVE API ─────────────────────────────────────────────────────────────
+const FD_PROXY='https://young-queen-ae70.eirik-main.workers.dev';
+const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia","Bosnia and Herzegovina":"Bosnia and Herzegovina","Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde","Curacao":"Curaçao","USA":"United States","IR Iran":"IR Iran"};
+function normName(n){return n?(NAME_MAP[n]||n):n;}
 
 async function fdFetch(path){
-  const r = await fetch(FD_PROXY + '?path=' + encodeURIComponent(path));
-  if(!r.ok) throw new Error('HTTP ' + r.status);
+  const r=await fetch(FD_PROXY+'?path='+encodeURIComponent(path));
+  if(!r.ok)throw new Error('HTTP '+r.status);
   return r.json();
 }
 
 async function fetchLiveResults(){
-  const el = document.getElementById('live-status');
-  try {
-    // Fetch matches and scorers in parallel
-    const [matchData, scorerData] = await Promise.all([
-      fdFetch('/competitions/WC/matches?season=2026'),
-      fdFetch('/competitions/WC/scorers?season=2026&limit=1')
+  const el=document.getElementById('live-status');
+  try{
+    const[matchData,scorerData]=await Promise.all([
+      fdFetch('/v4/competitions/WC/matches?season=2026'),
+      fdFetch('/v4/competitions/WC/scorers?season=2026&limit=1')
     ]);
+    const allMatches=matchData.matches||[];
+    const played=allMatches.filter(m=>m.status==='FINISHED');
+    if(played.length===0){if(el)el.textContent='⏳ Starter 11. juni · '+allMatches.length+' kamper planlagt';return;}
 
-    const allMatches = matchData.matches || [];
-    const played = allMatches.filter(m =>
-      m.status === 'FINISHED' || m.status === 'IN_PLAY' || m.status === 'PAUSED'
-    );
-
-    if(played.length === 0){
-      if(el) el.textContent = '⏳ Starter 11. juni · ' + allMatches.length + ' kamper planlagt';
-      return;
-    }
-
-    // Build group standings from finished matches
-    const gp = {};
-    played.filter(m => m.status === 'FINISHED' && m.stage === 'GROUP_STAGE').forEach(m => {
-      const grpRaw = (m.group || '').replace('GROUP_','').replace('Group ','').trim();
-      // football-data uses GROUP_A format
-      const grp = grpRaw.length === 1 ? grpRaw : grpRaw.slice(-1);
-      const t1 = normName(m.homeTeam && m.homeTeam.name ? m.homeTeam.name : '');
-      const t2 = normName(m.awayTeam && m.awayTeam.name ? m.awayTeam.name : '');
-      const s1 = m.score && m.score.fullTime ? m.score.fullTime.home : null;
-      const s2 = m.score && m.score.fullTime ? m.score.fullTime.away : null;
-      if(!t1 || !t2 || s1 == null || s2 == null) return;
-      if(!gp[grp]) gp[grp] = {};
-      if(!gp[grp][t1]) gp[grp][t1] = {pts:0,gd:0,gf:0};
-      if(!gp[grp][t2]) gp[grp][t2] = {pts:0,gd:0,gf:0};
-      gp[grp][t1].gf += s1; gp[grp][t2].gf += s2;
-      gp[grp][t1].gd += (s1-s2); gp[grp][t2].gd += (s2-s1);
-      if(s1>s2) gp[grp][t1].pts+=3;
-      else if(s1<s2) gp[grp][t2].pts+=3;
-      else { gp[grp][t1].pts+=1; gp[grp][t2].pts+=1; }
+    // Group standings
+    const gp={};
+    played.filter(m=>m.stage==='GROUP_STAGE').forEach(m=>{
+      const raw=(m.group||'').replace('GROUP_','');
+      const g=raw.length===1?raw:raw.slice(-1);
+      const t1=normName(m.homeTeam&&m.homeTeam.name?m.homeTeam.name:'');
+      const t2=normName(m.awayTeam&&m.awayTeam.name?m.awayTeam.name:'');
+      const s1=m.score&&m.score.fullTime?m.score.fullTime.home:null;
+      const s2=m.score&&m.score.fullTime?m.score.fullTime.away:null;
+      if(!t1||!t2||s1==null||s2==null)return;
+      if(!gp[g])gp[g]={};
+      if(!gp[g][t1])gp[g][t1]={pts:0,gd:0,gf:0};
+      if(!gp[g][t2])gp[g][t2]={pts:0,gd:0,gf:0};
+      gp[g][t1].gf+=s1;gp[g][t2].gf+=s2;
+      gp[g][t1].gd+=(s1-s2);gp[g][t2].gd+=(s2-s1);
+      if(s1>s2)gp[g][t1].pts+=3;else if(s1<s2)gp[g][t2].pts+=3;
+      else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
     });
-
-    // Determine advanced teams
-    const advanced = {};
-    const thirds = [];
-    Object.entries(gp).forEach(([grp, teams]) => {
-      const sorted = Object.entries(teams).sort((a,b) =>
-        b[1].pts-a[1].pts || b[1].gd-a[1].gd || b[1].gf-a[1].gf
-      );
-      const totalPts = sorted.reduce((a,[,s]) => a+s.pts, 0);
-      if(sorted.length >= 2 && totalPts >= 3){
-        advanced[grp] = [sorted[0][0]];
-        if(totalPts >= 6) advanced[grp].push(sorted[1][0]);
-      }
-      if(sorted.length >= 3 && totalPts >= 9)
-        thirds.push({team:sorted[2][0], ...sorted[2][1], grp});
+    const advanced={};const thirds=[];
+    Object.entries(gp).forEach(([grp,teams])=>{
+      const sorted=Object.entries(teams).sort((a,b)=>b[1].pts-a[1].pts||b[1].gd-a[1].gd||b[1].gf-a[1].gf);
+      const totalPts=sorted.reduce((a,[,s])=>a+s.pts,0);
+      if(sorted.length>=2&&totalPts>=3){advanced[grp]=[sorted[0][0]];if(totalPts>=6)advanced[grp].push(sorted[1][0]);}
+      if(sorted.length>=3&&totalPts>=9)thirds.push({team:sorted[2][0],...sorted[2][1],grp});
     });
-    if(thirds.length === 12){
-      thirds.sort((a,b) => b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t => {
-        if(!advanced[t.grp]) advanced[t.grp] = [];
-        if(!advanced[t.grp].includes(t.team)) advanced[t.grp].push(t.team);
-      });
-    }
-    state.results.advancedGroups = advanced;
+    if(thirds.length===12)thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{if(!advanced[t.grp])advanced[t.grp]=[];if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);});
+    state.results.advancedGroups=advanced;
 
-    // VM-vinner
-    const final = allMatches.find(m =>
-      m.stage === 'FINAL' && m.status === 'FINISHED'
-    );
-    if(final && final.score && final.score.fullTime){
-      const s1 = final.score.fullTime.home;
-      const s2 = final.score.fullTime.away;
-      const w = s1 > s2 ? final.homeTeam : final.awayTeam;
-      if(w && w.name) state.results.winner = normName(w.name);
-    }
+    // Winner
+    const fin=allMatches.find(m=>m.stage==='FINAL'&&m.status==='FINISHED');
+    if(fin&&fin.score&&fin.score.fullTime){const s1=fin.score.fullTime.home,s2=fin.score.fullTime.away;const w=s1>s2?fin.homeTeam:fin.awayTeam;if(w&&w.name)state.results.winner=normName(w.name);}
 
-    // Toppscorer
-    const scorers = scorerData.scorers || [];
-    if(scorers.length > 0 && scorers[0].player){
-      state.results.topscorer = scorers[0].player.name;
-    }
+    // Top scorer
+    const scorers=scorerData.scorers||[];
+    if(scorers.length>0&&scorers[0].player)state.results.topscorer=scorers[0].player.name;
 
-    const now = new Date().toLocaleTimeString('no-NO',{hour:'2-digit',minute:'2-digit'});
-    if(el) el.textContent = played.length + ' kamper spilt · oppdatert ' + now;
+    const now=new Date().toLocaleTimeString('no-NO',{hour:'2-digit',minute:'2-digit'});
+    if(el)el.textContent=played.length+' kamper spilt · '+now;
     render();
-
-  } catch(e) {
-    if(el) el.textContent = '⏳ Starter 11. juni 2026';
-    console.warn('football-data.org fetch failed:', e.message);
+  }catch(e){
+    const el=document.getElementById('live-status');
+    if(el)el.textContent='⏳ Starter 11. juni 2026';
   }
 }
 
-loadState(); render();
+// Secret admin: click footer 5 times OR press Ctrl+Shift+A
+let footerClicks=0,footerTimer=null;
+function footerClick(){
+  footerClicks++;
+  clearTimeout(footerTimer);
+  footerTimer=setTimeout(()=>footerClicks=0,2000);
+  if(footerClicks>=5){footerClicks=0;openAdmin();}
+}
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdmin();}});
+function openAdmin(){
+  buildAdminForm();
+  document.getElementById('adminModal').style.display='flex';
+}
+function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+function buildAdminForm(){
+  const rw=document.getElementById('res-winner');
+  const rt=document.getElementById('res-topscorer');
+  rw.innerHTML='<option value="">— Ikke avgjort —</option>'+ALL_TEAMS.map(t=>`<option value="${t}" ${state.results.winner===t?'selected':''}>${FLAGS[t]||''} ${t}</option>`).join('');
+  rt.innerHTML='<option value="">— Ikke avgjort —</option>'+TOPSCORERS.map(t=>`<option value="${t}" ${state.results.topscorer===t?'selected':''}>${t}</option>`).join('');
+  if(state.results.topscorer&&!TOPSCORERS.includes(state.results.topscorer))rt.innerHTML+=`<option value="${state.results.topscorer}" selected>${state.results.topscorer}</option>`;
+  const ag=document.getElementById('advEditor');
+  ag.innerHTML=Object.entries(GROUPS).map(([g,teams])=>{
+    const cb=teams.map(t=>{const c=(state.results.advancedGroups[g]||[]).includes(t);return`<label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2);cursor:pointer;margin-top:3px;"><input type="checkbox" class="adv-chk-${g}" value="${t}" ${c?'checked':''} onchange="saveData()" style="accent-color:var(--blue);">${FLAGS[t]||''} ${t}</label>`;}).join('');
+    return`<div class="adv-g"><div class="adv-l">Gruppe ${g}</div>${cb}</div>`;
+  }).join('');
+}
+function saveData(){
+  state.results.winner=document.getElementById('res-winner').value;
+  state.results.topscorer=document.getElementById('res-topscorer').value;
+  state.results.advancedGroups={};
+  Object.keys(GROUPS).forEach(g=>{
+    const c=[...document.querySelectorAll(`.adv-chk-${g}:checked`)].map(x=>x.value);
+    if(c.length)state.results.advancedGroups[g]=c;
+  });
+  localStorage.setItem('vm2026_results',JSON.stringify(state.results));
+  const m=document.getElementById('saveMsg');m.style.display='inline';
+  setTimeout(()=>m.style.display='none',2000);
+  render();
+}
+function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');
+// ── NEWS CAROUSEL ────────────────────────────────────────────────────────
+const NEWS = [
+  {
+    tag:"breaking", tagLabel:"I dag",
+    avatar:"🏟️",
+    headline:"VM 2026 åpner i kveld – Mexico vs Sør-Afrika på Azteca",
+    sub:"Den legendariske Azteca-arenaen fyller seg til randen til VM-åpningen i kveld. 8 av 9 deltakere har tippet Mexico videre – så om Mexico ryker allerede i gruppen er det bare <strong>Magnus</strong> som ler hele veien til kassen."
+  },
+  {
+    tag:"scorer", tagLabel:"Toppscorer-kamp",
+    avatar:"🐐",
+    headline:"Messi scoret på oppvarming foran 88 000 tilskuere i Alabama",
+    sub:"Mannen som aldri gir seg viste stjerneform i Argentinas siste treningskamp. <strong>Tore</strong> har satset alt på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for <strong>Tore</strong>."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe I",
+    avatar:"🦌",
+    headline:"Erling Haaland bekreftet i Norges startelleven mot Frankrike",
+    sub:"Norges store VM-håp er frisk og klar. <strong>Magnus</strong> er den eneste som har trodd nok på Norge til å tippe dem videre fra en gruppe med Frankrike. Og toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe H",
+    avatar:"⭐",
+    headline:"Lamine Yamal bekreftet i Spanias startelleven – 16 år og allerede VM-favoritt",
+    sub:"Tenåringen som fikk sin første kamp for Barcelona samme helg som han ble 16, er nå Spanias nøkkelspiller i VM. <strong>Jan</strong> har sett noe alle andre har oversett og tippet Yamal som toppscorer. <strong>Eirik</strong>, <strong>Jon Magnar</strong> og <strong>Christian</strong> som alle tippet Spania til å vinne hele greia burde kanskje sende <strong>Jan</strong> en blomsterbukett."
+  },
+  {
+    tag:"injury", tagLabel:"Skade",
+    avatar:"🤕",
+    headline:"Mbappé meldt av til åpningskampen mot Senegal med muskelskade",
+    sub:"Frankrike-kapteinen starter på benken 13. juni, noe som kan gi Senegal en drømmestart. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen deres på benken i kamp én. God stemning i den leiren."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe C",
+    avatar:"🕺",
+    headline:"Brasil ankommet til Houston – Vinícius Jr. i strålende form på trening",
+    sub:"Samba-guttene så fenomenale ut på dagens trening og bookmakerene har dem som solide favoritter i gruppe C. 7 av 9 deltakere har tippet Brasil videre – den eneste som ikke har gjort det er <strong>Magnus</strong>, som har tippet Haiti og Morocco. <strong>Magnus</strong> lever farlig."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe J",
+    avatar:"🏆",
+    headline:"Argentina klar for VM-forsvar – Messi jager tredje VM-tittel",
+    sub:"Regjerende mester stiller med verdens beste spiller for en siste dans på VM-scenen. <strong>Tore</strong> og <strong>Magnus</strong> har begge tippet Argentina videre fra gruppe J – men <strong>Tore</strong> er den eneste som tror Argentina går hele veien. Den som ler sist, ler best."
+  }
+];
+
+let carouselIdx=0, carouselTimer=null, progressTimer=null;
+
+function buildCarousel(){
+  const inner=document.getElementById('carousel-inner');
+  if(!inner)return;
+  inner.innerHTML=NEWS.map((n,i)=>`
+    <div class="carousel-slide">
+      <div class="carousel-avatar">${n.avatar}</div>
+      <div class="carousel-left">
+        <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
+        <div class="carousel-headline">${n.headline}</div>
+        <div class="carousel-sub">${n.sub}</div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="carouselPrev()">&#8249;</button>
+        <div class="carousel-dots">${NEWS.map((_,j)=>`<div class="carousel-dot ${j===i?'active':''}" onclick="goToSlide(${j})"></div>`).join('')}</div>
+        <button class="carousel-btn" onclick="carouselNext()">&#8250;</button>
+      </div>
+    </div>`).join('');
+  goToSlide(carouselIdx);
+}
+
+function goToSlide(idx){
+  carouselIdx=idx;
+  const inner=document.getElementById('carousel-inner');
+  if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
+  // Update dots
+  document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  // Reset progress bar
+  const prog=document.getElementById('carousel-progress');
+  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 12s linear';prog.style.width='100%';},30);}
+  // Auto advance
+  clearTimeout(carouselTimer);
+  carouselTimer=setTimeout(()=>carouselNext(),12000);
+}
+function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
+function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
+// Pause on hover
+document.addEventListener('DOMContentLoaded',()=>{
+  const wrap=document.getElementById('carousel-wrap');
+  if(wrap){
+    wrap.addEventListener('mouseenter',()=>clearTimeout(carouselTimer));
+    wrap.addEventListener('mouseleave',()=>carouselTimer=setTimeout(carouselNext,5000));
+  }
+  buildCarousel();
+});
+
+loadState();render();}
+
+// ── NEWS CAROUSEL ────────────────────────────────────────────────────────
+const NEWS = [
+  {
+    tag:"breaking", tagLabel:"I dag",
+    avatar:"🏟️",
+    headline:"VM 2026 åpner i kveld – Mexico vs Sør-Afrika på Azteca",
+    sub:"Den legendariske Azteca-arenaen fyller seg til randen til VM-åpningen i kveld. 8 av 9 deltakere har tippet Mexico videre – så om Mexico ryker allerede i gruppen er det bare Magnus som ler hele veien til kassen."
+  },
+  {
+    tag:"scorer", tagLabel:"Toppscorer-kamp",
+    avatar:"🐐",
+    headline:"Messi scoret på oppvarming foran 88 000 tilskuere i Alabama",
+    sub:"Mannen som aldri gir seg viste stjerneform i Argentinas siste treningskamp. Tore har satset alt på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for Tore."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe I",
+    avatar:"🦌",
+    headline:"Erling Haaland bekreftet i Norges startelleven mot Frankrike",
+    sub:"Norges store VM-håp er frisk og klar. Magnus er den eneste som har trodd nok på Norge til å tippe dem videre fra en gruppe med Frankrike. Og toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe H",
+    avatar:"⭐",
+    headline:"Lamine Yamal bekreftet i Spanias startelleven – 16 år og allerede VM-favoritt",
+    sub:"Tenåringen som fikk sin første kamp for Barcelona samme helg som han ble 16, er nå Spanias nøkkelspiller i VM. Jan har sett noe alle andre har oversett og tippet Yamal som toppscorer. Eirik, Jon Magnar og Christian som alle tippet Spania til å vinne hele greia burde kanskje sende Jan en blomsterbukett."
+  },
+  {
+    tag:"injury", tagLabel:"Skade",
+    avatar:"🤕",
+    headline:"Mbappé meldt av til åpningskampen mot Senegal med muskelskade",
+    sub:"Frankrike-kapteinen starter på benken 13. juni, noe som kan gi Senegal en drømmestart. Kenneth, Michael og Jan har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen deres på benken i kamp én. God stemning i den leiren."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe C",
+    avatar:"🕺",
+    headline:"Brasil ankommet til Houston – Vinícius Jr. i strålende form på trening",
+    sub:"Samba-guttene så fenomenale ut på dagens trening og bookmakerene har dem som solide favoritter i gruppe C. 7 av 9 deltakere har tippet Brasil videre – den eneste som ikke har gjort det er Magnus, som har tippet Haiti og Morocco. Magnus lever farlig."
+  },
+  {
+    tag:"group", tagLabel:"Gruppe J",
+    avatar:"🏆",
+    headline:"Argentina klar for VM-forsvar – Messi jager tredje VM-tittel",
+    sub:"Regjerende mester stiller med verdens beste spiller for en siste dans på VM-scenen. Tore og Magnus har begge tippet Argentina videre fra gruppe J – men Tore er den eneste som tror Argentina går hele veien. Den som ler sist, ler best."
+  }
+];
+
+let carouselIdx=0, carouselTimer=null, progressTimer=null;
+
+function buildCarousel(){
+  const inner=document.getElementById('carousel-inner');
+  if(!inner)return;
+  inner.innerHTML=NEWS.map((n,i)=>`
+    <div class="carousel-slide">
+      <div class="carousel-avatar">${n.avatar}</div>
+      <div class="carousel-left">
+        <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
+        <div class="carousel-headline">${n.headline}</div>
+        <div class="carousel-sub">${n.sub}</div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="carouselPrev()">&#8249;</button>
+        <div class="carousel-dots">${NEWS.map((_,j)=>`<div class="carousel-dot ${j===i?'active':''}" onclick="goToSlide(${j})"></div>`).join('')}</div>
+        <button class="carousel-btn" onclick="carouselNext()">&#8250;</button>
+      </div>
+    </div>`).join('');
+  goToSlide(carouselIdx);
+}
+
+function goToSlide(idx){
+  carouselIdx=idx;
+  const inner=document.getElementById('carousel-inner');
+  if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
+  // Update dots
+  document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  // Reset progress bar
+  const prog=document.getElementById('carousel-progress');
+  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 12s linear';prog.style.width='100%';},30);}
+  // Auto advance
+  clearTimeout(carouselTimer);
+  carouselTimer=setTimeout(()=>carouselNext(),12000);
+}
+function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
+function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
+// Pause on hover
+document.addEventListener('DOMContentLoaded',()=>{
+  const wrap=document.getElementById('carousel-wrap');
+  if(wrap){
+    wrap.addEventListener('mouseenter',()=>clearTimeout(carouselTimer));
+    wrap.addEventListener('mouseleave',()=>carouselTimer=setTimeout(carouselNext,5000));
+  }
+  buildCarousel();
+});
+
+loadState();render();
 fetchLiveResults();
-setInterval(fetchLiveResults, 5*60*1000);
+setInterval(fetchLiveResults,5*60*1000);
 </script>
-
-
-</div></body></html>
+</body>
+</html>
