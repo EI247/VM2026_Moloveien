@@ -597,7 +597,6 @@ const FAVORITES={A:"Mexico",B:"Switzerland",C:"Brazil",D:"Türkiye",E:"Germany",
 const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Switzerland":"🇨🇭","Qatar":"🇶🇦","Bosnia and Herzegovina":"🇧🇦","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Côte d'Ivoire":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","IR Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cabo Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
 const ALL_TEAMS=Object.values(GROUPS).flat();
 const WINNER_COLORS={"Spain":"cc-spain","France":"cc-france","Brazil":"cc-brazil","England":"cc-england","Argentina":"cc-argentina","Norway":"cc-norway","Portugal":"cc-portugal","Germany":"cc-germany"};
-const WINNER_COLORS={"Spain":"cc-spain","France":"cc-france","Brazil":"cc-brazil","England":"cc-england","Argentina":"cc-argentina","Norway":"cc-norway","Portugal":"cc-portugal","Germany":"cc-germany"};
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo"];
 
 const DEFAULT_PARTICIPANTS=[
@@ -945,50 +944,6 @@ function saveData(){
 function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');loadState();render();}
 
 // ── NEWS CAROUSEL ────────────────────────────────────────────────────────
-const NEWS = [
-  {
-    tag:"breaking", tagLabel:"I dag",
-    avatar:"🏟️",
-    headline:"VM 2026 åpner i kveld – Mexico vs Sør-Afrika på Azteca",
-    sub:"Den legendariske Azteca-arenaen fyller seg til randen til VM-åpningen i kveld. 8 av 9 deltakere har tippet Mexico videre – så om Mexico ryker allerede i gruppen er det bare Magnus som ler hele veien til kassen."
-  },
-  {
-    tag:"scorer", tagLabel:"Toppscorer-kamp",
-    avatar:"🐐",
-    headline:"Messi scoret på oppvarming foran 88 000 tilskuere i Alabama",
-    sub:"Mannen som aldri gir seg viste stjerneform i Argentinas siste treningskamp. Tore har satset alt på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for Tore."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe I",
-    avatar:"🦌",
-    headline:"Erling Haaland bekreftet i Norges startelleven mot Frankrike",
-    sub:"Norges store VM-håp er frisk og klar. Magnus er den eneste som har trodd nok på Norge til å tippe dem videre fra en gruppe med Frankrike. Og toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe H",
-    avatar:"⭐",
-    headline:"Lamine Yamal bekreftet i Spanias startelleven – 16 år og allerede VM-favoritt",
-    sub:"Tenåringen som fikk sin første kamp for Barcelona samme helg som han ble 16, er nå Spanias nøkkelspiller i VM. Jan har sett noe alle andre har oversett og tippet Yamal som toppscorer. Eirik, Jon Magnar og Christian som alle tippet Spania til å vinne hele greia burde kanskje sende Jan en blomsterbukett."
-  },
-  {
-    tag:"injury", tagLabel:"Skade",
-    avatar:"🤕",
-    headline:"Mbappé meldt av til åpningskampen mot Senegal med muskelskade",
-    sub:"Frankrike-kapteinen starter på benken 13. juni, noe som kan gi Senegal en drømmestart. Kenneth, Michael og Jan har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen deres på benken i kamp én. God stemning i den leiren."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe C",
-    avatar:"🕺",
-    headline:"Brasil ankommet til Houston – Vinícius Jr. i strålende form på trening",
-    sub:"Samba-guttene så fenomenale ut på dagens trening og bookmakerene har dem som solide favoritter i gruppe C. 7 av 9 deltakere har tippet Brasil videre – den eneste som ikke har gjort det er Magnus, som har tippet Haiti og Morocco. Magnus lever farlig."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe J",
-    avatar:"🏆",
-    headline:"Argentina klar for VM-forsvar – Messi jager tredje VM-tittel",
-    sub:"Regjerende mester stiller med verdens beste spiller for en siste dans på VM-scenen. Tore og Magnus har begge tippet Argentina videre fra gruppe J – men Tore er den eneste som tror Argentina går hele veien. Den som ler sist, ler best."
-  }
-];
 
 
 const NEWS=[
