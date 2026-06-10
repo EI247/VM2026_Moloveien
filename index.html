@@ -766,117 +766,123 @@ function switchTab(id,el){
   el.classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
 }
-// ── LIVE RESULTS: openfootball/worldcup.json (gratis, ingen API-nøkkel) ──────
-// 2026 JSON bruker "rounds"-struktur: {rounds:[{name,matches:[...]}]}
-const NAME_MAP={"South Korea":"Korea Republic","Czech Republic":"Czechia",
-  "Bosnia-Herzegovina":"Bosnia and Herzegovina","Bosnia & Herzegovina":"Bosnia and Herzegovina",
-  "Ivory Coast":"Côte d'Ivoire","Turkey":"Türkiye","Cape Verde":"Cabo Verde",
-  "Curacao":"Curaçao","USA":"United States","IR Iran":"IR Iran"};
-function normName(n){if(!n)return n;return NAME_MAP[n]||n;}
+// ── LIVE RESULTS: football-data.org API (oppdateres hvert minutt under kamper) ──
+const FD_KEY = '7b2d55d621084fd68891bd1e16bad0b7';
+const FD_BASE = 'https://api.football-data.org/v4';
 
-function flattenMatches(data){
-  // Handle both {matches:[]} and {rounds:[{matches:[]}]} structures
-  if(data.matches)return data.matches;
-  if(data.rounds){
-    const all=[];
-    data.rounds.forEach(r=>{ if(r.matches)r.matches.forEach(m=>{ all.push({...m,round:r.name}); }); });
-    return all;
-  }
-  return[];
-}
+const NAME_MAP = {
+  "Mexico":"Mexico","South Africa":"South Africa","Korea Republic":"Korea Republic",
+  "Czech Republic":"Czechia","Czechia":"Czechia","Bosnia and Herzegovina":"Bosnia and Herzegovina",
+  "Ivory Coast":"Côte d'Ivoire","Cote d'Ivoire":"Côte d'Ivoire","Côte d'Ivoire":"Côte d'Ivoire",
+  "Turkey":"Türkiye","Türkiye":"Türkiye","Cape Verde":"Cabo Verde","Cabo Verde":"Cabo Verde",
+  "Curaçao":"Curaçao","Curacao":"Curaçao","United States":"United States","USA":"United States",
+  "IR Iran":"IR Iran","Iran":"IR Iran","Bosnia & Herzegovina":"Bosnia and Herzegovina",
+  "Korea Republic":"Korea Republic","South Korea":"Korea Republic",
+  "DR Congo":"DR Congo","Congo DR":"DR Congo"
+};
+function normName(n){ return n ? (NAME_MAP[n] || n) : n; }
 
-function calcAdvanced(matches){
-  const gp={};
-  matches.forEach(m=>{
-    if(!m.group)return;
-    const g=m.group.replace("Group ","").trim();
-    // 2026 format uses team1/team2 as strings OR {name,code}
-    const t1=normName(m.team1&&m.team1.name?m.team1.name:m.team1);
-    const t2=normName(m.team2&&m.team2.name?m.team2.name:m.team2);
-    // 2026 format: score1/score2 OR score:{ft:[x,y]}
-    let s1=null,s2=null;
-    if(m.score&&m.score.ft){s1=m.score.ft[0];s2=m.score.ft[1];}
-    else if(m.score1!=null&&m.score2!=null){s1=m.score1;s2=m.score2;}
-    if(s1==null||s2==null)return;
-    if(!gp[g])gp[g]={};
-    if(!gp[g][t1])gp[g][t1]={pts:0,gd:0,gf:0};
-    if(!gp[g][t2])gp[g][t2]={pts:0,gd:0,gf:0};
-    gp[g][t1].gf+=s1;gp[g][t2].gf+=s2;
-    gp[g][t1].gd+=(s1-s2);gp[g][t2].gd+=(s2-s1);
-    if(s1>s2)gp[g][t1].pts+=3;else if(s1<s2)gp[g][t2].pts+=3;
-    else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
+async function fdFetch(path){
+  const r = await fetch(FD_BASE + path, {
+    headers: { 'X-Auth-Token': FD_KEY }
   });
-  const advanced={};const thirds=[];
-  Object.entries(gp).forEach(([grp,teams])=>{
-    const sorted=Object.entries(teams).sort((a,b)=>b[1].pts-a[1].pts||b[1].gd-a[1].gd||b[1].gf-a[1].gf);
-    const totalPts=sorted.reduce((a,[,s])=>a+s.pts,0);
-    if(sorted.length>=2&&totalPts>=3){
-      advanced[grp]=[sorted[0][0]];
-      if(totalPts>=6)advanced[grp].push(sorted[1][0]);
-    }
-    if(sorted.length>=3&&totalPts>=9)thirds.push({team:sorted[2][0],...sorted[2][1],grp});
-  });
-  // Best 8 third-placed teams also advance in 2026 format
-  if(thirds.length===12)thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{
-    if(!advanced[t.grp])advanced[t.grp]=[];
-    if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);
-  });
-  return advanced;
-}
-
-function findWinnerScorer(matches){
-  let winner="",topscorer="";
-  const fin=matches.find(m=>{
-    const rnd=(m.round||"").toLowerCase();
-    return(rnd.includes("final")&&!rnd.includes("third"))&&(m.score1!=null||(m.score&&m.score.ft));
-  });
-  if(fin){
-    let s1,s2;
-    if(fin.score&&fin.score.ft){s1=fin.score.ft[0];s2=fin.score.ft[1];}
-    else{s1=fin.score1;s2=fin.score2;}
-    const w=s1>s2?fin.team1:fin.team2;
-    winner=normName(w&&w.name?w.name:w);
-  }
-  const sc={};
-  matches.forEach(m=>{
-    const goals=[...(m.goals1||[]),...(m.goals2||[])];
-    goals.forEach(g=>{if(g.name&&!g.name.includes("og")&&!g.name.includes("o.g."))sc[g.name]=(sc[g.name]||0)+1;});
-  });
-  const top=Object.entries(sc).sort((a,b)=>b[1]-a[1]);
-  if(top.length)topscorer=top[0][0];
-  return{winner,topscorer};
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
 }
 
 async function fetchLiveResults(){
-  const el=document.getElementById("live-status");
-  try{
-    const r=await fetch("https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json");
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    const data=await r.json();
-    const allMatches=flattenMatches(data);
-    const played=allMatches.filter(m=>{
-      if(m.score&&m.score.ft)return m.score.ft[0]!=null;
-      return m.score1!=null&&m.score2!=null;
-    });
-    if(played.length===0){
-      if(el)el.textContent="⏳ Starter 11. juni · "+allMatches.length+" kamper planlagt";
+  const el = document.getElementById('live-status');
+  try {
+    // Fetch matches and scorers in parallel
+    const [matchData, scorerData] = await Promise.all([
+      fdFetch('/competitions/WC/matches?season=2026'),
+      fdFetch('/competitions/WC/scorers?season=2026&limit=1')
+    ]);
+
+    const allMatches = matchData.matches || [];
+    const played = allMatches.filter(m =>
+      m.status === 'FINISHED' || m.status === 'IN_PLAY' || m.status === 'PAUSED'
+    );
+
+    if(played.length === 0){
+      if(el) el.textContent = '⏳ Starter 11. juni · ' + allMatches.length + ' kamper planlagt';
       return;
     }
-    state.results.advancedGroups=calcAdvanced(played);
-    const{winner,topscorer}=findWinnerScorer(played);
-    if(winner)state.results.winner=winner;
-    if(topscorer)state.results.topscorer=topscorer;
-    const now=new Date().toLocaleTimeString("no-NO",{hour:"2-digit",minute:"2-digit"});
-    if(el)el.textContent=played.length+" kamper spilt · oppdatert "+now;
+
+    // Build group standings from finished matches
+    const gp = {};
+    played.filter(m => m.status === 'FINISHED' && m.stage === 'GROUP_STAGE').forEach(m => {
+      const grpRaw = (m.group || '').replace('GROUP_','').replace('Group ','').trim();
+      // football-data uses GROUP_A format
+      const grp = grpRaw.length === 1 ? grpRaw : grpRaw.slice(-1);
+      const t1 = normName(m.homeTeam && m.homeTeam.name ? m.homeTeam.name : '');
+      const t2 = normName(m.awayTeam && m.awayTeam.name ? m.awayTeam.name : '');
+      const s1 = m.score && m.score.fullTime ? m.score.fullTime.home : null;
+      const s2 = m.score && m.score.fullTime ? m.score.fullTime.away : null;
+      if(!t1 || !t2 || s1 == null || s2 == null) return;
+      if(!gp[grp]) gp[grp] = {};
+      if(!gp[grp][t1]) gp[grp][t1] = {pts:0,gd:0,gf:0};
+      if(!gp[grp][t2]) gp[grp][t2] = {pts:0,gd:0,gf:0};
+      gp[grp][t1].gf += s1; gp[grp][t2].gf += s2;
+      gp[grp][t1].gd += (s1-s2); gp[grp][t2].gd += (s2-s1);
+      if(s1>s2) gp[grp][t1].pts+=3;
+      else if(s1<s2) gp[grp][t2].pts+=3;
+      else { gp[grp][t1].pts+=1; gp[grp][t2].pts+=1; }
+    });
+
+    // Determine advanced teams
+    const advanced = {};
+    const thirds = [];
+    Object.entries(gp).forEach(([grp, teams]) => {
+      const sorted = Object.entries(teams).sort((a,b) =>
+        b[1].pts-a[1].pts || b[1].gd-a[1].gd || b[1].gf-a[1].gf
+      );
+      const totalPts = sorted.reduce((a,[,s]) => a+s.pts, 0);
+      if(sorted.length >= 2 && totalPts >= 3){
+        advanced[grp] = [sorted[0][0]];
+        if(totalPts >= 6) advanced[grp].push(sorted[1][0]);
+      }
+      if(sorted.length >= 3 && totalPts >= 9)
+        thirds.push({team:sorted[2][0], ...sorted[2][1], grp});
+    });
+    if(thirds.length === 12){
+      thirds.sort((a,b) => b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t => {
+        if(!advanced[t.grp]) advanced[t.grp] = [];
+        if(!advanced[t.grp].includes(t.team)) advanced[t.grp].push(t.team);
+      });
+    }
+    state.results.advancedGroups = advanced;
+
+    // VM-vinner
+    const final = allMatches.find(m =>
+      m.stage === 'FINAL' && m.status === 'FINISHED'
+    );
+    if(final && final.score && final.score.fullTime){
+      const s1 = final.score.fullTime.home;
+      const s2 = final.score.fullTime.away;
+      const w = s1 > s2 ? final.homeTeam : final.awayTeam;
+      if(w && w.name) state.results.winner = normName(w.name);
+    }
+
+    // Toppscorer
+    const scorers = scorerData.scorers || [];
+    if(scorers.length > 0 && scorers[0].player){
+      state.results.topscorer = scorers[0].player.name;
+    }
+
+    const now = new Date().toLocaleTimeString('no-NO',{hour:'2-digit',minute:'2-digit'});
+    if(el) el.textContent = played.length + ' kamper spilt · oppdatert ' + now;
     render();
-  }catch(e){
-    if(el)el.textContent="⏳ Starter 11. juni 2026";
+
+  } catch(e) {
+    if(el) el.textContent = '⏳ Starter 11. juni 2026';
+    console.warn('football-data.org fetch failed:', e.message);
   }
 }
 
-loadState();render();bindTabs();
+loadState(); render();
 fetchLiveResults();
-setInterval(fetchLiveResults,5*60*1000);
+setInterval(fetchLiveResults, 5*60*1000);
 </script>
 
 
