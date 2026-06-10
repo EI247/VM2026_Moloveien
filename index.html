@@ -404,6 +404,16 @@ footer strong{color:var(--text2);}
   .carousel-masthead-title{font-size:9px;letter-spacing:2px;}
   .hero-inner{max-width:100%;}
 }
+
+/* ── COUNTRY CARD COLOURS ── */
+.cc-spain{background:linear-gradient(135deg,rgba(198,11,30,.06) 0%,rgba(241,191,0,.04) 100%) !important;}
+.cc-france{background:linear-gradient(135deg,rgba(0,35,149,.07) 0%,rgba(237,41,57,.04) 100%) !important;}
+.cc-brazil{background:linear-gradient(135deg,rgba(0,156,59,.06) 0%,rgba(255,223,0,.05) 100%) !important;}
+.cc-england{background:linear-gradient(135deg,rgba(204,0,0,.05) 0%,rgba(240,240,240,.04) 100%) !important;}
+.cc-argentina{background:linear-gradient(135deg,rgba(116,172,223,.08) 0%,rgba(255,255,255,.02) 100%) !important;}
+.cc-norway{background:linear-gradient(135deg,rgba(239,43,45,.06) 0%,rgba(0,40,104,.05) 100%) !important;}
+.cc-portugal{background:linear-gradient(135deg,rgba(0,102,0,.06) 0%,rgba(255,0,0,.04) 100%) !important;}
+.cc-germany{background:linear-gradient(135deg,rgba(0,0,0,.03) 0%,rgba(221,0,0,.03) 50%,rgba(255,204,0,.05) 100%) !important;}
 </style>
 </head>
 <body>
@@ -576,6 +586,7 @@ const GROUPS={A:["Mexico","South Africa","Korea Republic","Czechia"],B:["Canada"
 const FAVORITES={A:"Mexico",B:"Switzerland",C:"Brazil",D:"Türkiye",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"};
 const FLAGS={"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Czechia":"🇨🇿","Canada":"🇨🇦","Switzerland":"🇨🇭","Qatar":"🇶🇦","Bosnia and Herzegovina":"🇧🇦","Brazil":"🇧🇷","Morocco":"🇲🇦","Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","United States":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Türkiye":"🇹🇷","Germany":"🇩🇪","Curaçao":"🇨🇼","Côte d'Ivoire":"🇨🇮","Ecuador":"🇪🇨","Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","IR Iran":"🇮🇷","New Zealand":"🇳🇿","Spain":"🇪🇸","Cabo Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳","Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹","DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
 const ALL_TEAMS=Object.values(GROUPS).flat();
+const WINNER_COLORS={"Spain":"cc-spain","France":"cc-france","Brazil":"cc-brazil","England":"cc-england","Argentina":"cc-argentina","Norway":"cc-norway","Portugal":"cc-portugal","Germany":"cc-germany"};
 const TOPSCORERS=["Kylian Mbappé","Harry Kane","Erling Haaland","Lionel Messi","Cristiano Ronaldo","Lamine Yamal","Mikel Oyarzabal","Vinícius Júnior","Lautaro Martínez","Julián Álvarez","Ousmane Dembélé","Michael Olise","Mohamed Salah","Romelu Lukaku","Cody Gakpo"];
 
 const DEFAULT_PARTICIPANTS=[
@@ -688,7 +699,7 @@ function renderLeaderboard(ranked,tipsCount){
       return'';
     }).join('');
 
-    return`<div class="lcard ${rc} ${noT?'no-tips':''}">
+    return`<div class="lcard ${rc} ${noT?'no-tips':''} ${WINNER_COLORS[p.winner]||''}">
       <div class="lcard-inner">
         <div class="lcard-rank">
           <div class="rank-num">${rank||'—'}</div>
@@ -921,99 +932,7 @@ function saveData(){
   render();
 }
 function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');
-// ── NEWS CAROUSEL ────────────────────────────────────────────────────────
-const NEWS = [
-  {
-    tag:"breaking", tagLabel:"I dag",
-    avatar:"🏟️",
-    headline:"VM 2026 åpner i kveld – Mexico vs Sør-Afrika på Azteca",
-    sub:"Den legendariske Azteca-arenaen fyller seg til randen til VM-åpningen i kveld. 8 av 9 deltakere har tippet Mexico videre – så om Mexico ryker allerede i gruppen er det bare <strong>Magnus</strong> som ler hele veien til kassen."
-  },
-  {
-    tag:"scorer", tagLabel:"Toppscorer-kamp",
-    avatar:"🐐",
-    headline:"Messi scoret på oppvarming foran 88 000 tilskuere i Alabama",
-    sub:"Mannen som aldri gir seg viste stjerneform i Argentinas siste treningskamp. <strong>Tore</strong> har satset alt på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for <strong>Tore</strong>."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe I",
-    avatar:"🦌",
-    headline:"Erling Haaland bekreftet i Norges startelleven mot Frankrike",
-    sub:"Norges store VM-håp er frisk og klar. <strong>Magnus</strong> er den eneste som har trodd nok på Norge til å tippe dem videre fra en gruppe med Frankrike. Og toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe H",
-    avatar:"⭐",
-    headline:"Lamine Yamal bekreftet i Spanias startelleven – 16 år og allerede VM-favoritt",
-    sub:"Tenåringen som fikk sin første kamp for Barcelona samme helg som han ble 16, er nå Spanias nøkkelspiller i VM. <strong>Jan</strong> har sett noe alle andre har oversett og tippet Yamal som toppscorer. <strong>Eirik</strong>, <strong>Jon Magnar</strong> og <strong>Christian</strong> som alle tippet Spania til å vinne hele greia burde kanskje sende <strong>Jan</strong> en blomsterbukett."
-  },
-  {
-    tag:"injury", tagLabel:"Skade",
-    avatar:"🤕",
-    headline:"Mbappé meldt av til åpningskampen mot Senegal med muskelskade",
-    sub:"Frankrike-kapteinen starter på benken 13. juni, noe som kan gi Senegal en drømmestart. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen deres på benken i kamp én. God stemning i den leiren."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe C",
-    avatar:"🕺",
-    headline:"Brasil ankommet til Houston – Vinícius Jr. i strålende form på trening",
-    sub:"Samba-guttene så fenomenale ut på dagens trening og bookmakerene har dem som solide favoritter i gruppe C. 7 av 9 deltakere har tippet Brasil videre – den eneste som ikke har gjort det er <strong>Magnus</strong>, som har tippet Haiti og Morocco. <strong>Magnus</strong> lever farlig."
-  },
-  {
-    tag:"group", tagLabel:"Gruppe J",
-    avatar:"🏆",
-    headline:"Argentina klar for VM-forsvar – Messi jager tredje VM-tittel",
-    sub:"Regjerende mester stiller med verdens beste spiller for en siste dans på VM-scenen. <strong>Tore</strong> og <strong>Magnus</strong> har begge tippet Argentina videre fra gruppe J – men <strong>Tore</strong> er den eneste som tror Argentina går hele veien. Den som ler sist, ler best."
-  }
-];
 
-let carouselIdx=0, carouselTimer=null, progressTimer=null;
-
-function buildCarousel(){
-  const inner=document.getElementById('carousel-inner');
-  if(!inner)return;
-  inner.innerHTML=NEWS.map((n,i)=>`
-    <div class="carousel-slide">
-      <div class="carousel-avatar">${n.avatar}</div>
-      <div class="carousel-left">
-        <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
-        <div class="carousel-headline">${n.headline}</div>
-        <div class="carousel-sub">${n.sub}</div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="carouselPrev()">&#8249;</button>
-        <div class="carousel-dots">${NEWS.map((_,j)=>`<div class="carousel-dot ${j===i?'active':''}" onclick="goToSlide(${j})"></div>`).join('')}</div>
-        <button class="carousel-btn" onclick="carouselNext()">&#8250;</button>
-      </div>
-    </div>`).join('');
-  goToSlide(carouselIdx);
-}
-
-function goToSlide(idx){
-  carouselIdx=idx;
-  const inner=document.getElementById('carousel-inner');
-  if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
-  document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-  const prog=document.getElementById('carousel-progress');
-  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 16s linear';prog.style.width='100%';},30);}
-  const ctr=document.getElementById('carousel-counter');
-  if(ctr)ctr.textContent=(idx+1)+' / '+NEWS.length;
-  clearTimeout(carouselTimer);
-  carouselTimer=setTimeout(()=>carouselNext(),16000);
-}
-function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
-function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
-// Pause on hover
-document.addEventListener('DOMContentLoaded',()=>{
-  const wrap=document.getElementById('carousel-wrap');
-  if(wrap){
-    wrap.addEventListener('mouseenter',()=>clearTimeout(carouselTimer));
-    wrap.addEventListener('mouseleave',()=>carouselTimer=setTimeout(carouselNext,5000));
-  }
-  buildCarousel();
-});
-
-loadState();render();}
 
 // ── NEWS CAROUSEL ────────────────────────────────────────────────────────
 const NEWS = [
@@ -1061,6 +980,30 @@ const NEWS = [
   }
 ];
 
+
+const NEWS=[
+  {tag:"breaking",tagLabel:"I dag",avatar:"🏟️",
+   headline:"VM 2026 åpner i kveld på Azteca",
+   sub:"Mexico møter Sør-Afrika i turneringens første kamp. 8 av 9 deltakere har tippet <strong>Mexico</strong> videre fra gruppe A – så om Mexico ryker er det bare <strong>Magnus</strong> som ler hele veien til kassen."},
+  {tag:"scorer",tagLabel:"Toppscorer-kamp",avatar:"🐐",
+   headline:"Messi scoret på oppvarming foran 88 000 tilskuere",
+   sub:"Argentina-stjernen viste strålende form i siste treningskamp. <strong>Tore</strong> har satset på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for <strong>Tore</strong>."},
+  {tag:"group",tagLabel:"Gruppe I",avatar:"🦌",
+   headline:"Haaland bekreftet i Norges startelleven mot Frankrike",
+   sub:"Norges store VM-håp er frisk og spilleklar. <strong>Magnus</strong> er den eneste som har tippet Norge videre fra gruppe I. Toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."},
+  {tag:"group",tagLabel:"Gruppe H",avatar:"⭐",
+   headline:"Yamal i Spanias startelleven – 16 år og allerede VM-favoritt",
+   sub:"<strong>Jan</strong> tippet Yamal som toppscorer mens alle andre så en annen vei. <strong>Eirik</strong>, <strong>Jon Magnar</strong> og <strong>Christian</strong> tippet Spania til å vinne hele turneringen – de burde sende <strong>Jan</strong> en blomsterbukett."},
+  {tag:"injury",tagLabel:"Skade",avatar:"🤕",
+   headline:"Mbappé utelatt fra Frankrikes åpningskamp",
+   sub:"Frankrike-kapteinen starter på benken 13. juni med muskelskade. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen på benken i kamp én. God stemning i den leiren."},
+  {tag:"group",tagLabel:"Gruppe C",avatar:"🕺",
+   headline:"Brasil i storform i Houston – Vinícius Jr. brennhet",
+   sub:"Samba-guttene så fenomenale ut på trening og er solide favoritter. 7 av 9 deltakere har tippet Brasil videre – eneste unntak er <strong>Magnus</strong>, som har tippet Haiti og Morocco. <strong>Magnus</strong> lever farlig."},
+  {tag:"group",tagLabel:"Gruppe J",avatar:"🏆",
+   headline:"Messi jager tredje VM-tittel med Argentina",
+   sub:"Regjerende mester stiller med verdens beste spiller for en siste dans. <strong>Tore</strong> er den eneste som tror Argentina går hele veien til finaleseier. Den som ler sist, ler best."}
+];
 let carouselIdx=0, carouselTimer=null, progressTimer=null;
 
 function buildCarousel(){
@@ -1110,30 +1053,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 loadState();render();
 fetchLiveResults();
 setInterval(fetchLiveResults,5*60*1000);
-
-const NEWS=[
-  {tag:"breaking",tagLabel:"I dag",avatar:"🏟️",
-   headline:"VM 2026 åpner i kveld på Azteca",
-   sub:"Mexico møter Sør-Afrika i turneringens første kamp. 8 av 9 deltakere har tippet <strong>Mexico</strong> videre fra gruppe A – så om Mexico ryker er det bare <strong>Magnus</strong> som ler hele veien til kassen."},
-  {tag:"scorer",tagLabel:"Toppscorer-kamp",avatar:"🐐",
-   headline:"Messi scoret på oppvarming foran 88 000 tilskuere",
-   sub:"Argentina-stjernen viste strålende form i siste treningskamp. <strong>Tore</strong> har satset på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå. Dette kan bli et langt VM for <strong>Tore</strong>."},
-  {tag:"group",tagLabel:"Gruppe I",avatar:"🦌",
-   headline:"Haaland bekreftet i Norges startelleven mot Frankrike",
-   sub:"Norges store VM-håp er frisk og spilleklar. <strong>Magnus</strong> er den eneste som har tippet Norge videre fra gruppe I. Toppscorer-tipset hans på Haaland er plutselig ikke helt galt – det er bare Frankrike som står i veien."},
-  {tag:"group",tagLabel:"Gruppe H",avatar:"⭐",
-   headline:"Yamal i Spanias startelleven – 16 år og allerede VM-favoritt",
-   sub:"<strong>Jan</strong> tippet Yamal som toppscorer mens alle andre så en annen vei. <strong>Eirik</strong>, <strong>Jon Magnar</strong> og <strong>Christian</strong> tippet Spania til å vinne hele turneringen – de burde sende <strong>Jan</strong> en blomsterbukett."},
-  {tag:"injury",tagLabel:"Skade",avatar:"🤕",
-   headline:"Mbappé utelatt fra Frankrikes åpningskamp",
-   sub:"Frankrike-kapteinen starter på benken 13. juni med muskelskade. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> har alle tippet Frankrike til å vinne VM – og nå starter altså stjernen på benken i kamp én. God stemning i den leiren."},
-  {tag:"group",tagLabel:"Gruppe C",avatar:"🕺",
-   headline:"Brasil i storform i Houston – Vinícius Jr. brennhet",
-   sub:"Samba-guttene så fenomenale ut på trening og er solide favoritter. 7 av 9 deltakere har tippet Brasil videre – eneste unntak er <strong>Magnus</strong>, som har tippet Haiti og Morocco. <strong>Magnus</strong> lever farlig."},
-  {tag:"group",tagLabel:"Gruppe J",avatar:"🏆",
-   headline:"Messi jager tredje VM-tittel med Argentina",
-   sub:"Regjerende mester stiller med verdens beste spiller for en siste dans. <strong>Tore</strong> er den eneste som tror Argentina går hele veien til finaleseier. Den som ler sist, ler best."}
-];
 </script>
 </body>
 </html>
