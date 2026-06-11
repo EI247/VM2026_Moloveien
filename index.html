@@ -180,21 +180,23 @@ body{background:#F1F5F9 !important;}
 .carousel-inner{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);}
 .carousel-slide{
   min-width:100%;
-  padding:28px 40px 26px;
-  display:flex;align-items:center;gap:28px;
+  padding:32px 48px 30px;
+  display:flex;align-items:center;justify-content:center;gap:32px;
   box-sizing:border-box;background:#fff;
+  max-width:100%;
 }
 .carousel-avatar{
-  width:80px;height:80px;border-radius:50%;flex-shrink:0;
+  width:88px;height:88px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:40px;
-  background:#f8f9fc;border:2px solid #e2e8f0;
+  font-size:44px;
+  background:#f1f5f9;border:2px solid #e2e8f0;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
-.carousel-left{flex:1;min-width:0;}
+.carousel-left{flex:1;min-width:0;max-width:680px;}
 .carousel-tag{
   display:inline-block;font-size:8px;font-weight:800;
   letter-spacing:2.5px;text-transform:uppercase;
-  padding:2px 8px;border-radius:2px;margin-bottom:8px;
+  padding:2px 8px;border-radius:2px;margin-bottom:10px;
 }
 .carousel-tag.breaking{background:#CC0000;color:#fff;}
 .carousel-tag.group{background:#1e3a8a;color:#fff;}
@@ -974,7 +976,7 @@ const FALLBACK_NEWS=[
 
 let NEWS = [...FALLBACK_NEWS];
 let newsLastFetched = 0;
-const NEWS_CACHE_MS = 30 * 60 * 1000; // refresh every 30 minutes
+const NEWS_CACHE_MS = 10 * 60 * 1000; // refresh every 10 minutes
 
 async function fetchAINews() {
   // Only fetch if cache is stale
@@ -1090,7 +1092,7 @@ loadState();render();
 fetchLiveResults();
 fetchAINews();
 setInterval(fetchLiveResults,5*60*1000);
-setInterval(fetchAINews,30*60*1000);
+setInterval(fetchAINews,10*60*1000);
 </script>
 </body>
 </html>
