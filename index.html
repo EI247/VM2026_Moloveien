@@ -518,6 +518,7 @@ footer strong{color:var(--text2);}
     <div class="sh-tag">Live</div>
     <h2 class="sh-title">Ledertavle</h2>
     <div class="live-pill"><div class="ld"></div><span id="live-status">Henter data…</span></div>
+    <button onclick="loadDemoData()" style="margin-left:8px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;cursor:pointer;">🎮 Demo</button>
     <div class="sh-line"></div>
   </div>
 
@@ -626,6 +627,26 @@ let prevRanks={};
 function loadState(){
   state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
   try{const s=localStorage.getItem('vm2026_results');if(s)state.results=JSON.parse(s);}catch(e){}
+}
+
+// ── DEMO MODE – viser fiktive resultater etter dag 1 ─────────────────────
+function loadDemoData(){
+  state.results = {
+    winner: "",
+    topscorer: "Erling Haaland", // Magnus sin scorer – han leder!
+    topGoals: 2,
+    advancedGroups: {
+      // Gruppe A: Mexico vant, Korea Republic nummer 2 etter 1 kamp
+      "A": ["Mexico", "Korea Republic"],
+      // Gruppe C: Brazil vant overbevisende
+      "C": ["Brazil", "Morocco"],
+      // Gruppe I: Frankrike vant, Norge overraskende nummer 2!
+      "I": ["France", "Norway"],
+      // Gruppe J: Argentina vant, Jonas overrasker
+      "J": ["Argentina", "Austria"]
+    }
+  };
+  render();
 }
 
 function hasTips(p){return !!(p.winner||p.topscorer||Object.values(p.groups||{}).some(v=>v));}
