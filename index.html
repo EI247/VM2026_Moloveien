@@ -485,7 +485,7 @@ footer strong{color:var(--text2);}
 
 <!-- TICKER -->
 <div class="ticker">
-  <div class="ticker-track">
+  <div class="ticker-track" id="ticker-track">
     <span class="ti">VM 2026 <span class="ts">·</span> USA · Canada · Mexico</span>
     <span class="ti">48 lag <span class="ts">·</span> 12 grupper <span class="ts">·</span> 104 kamper</span>
     <span class="ti">2p gruppelag <span class="ts">·</span> 15p VM-vinner <span class="ts">·</span> 5p toppscorer</span>
@@ -668,6 +668,7 @@ function render(){
 
   // Save ranks for next delta
   ranked.forEach((p,i)=>{prevRanks[p.name]=i+1;});
+  updateTicker(window._lastMatches||[], ranked);
 }
 
 
@@ -859,11 +860,15 @@ async function fetchLiveResults(){
   try{
     const[matchData,scorerData]=await Promise.all([
       fdFetch('/v4/competitions/WC/matches?season=2026'),
-      fdFetch('/v4/competitions/WC/scorers?season=2026&limit=1')
+      fdFetch('/v4/competitions/WC/scorers?season=2026&limit=10')
     ]);
     const allMatches=matchData.matches||[];
     const played=allMatches.filter(m=>m.status==='FINISHED');
-    if(played.length===0){if(el)el.textContent='⏳ Starter 11. juni · '+allMatches.length+' kamper planlagt';return;}
+    // Always update topscorer regardless of matches played
+    const scorerData2=scorerData||{};
+    const scorers2=(scorerData2.scorers||[]);
+    if(scorers2.length>0&&scorers2[0].player){state.results.topscorer=scorers2[0].player.name;state.results.topGoals=scorers2[0].numberOfGoals||scorers2[0].goals||0;}
+    if(played.length===0){if(el)el.textContent='⏳ Starter 11. juni · '+allMatches.length+' kamper planlagt';render();return;}
 
     // Group standings
     const gp={};
@@ -884,12 +889,28 @@ async function fetchLiveResults(){
       else{gp[g][t1].pts+=1;gp[g][t2].pts+=1;}
     });
     const advanced={};const thirds=[];
+    // Count total group games per group to know if group is complete
+    const groupGameCount={};
+    played.filter(m=>m.stage==='GROUP_STAGE').forEach(m=>{
+      const raw=(m.group||'').replace('GROUP_','');
+      const g=raw.length===1?raw:raw.slice(-1);
+      groupGameCount[g]=(groupGameCount[g]||0)+1;
+    });
     Object.entries(gp).forEach(([grp,teams])=>{
       const sorted=Object.entries(teams).sort((a,b)=>b[1].pts-a[1].pts||b[1].gd-a[1].gd||b[1].gf-a[1].gf);
-      const totalPts=sorted.reduce((a,[,s])=>a+s.pts,0);
-      if(sorted.length>=2&&totalPts>=3){advanced[grp]=[sorted[0][0]];if(totalPts>=6)advanced[grp].push(sorted[1][0]);}
-      if(sorted.length>=3&&totalPts>=9)thirds.push({team:sorted[2][0],...sorted[2][1],grp});
+      const gamesPlayed=groupGameCount[grp]||0;
+      const groupComplete=gamesPlayed>=6; // 4 teams × 3 games / 2 = 6 games total
+      if(sorted.length>=1&&gamesPlayed>=1){
+        // Always show top 2 as provisional once any game played
+        advanced[grp]=[sorted[0][0]];
+        if(sorted.length>=2)advanced[grp].push(sorted[1][0]);
+      }
+      // Track thirds for best-of-thirds calculation (only when group complete)
+      if(groupComplete&&sorted.length>=3){
+        thirds.push({team:sorted[2][0],...sorted[2][1],grp});
+      }
     });
+    // Best 8 thirds only calculated when all 12 groups are complete
     if(thirds.length===12)thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{if(!advanced[t.grp])advanced[t.grp]=[];if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);});
     state.results.advancedGroups=advanced;
 
@@ -897,12 +918,11 @@ async function fetchLiveResults(){
     const fin=allMatches.find(m=>m.stage==='FINAL'&&m.status==='FINISHED');
     if(fin&&fin.score&&fin.score.fullTime){const s1=fin.score.fullTime.home,s2=fin.score.fullTime.away;const w=s1>s2?fin.homeTeam:fin.awayTeam;if(w&&w.name)state.results.winner=normName(w.name);}
 
-    // Top scorer
-    const scorers=scorerData.scorers||[];
-    if(scorers.length>0&&scorers[0].player)state.results.topscorer=scorers[0].player.name;
+    // Topscorer allerede satt ovenfor
 
     const now=new Date().toLocaleTimeString('no-NO',{hour:'2-digit',minute:'2-digit'});
     if(el)el.textContent=played.length+' kamper spilt · '+now;
+    window._lastMatches=allMatches;
     render();
   }catch(e){
     const el=document.getElementById('live-status');
@@ -1092,6 +1112,60 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   buildCarousel();
 });
+
+
+// ── LIVE TICKER ───────────────────────────────────────────────────────────
+function updateTicker(matches, ranked) {
+  const track = document.getElementById('ticker-track');
+  if (!track) return;
+
+  const items = [];
+  const adv = state.results.advancedGroups;
+  const FLAGS_SIMPLE = {"Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Brazil":"🇧🇷","France":"🇫🇷","Spain":"🇪🇸","Germany":"🇩🇪","Argentina":"🇦🇷","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Portugal":"🇵🇹","Netherlands":"🇳🇱","Norway":"🇳🇴"};
+  function fl(t){return FLAGS_SIMPLE[t]||'';}
+
+  // Recent finished matches (last 8)
+  const finished = (matches||[]).filter(m=>m.status==='FINISHED').slice(-8);
+  finished.forEach(m=>{
+    const h=m.homeTeam&&m.homeTeam.name?m.homeTeam.name:m.homeTeam||'';
+    const a=m.awayTeam&&m.awayTeam.name?m.awayTeam.name:m.awayTeam||'';
+    const s=m.score&&m.score.fullTime;
+    if(s&&h&&a) items.push('⚽ '+fl(h)+' '+h+' '+s.home+' – '+s.away+' '+fl(a)+' '+a);
+  });
+
+  // Live matches
+  const live = (matches||[]).filter(m=>m.status==='IN_PLAY'||m.status==='PAUSED');
+  live.forEach(m=>{
+    const h=m.homeTeam&&m.homeTeam.name?m.homeTeam.name:'';
+    const a=m.awayTeam&&m.awayTeam.name?m.awayTeam.name:'';
+    const s=m.score&&m.score.fullTime;
+    if(h&&a) items.push('🔴 LIVE: '+fl(h)+' '+h+' '+((s&&s.home!=null)?s.home:'0')+' – '+((s&&s.away!=null)?s.away:'0')+' '+fl(a)+' '+a);
+  });
+
+  // Teams advanced
+  Object.entries(adv).forEach(([g,teams])=>{
+    teams.forEach(t=>items.push('✅ '+fl(t)+' '+t+' videre fra gruppe '+g));
+  });
+
+  // Topscorer
+  if(state.results.topscorer) items.push('⚽ Foreløpig toppscorer: '+state.results.topscorer);
+
+  // Leaderboard top 3
+  if(ranked&&ranked.length>0){
+    ranked.slice(0,3).forEach((p,i)=>{
+      const medals=['🥇','🥈','🥉'];
+      items.push(medals[i]+' '+p.name+': '+p.score.total+' poeng');
+    });
+  }
+
+  // Always include some base items
+  items.push('VM 2026 · USA · Canada · Mexico');
+  items.push('2p gruppelag · 15p VM-vinner · 5p toppscorer');
+
+  // Build double set for seamless loop
+  const all = [...items, ...items];
+  track.innerHTML = all.map(t=>`<span class="ti">${t}</span>`).join('');
+}
 
 loadState();render();
 fetchLiveResults();
