@@ -979,43 +979,42 @@ let newsLastFetched = 0;
 const NEWS_CACHE_MS = 10 * 60 * 1000; // refresh every 10 minutes
 
 async function fetchAINews() {
-  // Only fetch if cache is stale
   if (Date.now() - newsLastFetched < NEWS_CACHE_MS) return;
   newsLastFetched = Date.now();
-
   try {
-    const participants = DEFAULT_PARTICIPANTS.map(p => 
+    const participants = DEFAULT_PARTICIPANTS.map(p =>
       `${p.name}: vinner=${p.winner}, scorer=${p.topscorer}`
     ).join('\n');
 
     const advGroups = state.results.advancedGroups;
     const advSummary = Object.entries(advGroups).length > 0
-      ? Object.entries(advGroups).map(([g, teams]) => `Gruppe ${g}: ${teams.join(', ')}`).join('; ')
+      ? Object.entries(advGroups).map(([g,teams]) => `Gruppe ${g}: ${teams.join(', ')}`).join('; ')
       : 'Ingen kamper spilt ennå – turneringen starter 11. juni 2026';
 
     const topscorer = state.results.topscorer || 'Ikke avgjort ennå';
     const winner = state.results.winner || 'Ikke avgjort ennå';
 
-    const prompt = `Du er en morsom, engasjert sportsjournalist for en norsk jobbkonkurranse under VM 2026. 
-    
+    const prompt = `Du er en morsom, engasjert sportsjournalist for en norsk jobbkonkurranse under VM 2026.
+
 Deltakernes tips:
 ${participants}
 
 Turneringsstatus akkurat nå:
-- Lag som har gått videre: ${advSummary}
+- Lag videre fra grupper: ${advSummary}
 - Foreløpig toppscorer: ${topscorer}
 - VM-vinner: ${winner}
 
-Lag 5 korte, morsomme Breaking News-saker på norsk. Bruk deltakernes navn direkte og legg til spiss, litt flåsete humor om hvem som ser bra/dårlig ut basert på statusen. Bruk <strong>navn</strong> rundt deltakernavn.
+Lag 5 morsomme Breaking News-saker på norsk. Bruk deltakernavn direkte med spiss, flåsete humor om hvem som ser bra/dårlig ut. Eksempel på tone: "Magnus er den eneste som har trodd nok på Norge – det er bare Frankrike som står i veien." eller "Tore har satset alt på Julián Álvarez som toppscorer – men sjefen hans er åpenbart ikke ferdig ennå."
 
-Svar KUN med gyldig JSON-array, ingen annen tekst:
+Bruk <strong>navn</strong> rundt deltakernavn: Eirik, Jon Magnar, Magnus, Christian, Kenneth, Tore, Michael, Jan, Sture.
+
+Svar KUN med en gyldig JSON-array, ingen annen tekst, ingen markdown-backticks:
 [
-  {"tag":"breaking","tagLabel":"tekst","avatar":"emoji","headline":"kort overskrift","sub":"morsom ingress med <strong>navn</strong>"},
-  ...
+  {"tag":"breaking","tagLabel":"tekst","avatar":"emoji","headline":"kort overskrift maks 60 tegn","sub":"morsom ingress 1-2 setninger med <strong>navn</strong>"},
+  ...fem saker totalt...
 ]
 
-Tags kan være: breaking, group, scorer, injury
-Avatar: velg passende emoji for historien`;
+Tags: breaking, group, scorer, injury. Avatar: passende emoji.`;
 
     const res = await fetch('https://young-queen-ae70.eirik-main.workers.dev/?action=news', {
       method: 'POST',
@@ -1024,75 +1023,22 @@ Avatar: velg passende emoji for historien`;
     });
 
     const data = await res.json();
-    const text = data.content?.[0]?.text || '';
-    
-    // Parse JSON from response
-    const jsonMatch = text.match(/\[.*\]/s);
+    const text = data.text || '';
+
+    // Strip markdown code fences if present
+    const clean = text.replace(/```json|```/g, '').trim();
+    const jsonMatch = clean.match(/\[[\s\S]*\]/);
     if (jsonMatch) {
       const aiNews = JSON.parse(jsonMatch[0]);
       if (Array.isArray(aiNews) && aiNews.length > 0) {
         NEWS = aiNews;
-        buildCarousel(); // rebuild with new news
-        console.log('AI news loaded:', NEWS.length, 'articles');
+        buildCarousel();
+        console.log('Gemini news loaded:', NEWS.length, 'articles');
       }
     }
   } catch(e) {
     console.log('AI news fallback:', e.message);
-    // Keep using FALLBACK_NEWS
   }
 }
 
-let carouselIdx=0, carouselTimer=null, progressTimer=null;
-
-function buildCarousel(){
-  const inner=document.getElementById('carousel-inner');
-  if(!inner)return;
-  inner.innerHTML=NEWS.map((n,i)=>`
-    <div class="carousel-slide">
-      <div class="carousel-avatar">${n.avatar}</div>
-      <div class="carousel-left">
-        <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
-        <div class="carousel-headline">${n.headline}</div>
-        <div class="carousel-sub">${n.sub}</div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="carouselPrev()">&#8249;</button>
-        <div class="carousel-dots">${NEWS.map((_,j)=>`<div class="carousel-dot ${j===i?'active':''}" onclick="goToSlide(${j})"></div>`).join('')}</div>
-        <button class="carousel-btn" onclick="carouselNext()">&#8250;</button>
-      </div>
-    </div>`).join('');
-  goToSlide(carouselIdx);
-}
-
-function goToSlide(idx){
-  carouselIdx=idx;
-  const inner=document.getElementById('carousel-inner');
-  if(inner)inner.style.transform=`translateX(-${idx*100}%)`;
-  document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-  const prog=document.getElementById('carousel-progress');
-  if(prog){prog.style.transition='none';prog.style.width='0%';setTimeout(()=>{prog.style.transition='width 16s linear';prog.style.width='100%';},30);}
-  const ctr=document.getElementById('carousel-counter');
-  if(ctr)ctr.textContent=(idx+1)+' / '+NEWS.length;
-  clearTimeout(carouselTimer);
-  carouselTimer=setTimeout(()=>carouselNext(),16000);
-}
-function carouselNext(){goToSlide((carouselIdx+1)%NEWS.length);}
-function carouselPrev(){goToSlide((carouselIdx-1+NEWS.length)%NEWS.length);}
-// Pause on hover
-document.addEventListener('DOMContentLoaded',()=>{
-  const wrap=document.getElementById('carousel-wrap');
-  if(wrap){
-    wrap.addEventListener('mouseenter',()=>clearTimeout(carouselTimer));
-    wrap.addEventListener('mouseleave',()=>carouselTimer=setTimeout(carouselNext,5000));
-  }
-  buildCarousel();
-});
-
-loadState();render();
-fetchLiveResults();
-fetchAINews();
-setInterval(fetchLiveResults,5*60*1000);
-setInterval(fetchAINews,10*60*1000);
-</script>
-</body>
-</html>
+>
