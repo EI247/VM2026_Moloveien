@@ -99,7 +99,7 @@ body{background:#F1F5F9 !important;}
 }
 /* ── TICKER ── */
 .ticker{background:linear-gradient(90deg,#D97706,#F59E0B,#D97706);padding:7px 0;overflow:hidden;}
-.ticker-track{display:flex;white-space:nowrap;animation:tick 40s linear infinite;}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 20s linear infinite;}
 .ti{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;padding:0 32px;}
 .ts{color:rgba(255,255,255,.4);margin:0 4px;}
 @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -194,17 +194,17 @@ body{background:#F1F5F9 !important;}
 }
 .carousel-left{flex:1;min-width:0;max-width:680px;}
 .carousel-tag{
-  display:inline-block;font-size:8px;font-weight:800;
-  letter-spacing:2.5px;text-transform:uppercase;
-  padding:2px 8px;border-radius:2px;margin-bottom:10px;
+  display:inline-block;font-size:9px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:3px;margin-bottom:10px;
 }
 .carousel-tag.breaking{background:#CC0000;color:#fff;}
 .carousel-tag.group{background:#1e3a8a;color:#fff;}
 .carousel-tag.scorer{background:#C9A227;color:#fff;}
 .carousel-tag.injury{background:#6b21a8;color:#fff;}
-.carousel-headline{font-size:18px;font-weight:800;color:#0f172a;line-height:1.3;margin-bottom:10px;letter-spacing:-.2px;}
-.carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
-.carousel-sub strong{font-weight:700;color:#0f172a;}
+.carousel-headline{font-size:12px;font-weight:700;color:#64748b;line-height:1.3;margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px;}
+.carousel-sub{font-size:19px;font-weight:400;color:#0f172a;line-height:1.6;}
+.carousel-sub strong{font-weight:800;color:#0f172a;}
 
 /* Controls */
 .carousel-controls{display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0;}
@@ -229,9 +229,14 @@ body{background:#F1F5F9 !important;}
 
 /* Mobile */
 @media(max-width:700px){
-  .carousel-slide{padding:20px 16px 18px;gap:14px;}
-  .carousel-avatar{width:58px;height:58px;font-size:28px;}
-  .carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
+  /* Carousel mobile: no avatar, full-width text, controls below */
+  .carousel-slide{padding:18px 16px 14px;flex-direction:column;gap:12px;}
+  .carousel-slide-inner{flex-direction:column;gap:0;}
+  .carousel-avatar{display:none !important;}
+  .carousel-left{width:100%;}
+  .carousel-sub{font-size:15px;line-height:1.6;}
+  .carousel-headline{font-size:12px;}
+  .carousel-controls{flex-direction:row;justify-content:center;align-items:center;gap:12px;width:100%;padding-top:8px;border-top:1px solid #f1f5f9;margin-top:4px;}
   .carousel-masthead-date{display:none;}
   .carousel-masthead-title{letter-spacing:2px;font-size:10px;}
   .carousel-masthead-label{font-size:11px;}
@@ -402,7 +407,7 @@ footer strong{color:var(--text2);}
   .res-grid{grid-template-columns:1fr;}
   .carousel-slide{padding:16px 16px 14px;gap:14px;}
   .carousel-avatar{width:52px;height:52px;font-size:26px;}
-  .carousel-sub{font-size:14px;font-weight:400;color:#475569;line-height:1.65;margin-top:8px;border-top:1px solid #f1f5f9;padding-top:10px;}
+  .carousel-sub{font-size:19px;font-weight:400;color:#0f172a;line-height:1.6;}
   .carousel-masthead-date{display:none;}
   .carousel-masthead-title{font-size:9px;letter-spacing:2px;}
   .hero-inner{max-width:100%;}
@@ -978,27 +983,45 @@ function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStora
 
 // ── AI-POWERED BREAKING NEWS ──────────────────────────────────────────────
 const FALLBACK_NEWS=[
-  {tag:"breaking",tagLabel:"Kampstart i kveld",avatar:"🏟️",
-   headline:"Mexico vs Sør-Afrika – åpningskampen er i gang!",
-   sub:"VM 2026 er endelig i gang på Azteca. 8 av 9 deltakere har tippet <strong>Mexico</strong> videre fra gruppe A. Den eneste som satset annerledes er <strong>Magnus</strong> – og han sitter nå alene i sofaen og heier på Sør-Afrika."},
-  {tag:"group",tagLabel:"Gruppe I – 14. juni",avatar:"🦌",
-   headline:"Norge møter Frankrike om tre dager",
-   sub:"<strong>Magnus</strong> er den eneste av de ni som har tippet Norge videre fra gruppe I. Alle andre lo. Men med Mbappé ute med skade og Haaland i strålende form, begynner latteren å stilne litt."},
-  {tag:"scorer",tagLabel:"Toppscorer-kamp",avatar:"⚽",
-   headline:"Kane, Haaland eller Yamal – hvem tar toppscorertittelen?",
-   sub:"<strong>Eirik</strong>, <strong>Christian</strong> og <strong>Kenneth</strong> tror på Harry Kane. <strong>Magnus</strong> har satset alt på Erling Haaland. <strong>Jan</strong> har sett noe ingen andre ser – Lamine Yamal. Tre ulike hester, én pott."},
-  {tag:"group",tagLabel:"Gruppe H",avatar:"🇪🇸",
-   headline:"Spania storspiller – fire mann er fornøyde",
-   sub:"<strong>Eirik</strong>, <strong>Jon Magnar</strong>, <strong>Christian</strong> og <strong>Tore</strong> har alle tippet Spania videre. Yamal bekreftet i startoppstillingen. <strong>Sture</strong> tippet England – og prøver å ikke se på."},
-  {tag:"injury",tagLabel:"Siste nytt",avatar:"🤕",
-   headline:"Mbappé starter på benken – Frankrike-tipperne svetter",
-   sub:"<strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet alle Frankrike til VM-gull. Kapteinen starter på benken i åpningskampen 13. juni. God stemning i den leiren akkurat nå."},
-  {tag:"group",tagLabel:"Gruppe C – 14. juni",avatar:"🕺",
-   headline:"Brasil – 7 av 9 tror på samba-guttene",
-   sub:"Bare <strong>Magnus</strong> har turt å tippe mot Brasil i gruppe C – han valgte Morocco og Haiti. Resten av feltet ser på <strong>Magnus</strong> med en blanding av beundring og medlidenhet. Vinícius Jr. er i strålende form."},
-  {tag:"group",tagLabel:"Gruppe J",avatar:"🏆",
-   headline:"Argentina klar for VM-forsvar – Messi jager tredje tittel",
-   sub:"<strong>Tore</strong> er den eneste som tror Argentina går hele veien. Messi scoret på oppvarming foran 88 000 tilskuere. Kanskje <strong>Tore</strong> vet noe vi andre ikke vet – eller kanskje han bare er optimist."}
+  {tag:"breaking",tagLabel:"KRISEMØTE",avatar:'flag:za',
+   headline:"Magnus sin VM starter med katastrofe",
+   sub:"Mens alle andre jublet for Mexico 2-0 over Sør-Afrika, satt <strong>Magnus</strong> alene i sofaen og heiet på feil lag. Han er nå den eneste deltakeren med 0 sjanse for gruppepoeng fra gruppe A – og turneringen har bare vart én dag. Krisemøte er innkalt."},
+  {tag:"breaking",tagLabel:"SJOKK",avatar:'flag:kr',
+   headline:"Christian ser ut som et geni – alle andre er sjokkerte",
+   sub:"Sør-Korea 2-1 Tsjekkia. <strong>Christian</strong> er den eneste som tippet Sør-Korea videre fra gruppe A. Alle lo av ham under tipperunden. Ingen ler nå. <strong>Christian</strong> har til og med begynt å gå litt saktere ned gangene på jobben."},
+  {tag:"injury",tagLabel:"SMELL FOR MEXICO",avatar:'flag:mx',
+   headline:"Mexico-spiller utvist – <strong>Eirik</strong> og <strong>Jon Magnar</strong> får panikk",
+   sub:"Mexicansk back Montes fikk rødt kort og mister neste kamp. Mexico må slå Sør-Korea uten ham. <strong>Eirik</strong> og <strong>Jon Magnar</strong> tippet Mexico videre – men nå begynner de å svette. Én tapt kamp og alt kan rakne."},
+  {tag:"scorer",tagLabel:"ETTERRETNING",avatar:'icon:search',
+   headline:"Yamal observert på Walmart – Jan rolig som en gurke",
+   sub:"Spanias 16-årige stjerne ble fotografert handlende på Walmart dagen før turneringsstart. Vitner beskriver vognen som full av energidrikk og chips. <strong>Jan</strong> har tippet Yamal som toppscorer og er ikke det minste bekymret. «Han er klar», insisterer <strong>Jan</strong>."},
+  {tag:"group",tagLabel:"KVELDSDRAMA",avatar:'flag:us',
+   headline:"Canada og USA i aksjon i kveld – halve konkurransen holder pusten",
+   sub:"<strong>Jon Magnar</strong> tippet Canada videre. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong> og <strong>Michael</strong> tippet USA. Det er altså fem deltakere som ikke kan slappe av i kveld. Popcorn er bestilt, negler er bitt ned til beinet."},
+  {tag:"breaking",tagLabel:"MAGNUM OPUS",avatar:'flag:no',
+   headline:"Magnus sin masterplan avslørt – alle er bekymret",
+   sub:"<strong>Magnus</strong> tippet Norge videre, Haaland som toppscorer, og Haiti og Morocco fra gruppe C. Etter dag 1 har han 0 poeng. Eksperter kaller det enten «det modigste VM-tipset i historien» eller «det verste». Muligens begge deler."},
+  {tag:"group",tagLabel:"STORKAMP",avatar:'flag:br',
+   headline:"Brasil vs Morocco i morgen – Magnus sin siste sjanse til å le",
+   sub:"Hele 7 av 9 deltakere tippet Brasil videre fra gruppe C. Den eneste som tror på Morocco er... ja, du vet hvem. Slår Morocco Brasil, blir <strong>Magnus</strong> legendarisk. Taper Morocco, har <strong>Magnus</strong> offisielt tippet feil i alle kamper så langt."}
+  ,{tag:"breaking",tagLabel:"HISTORISK MULIGHET",avatar:'flag:ca',
+   headline:"Canada har ALDRI vunnet en VM-kamp – <strong>Jon Magnar</strong> bryr seg ikke",
+   sub:"Null seire på to forsøk. Tre tap i Qatar. Canada har aldri tatt ett eneste VM-poeng. <strong>Jon Magnar</strong> tippet dem videre likevel. Enten er han den modigste mannen i konkurransen – eller den mest naive. Fasit kommer i kveld."},
+  {tag:"scorer",tagLabel:"KRISENYHETER FRA JUVENTUS",avatar:'flag:ca',
+   headline:"Canadas store håp Jonathan David scoret bare 6 mål i Serie A – <strong>Jon Magnar</strong> nekter å høre",
+   sub:"David forlot Lille som en legende og dro til Juventus. Der ble det 6 mål i hele sesongen. 6! <strong>Jon Magnar</strong> tror fortsatt Canada kan vinne. «David er klar», sier <strong>Jon Magnar</strong>. Ingen andre i konkurransen er enige."},
+  {tag:"injury",tagLabel:"BACK-LINJE I KRISE",avatar:'icon:injury',
+   headline:"Canadas midtstopperkjempe Bombito ute – <strong>Jon Magnar</strong> vet ikke om dette",
+   sub:"Luc de Fougerolles er bare 20 år og tvinges inn som Canada-stopper etter at Bombito meldte forfall med skade. <strong>Jon Magnar</strong> tippet Canada videre. Vi anbefaler å ikke fortelle ham dette akkurat nå. La ham ha det bra litt til."},
+  {tag:"breaking",tagLabel:"POCHETTINO PÅ STYGG REKKE",avatar:'flag:us',
+   headline:"USA-sjef Pochettino er aldri blitt mester – fem VM-tippere holder pusten",
+   sub:"Tottenham? Semifinale, ingen tittel. Chelsea? Sparket. PSG? Sparket. Nå leder han USA i VM. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og... ja, alle de tippet USA videre. Pochettino har aldri vunnet noe stort. Men det er jo VM-debut. Hva kan gå galt?"},
+  {tag:"group",tagLabel:"MATEMATIKER SPÅR",avatar:'icon:stats',
+   headline:"Tysk matematiker spår Nederland som VM-vinner – ingen av deltakerne tippet det",
+   sub:"Joachim Klement har spådd riktig VM-vinner tre ganger på rad – 2014, 2018 og 2022. Nå sier modellen hans: Nederland. Ingen av de ni deltakerne har tippet Nederland. Enten er alle ni smartere enn en tysk professor – eller så er <strong>Tore</strong>, <strong>Kenneth</strong> og resten i trøbbel."},
+  {tag:"scorer",tagLabel:"EKSKLUSIVE BILDER",avatar:'icon:camera',
+   headline:"Mahrez besøkte universitetet i Kansas – toppscorer-kappløpet er i gang",
+   sub:"ESPN meldte at både Yamal handlet på Walmart og Mahrez tok en universitetstur dagen før VM. Verdens beste fotballspillere forbereder seg på sine egne måter. <strong>Jan</strong> tippet Yamal. <strong>Tore</strong> tippet Julián Álvarez. Ingen tippet Mahrez – men han virker refreshed."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
@@ -1076,7 +1099,7 @@ function buildCarousel(){
   if(!inner)return;
   inner.innerHTML=NEWS.map((n,i)=>`
     <div class="carousel-slide"><div class="carousel-slide-inner">
-      <div class="carousel-avatar">${n.avatar}</div>
+      <div class="carousel-avatar" id="ca-${i}"></div>
       <div class="carousel-left">
         <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
         <div class="carousel-headline">${n.headline}</div>
@@ -1089,6 +1112,24 @@ function buildCarousel(){
       </div></div>
     </div>`).join('');
   goToSlide(carouselIdx);
+  // Inject flag SVGs after DOM is created
+  setTimeout(()=>{
+    NEWS.forEach((n,i)=>{
+      const el=document.getElementById('ca-'+i);
+      if(!el)return;
+      if(n.avatar&&n.avatar.startsWith('flag:')){
+        const svg=getFlagSVG(n.avatar.slice(5));
+        if(svg){el.innerHTML=svg;el.style.padding='0';}
+      } else if(n.avatar&&n.avatar.startsWith('icon:')){
+        const svg=getIconSVG(n.avatar.slice(5));
+        if(svg){el.innerHTML=svg;el.style.padding='0';}
+      } else if(n.avatar&&n.avatar.startsWith('<')){
+        el.innerHTML=n.avatar;
+      } else {
+        el.innerHTML='<span style="font-size:34px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+n.avatar+'</span>';
+      }
+    });
+  },50);
 }
 
 function goToSlide(idx){
@@ -1167,6 +1208,55 @@ function updateTicker(matches, ranked) {
   // Build double set for seamless loop
   const all = [...items, ...items];
   track.innerHTML = all.map(t=>`<span class="ti">${t}</span>`).join('');
+}
+
+
+function getIconSVG(name) {
+  const icons = {
+    'search': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#1e3a8a"/>
+  <circle cx="34" cy="34" r="14" fill="none" stroke="#fff" stroke-width="5"/>
+  <line x1="44" y1="44" x2="58" y2="58" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="34" cy="34" r="7" fill="none" stroke="#facc15" stroke-width="2"/>
+  <line x1="30" y1="30" x2="38" y2="38" stroke="#facc15" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg>`,
+    'injury': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#dc2626"/>
+  <rect x="34" y="18" width="12" height="44" rx="4" fill="#fff"/>
+  <rect x="18" y="34" width="44" height="12" rx="4" fill="#fff"/>
+</svg>`,
+    'camera': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#7c3aed"/>
+  <rect x="16" y="28" width="48" height="34" rx="5" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="40" cy="45" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+  <rect x="28" y="20" width="14" height="10" rx="3" fill="#fff"/>
+  <circle cx="57" cy="35" r="3" fill="#fff"/>
+</svg>`,
+    'stats': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#0f766e"/>
+  <rect x="16" y="52" width="10" height="14" rx="2" fill="#fff"/>
+  <rect x="30" y="38" width="10" height="28" rx="2" fill="#fff"/>
+  <rect x="44" y="26" width="10" height="40" rx="2" fill="#fff"/>
+  <rect x="58" y="18" width="10" height="48" rx="2" fill="#facc15"/>
+  <line x1="14" y1="66" x2="70" y2="66" stroke="#fff" stroke-width="2.5" opacity="0.5"/>
+</svg>`,
+    'redcard': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#1a1a2e"/>
+  <rect x="26" y="18" width="28" height="40" rx="4" fill="#dc2626"/>
+  <circle cx="40" cy="62" r="6" fill="#facc15"/>
+</svg>`,
+  };
+  return icons[name] || null;
+}
+
+function getFlagSVG(code){
+  var flags={
+    'mx':'🇲🇽','no':'🇳🇴','kr':'🇰🇷','ca':'🇨🇦','us':'🇺🇸',
+    'br':'🇧🇷','es':'🇪🇸','fr':'🇫🇷','za':'🇿🇦','nl':'🇳🇱','ar':'🇦🇷'
+  };
+  var emoji=flags[code];
+  if(!emoji)return null;
+  return '<span style="font-size:48px;line-height:80px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+emoji+'</span>';
 }
 
 loadState();render();
