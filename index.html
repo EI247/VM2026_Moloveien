@@ -1077,20 +1077,9 @@ let carouselIdx=0, carouselTimer=null, progressTimer=null;
 
 
 function getFlagSVG(code){
-  var svgs={
-    'mx':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#006847"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#CE1126"/></svg>',
-    'no':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 16"><rect width="22" height="16" fill="#EF2B2D"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#003680"/><rect y="7" width="22" height="2" fill="#003680"/></svg>',
-    'kr':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5" fill="#C60C30"/><path d="M15 5 A5 5 0 0 1 15 15" fill="#003478"/><circle cx="15" cy="5" r="2.5" fill="#C60C30"/><circle cx="15" cy="15" r="2.5" fill="#003478"/></svg>',
-    'ca':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 2"><rect width="4" height="2" fill="#fff"/><rect width="1" height="2" fill="#FF0000"/><rect x="3" width="1" height="2" fill="#FF0000"/><polygon points="2,0.35 2.12,0.65 2.45,0.62 2.22,0.82 2.32,1.12 2,0.95 1.68,1.12 1.78,0.82 1.55,0.62 1.88,0.65" fill="#FF0000"/></svg>',
-    'us':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 10"><rect width="19" height="10" fill="#B22234"/><rect y="0.77" width="19" height="0.77" fill="#fff"/><rect y="2.31" width="19" height="0.77" fill="#fff"/><rect y="3.85" width="19" height="0.77" fill="#fff"/><rect y="5.38" width="19" height="0.77" fill="#fff"/><rect y="6.92" width="19" height="0.77" fill="#fff"/><rect y="8.46" width="19" height="0.77" fill="#fff"/><rect width="7.6" height="5.38" fill="#3C3B6E"/></svg>',
-    'br':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 3"><rect width="4" height="3" fill="#009C3B"/><polygon points="2,0.25 3.75,1.5 2,2.75 0.25,1.5" fill="#FEDF00"/><circle cx="2" cy="1.5" r="0.6" fill="#002776"/></svg>',
-    'fr':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg>',
-    'za':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="6" height="4" fill="#007A4D"/><polygon points="0,0 2.5,2 0,4" fill="#000"/><polygon points="0,0.5 2,2 0,3.5" fill="#FFB612"/><rect y="1.5" width="6" height="1" fill="#fff"/><rect y="1.7" width="6" height="0.6" fill="#DE3831"/></svg>',
-    'nl':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="0.667" fill="#AE1C28"/><rect y="0.667" width="3" height="0.666" fill="#fff"/><rect y="1.333" width="3" height="0.667" fill="#21468B"/></svg>',
-    'ar':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="0.667" fill="#74ACDF"/><rect y="0.667" width="3" height="0.666" fill="#fff"/><rect y="1.333" width="3" height="0.667" fill="#74ACDF"/><circle cx="1.5" cy="1" r="0.22" fill="#F6B40E"/></svg>'
-  };
-  if(!svgs[code])return null;
-  return '<svg xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" viewBox="'+svgs[code].match(/viewBox="([^"]+)"/)[1]+'">'+svgs[code].replace(/<svg[^>]+>/,'')+'</svg>';
+  var map={'mx':'mx','no':'no','kr':'kr','ca':'ca','us':'us','br':'br','es':'es','fr':'fr','za':'za','nl':'nl','ar':'ar'};
+  if(!map[code])return null;
+  return '<img src="https://flagcdn.com/w80/'+map[code]+'.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%" alt="'+code+'">';
 }
 function getIconSVG(name){
   var icons={
