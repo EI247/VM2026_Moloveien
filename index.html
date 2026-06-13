@@ -1058,6 +1058,24 @@ Avatar: velg passende emoji for historien`;
       if (Array.isArray(aiNews) && aiNews.length > 0) {
         NEWS = aiNews;
 
+
+
+
+
+        buildCarousel(); // rebuild with new news
+        console.log('AI news loaded:', NEWS.length, 'articles');
+      }
+    }
+  } catch(e) {
+    console.log('AI news fallback:', e.message);
+    // Keep using FALLBACK_NEWS
+  }
+}
+
+let carouselIdx=0, carouselTimer=null, progressTimer=null;
+
+
+
 function getFlagSVG(code){
   var flags={'mx':'🇲🇽','no':'🇳🇴','kr':'🇰🇷','ca':'🇨🇦','us':'🇺🇸','br':'🇧🇷','es':'🇪🇸','fr':'🇫🇷','za':'🇿🇦','nl':'🇳🇱','ar':'🇦🇷'};
   var emoji=flags[code];
@@ -1078,20 +1096,6 @@ function buildAvatar(avatar){
   if(avatar.startsWith('icon:')){var s=getIconSVG(avatar.slice(5));return s||'📰';}
   return '<span style="font-size:42px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+avatar+'</span>';
 }
-
-        buildCarousel(); // rebuild with new news
-        console.log('AI news loaded:', NEWS.length, 'articles');
-      }
-    }
-  } catch(e) {
-    console.log('AI news fallback:', e.message);
-    // Keep using FALLBACK_NEWS
-  }
-}
-
-let carouselIdx=0, carouselTimer=null, progressTimer=null;
-
-
 function buildCarousel(){
   const inner=document.getElementById('carousel-inner');
   if(!inner)return;
