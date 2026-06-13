@@ -54,7 +54,8 @@ body{background:linear-gradient(180deg,#051428 0%,#0a2540 20%,#0d3a1a 55%,#0a2a1
 .hsv{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#FFD700;line-height:1;}
 .hsl{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:2px;}
 .hero-strip{height:3px;background:linear-gradient(90deg,#92400e,#D4A017,#FFD700,#D4A017,#92400e);margin-top:28px;}
-
+@media(max-width:700px){
+  .hero-inner{flex-direction:column;align-items:flex-start;gap:16px;padding:20px 16px 0;}
   .hero-right{width:100%;}
   .hero-stat{flex:1;padding:10px 8px;}
   .hsv{font-size:24px;}
@@ -62,7 +63,7 @@ body{background:linear-gradient(180deg,#051428 0%,#0a2540 20%,#0d3a1a 55%,#0a2a1
 }
 /* ── TICKER ── */
 .ticker{background:rgba(0,0,0,0.5);border-top:1px solid rgba(212,160,23,0.3);border-bottom:1px solid rgba(212,160,23,0.3);padding:7px 0;overflow:hidden;}
-.ticker-track{display:flex;white-space:nowrap;animation:tick 40s linear infinite;}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 10s linear infinite;}
 .ti{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FFD700;padding:0 32px;}
 .ts{color:rgba(212,160,23,0.35);margin:0 4px;}
 @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -150,7 +151,8 @@ body{background:linear-gradient(180deg,#051428 0%,#0a2540 20%,#0d3a1a 55%,#0a2a1
 .carousel-dot.active{background:#FFD700;width:16px;border-radius:3px;}
 .carousel-progress{height:3px;background:rgba(255,255,255,0.1);position:relative;z-index:2;}
 .carousel-progress-fill{height:100%;background:#D4A017;transition:width 12s linear;}
-
+@media(max-width:700px){
+  .carousel-slide{padding:20px 16px 18px;flex-direction:column;gap:12px;}
   .carousel-slide-inner{flex-direction:column;gap:0;}
   .carousel-avatar{display:none !important;}
   .carousel-left{width:100%;}
@@ -284,8 +286,22 @@ body{background:linear-gradient(180deg,#051428 0%,#0a2540 20%,#0d3a1a 55%,#0a2a1
 footer{border-top:1px solid rgba(255,255,255,0.1);padding:24px 0;text-align:center;color:rgba(255,255,255,0.25);font-size:11px;letter-spacing:1px;}
 footer strong{color:rgba(255,255,255,0.45);}
 
-
-  .lcard-inner{grid-template-columns:52px 1fr;}
+@media(max-width:700px){
+  .detail-grid{grid-template-columns:1fr 1fr;}
+  .lcard-inner{grid-template-columns:40px 1fr !important;}
+  .lcard-inner:has(.lcard-avatar-col){grid-template-columns:40px 44px 1fr !important;}
+  .lcard-avatar-col{padding:4px !important;}
+  .lcard-avatar-img{width:32px !important;height:32px !important;}
+  .lcard-rank{min-width:40px !important;}
+  .lcard-name{font-size:14px !important;}
+  .rank-1 .lcard-name{font-size:17px !important;}
+  .rank-2 .lcard-name{font-size:15px !important;}
+  .lcard-aka{font-size:10px !important;}
+  .rank-1-trophy{width:28px !important;height:28px !important;}
+  .lcard-score{display:flex !important;min-width:52px !important;padding:8px 8px !important;}
+  .score-total{font-size:24px !important;}
+  .lcard-badges{display:none !important;}
+  .sp-v,.sp-sep,.sp-l,.max-tag{display:none !important;}
   .lcard-score{display:none;}
   .ggrid{grid-template-columns:repeat(3,1fr);}
   .res-grid{grid-template-columns:1fr;}
@@ -295,7 +311,8 @@ footer strong{color:rgba(255,255,255,0.45);}
 }
 
 /* ── MOBILE ── */
-
+@media(max-width:700px){
+  .container{padding:0 14px;}
   .section{padding:28px 0;}
   .hero{padding:32px 16px 28px;}
   .hero-stats{flex-wrap:wrap;gap:0;}
@@ -356,105 +373,14 @@ footer strong{color:rgba(255,255,255,0.45);}
 
 @keyframes trophySpin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
 .rank-1-trophy{width:52px;height:52px;flex-shrink:0;animation:trophySpin 6s linear infinite;background:transparent;}
-.rank-1-trophy img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 8px rgba(255,215,0,0.6));background:transparent;}
-.lcard-aka{font-size:11px;font-weight:600;color:#FFD700;letter-spacing:.5px;font-style:italic;margin-top:-3px;opacity:0.85;}
+.rank-1-trophy img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 8px rgba(255,215,0,0.6));}
+.lcard-aka{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.5px;font-style:italic;margin-top:-3px;opacity:0.85;}
 .rank-1 .lcard-name{font-size:22px;} .rank-1 .lcard-aka{font-size:14px;}
 .rank-2 .lcard-name{font-size:19px;} .rank-2 .lcard-aka{font-size:13px;}
 .rank-3 .lcard-name{font-size:17px;} .rank-3 .lcard-aka{font-size:12px;}
-.lcard-avatar-col{display:flex !important;align-items:center;justify-content:center;padding:6px;border-right:1px solid rgba(255,255,255,0.1);}
-.lcard-avatar-img{width:60px;height:60px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(212,160,23,0.5);}
+.lcard-avatar-col{display:flex !important;align-items:center;justify-content:center;padding:6px;border-right:1px solid var(--border);}
 .lcard-inner:has(.lcard-avatar-col){grid-template-columns:56px 72px 1fr auto;}
-
-
-  .lcard-inner:has(.lcard-avatar-col){grid-template-columns:44px 52px 1fr !important;}
-  .lcard-score{display:none !important;}
-  .lcard-main{padding:9px 12px;}
-  .lcard-name{font-size:14px !important;}
-  .rank-1 .lcard-name{font-size:18px !important;}
-  .rank-2 .lcard-name{font-size:16px !important;}
-  .lcard-aka{font-size:10px !important;}
-  .lcard-avatar-img{width:46px;height:46px;}
-  .rank-1-trophy{width:34px;height:34px;}
-  .bar-track{height:6px;}
-  .chip{font-size:9px;padding:1px 5px;}
-  .section{padding:20px 0;}
-  .container{padding:0 12px;}
-  .tabs{width:100%;overflow-x:auto;border-radius:8px;}
-  .tab{padding:7px 12px;font-size:11px;white-space:nowrap;}
-  .carousel-sub{font-size:17px !important;font-weight:600 !important;line-height:1.55 !important;}
-  .carousel-sub strong{color:#FFD700 !important;font-weight:900 !important;}
-  .carousel-headline{font-size:12px !important;font-weight:800 !important;}
-  .carousel-controls{flex-direction:row !important;justify-content:center;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);width:100%;}
-  .pts-grid{grid-template-columns:repeat(2,1fr);}
-  .hero-inner{gap:12px;padding:16px 16px 0 !important;}
-  .hero-stat{padding:10px 6px !important;}
-  .hsv{font-size:20px !important;}
-}
-
-@media(max-width:700px){
-  /* Layout */
-  .container{padding:0 12px;}
-  .section{padding:20px 0;}
-
-  /* Hero */
-  .hero-inner{flex-direction:column;align-items:flex-start;gap:12px;padding:16px 16px 0;}
-  .hero-right{width:100%;}
-  .hero-stat{flex:1;padding:10px 6px;}
-  .hsv{font-size:20px;}
-  .hsl{font-size:6px;letter-spacing:1px;}
-  .hero-trophy svg{width:50px !important;height:auto !important;}
-  .hero-strip{margin-top:16px;}
-
-  /* Ticker */
-  .ti{font-size:10px;padding:0 16px;}
-
-  /* Tabs */
-  .tabs{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .tab{padding:7px 12px;font-size:11px;white-space:nowrap;}
-
-  /* Leaderboard cards — clean mobile layout */
-  .lcard-inner{grid-template-columns:40px 44px 1fr 58px !important;}
-  .lcard-inner:has(.lcard-avatar-col){grid-template-columns:40px 44px 1fr 58px !important;}
-  .lcard-rank{min-width:40px !important;}
-  .lcard-avatar-col{padding:4px !important;}
-  .lcard-avatar-img{width:34px !important;height:34px !important;}
-  .lcard-main{padding:8px 10px !important;}
-  .lcard-name{font-size:15px !important;gap:4px !important;}
-  .rank-1 .lcard-name{font-size:17px !important;}
-  .rank-2 .lcard-name{font-size:16px !important;}
-  .rank-3 .lcard-name{font-size:15px !important;}
-  .rank-1-trophy{width:28px !important;height:28px !important;}
-  .lcard-aka{font-size:10px !important;}
-  .lcard-badges{display:none !important;}
-  .lcard-bar{margin-top:4px !important;}
-  .bar-track{height:5px !important;}
-  .lcard-score{min-width:54px !important;padding:8px 8px !important;display:flex !important;}
-  .score-total{font-size:26px !important;}
-  .rank-1 .score-total{font-size:30px !important;}
-  .score-lbl{font-size:8px !important;}
-  .sp-v, .sp-sep, .sp-l{display:none !important;}
-  .max-tag{display:none !important;}
-
-  /* Breaking News */
-  .carousel-slide{padding:18px 16px 14px;}
-  .carousel-slide-inner{flex-direction:column;gap:10px;}
-  .carousel-avatar{display:none !important;}
-  .carousel-left{width:100%;}
-  .carousel-sub{font-size:17px !important;font-weight:600 !important;line-height:1.55 !important;}
-  .carousel-sub strong{color:#FFD700 !important;font-weight:900 !important;}
-  .carousel-headline{font-size:12px !important;font-weight:800 !important;}
-  .carousel-controls{flex-direction:row !important;justify-content:center;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);width:100%;}
-  .carousel-masthead-date{display:none;}
-  .carousel-masthead-title{font-size:10px;letter-spacing:2px;}
-  .carousel-masthead-label{font-size:11px;}
-
-  /* Groups/details */
-  .ggrid{grid-template-columns:repeat(3,1fr);}
-  .detail-grid{grid-template-columns:1fr 1fr;}
-  .res-grid{grid-template-columns:1fr;}
-  .adv-grid{grid-template-columns:repeat(3,1fr);}
-  .pts-grid{grid-template-columns:repeat(2,1fr);}
-}
+.lcard-avatar-img{width:60px;height:60px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--gold-border);}
 </style>
 </head>
 <body>
@@ -780,8 +706,8 @@ function renderLeaderboard(ranked,tipsCount){
         </div>
         ${(function(){var img=getPlayerImg(p.name);return img?'<div class="lcard-avatar-col"><img src="'+img+'" class="lcard-avatar-img" alt="'+p.name+'"></div>':'';}())}
         <div class="lcard-main">
-          <div class="lcard-name">${p.name} ${rank===1?`<span class="rank-1-trophy"><img src="${TROPHY_IMG}" alt="trophy"></span>`:''} ${maxTag}</div>
-          ${p.aka?`<div class="lcard-aka">"${p.aka}"</div>`:''}
+          <div class="lcard-name">${p.name} ${rank===1?'<span class="rank-1-trophy"><img src="'+TROPHY_IMG+'" alt="trophy"></span>':''} ${maxTag}</div>
+          ${p.aka?'<div class="lcard-aka">"'+p.aka+'"</div>':''}
           <div class="lcard-badges">
             ${noT?'<span class="chip" style="color:var(--text3)">Ingen tips registrert ennå</span>':`${winChip}${scorChip}${grpChips}`}
           </div>
@@ -1025,10 +951,7 @@ function saveData(){
   setTimeout(()=>m.style.display='none',2000);
   render();
 }
-function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');
-
-
-loadState();render();}
+function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStorage.removeItem('vm2026_results');loadState();render();}
 
 // ── NEWS CAROUSEL ────────────────────────────────────────────────────────
 
@@ -1037,43 +960,43 @@ loadState();render();}
 const FALLBACK_NEWS=[
   {tag:"breaking",tagLabel:"HISTORISK POENG",avatar:"flag:ca",
    headline:"Canada scorer FØRSTE VM-poeng noensinne – alle jublet",
-   sub:"Etter 3 VM-sluttspill og null poeng kom endelig øyeblikket: Cyle Larin inn som innbytter, mål etter 121 sekunder, 1-1 mot Bosnia. <strong>Jon Magnar</strong> tippet Sveits videre – og bryr seg egentlig ikke om Canada – men sitter og smiler allikevel."},
+   sub:"Cyle Larin inn som innbytter, mål etter 121 sekunder, 1-1 mot Bosnia. <strong>Jon Magnar</strong> tippet Sveits videre – men smiler allikevel. Canada har aldri hatt det bedre."},
   {tag:"breaking",tagLabel:"CHRISTIAN ER ET GENI",avatar:"flag:kr",
    headline:"Sør-Korea slo Tsjekkia 2-1 – Christian går saktere ned gangene",
-   sub:"Oh Hyeon-gyu avgjorde i 80. minutt. <strong>Christian</strong> er den eneste som tippet Sør-Korea fra gruppe A. Alle lo av ham. Ingen ler nå. Vi har fått beskjed om at <strong>Christian</strong> nå krever at alle kaller ham «fotballekspert»."},
+   sub:"Oh Hyeon-gyu avgjorde i 80. minutt. <strong>Christian</strong> er den eneste som tippet Sør-Korea. Alle lo. Ingen ler nå. Vi har fått beskjed om at <strong>Christian</strong> krever å bli kalt «fotballekspert»."},
   {tag:"breaking",tagLabel:"USA KNUSER PARAGUAY",avatar:"flag:us",
-   headline:"USA 4-1 Paraguay – fire Mann gleder seg, én biter negler",
-   sub:"Balogun og Reyna scoret, USA dominerte fullstendig. 63% ball, 17-8 i skudd. <strong>Eirik</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Sture</strong> tippet USA videre – og ler nå. <strong>Jan</strong> tippet Paraguay. <strong>Jan</strong> ler ikke."},
+   headline:"USA 4-1 Paraguay – fire gleder seg, én biter negler",
+   sub:"Balogun og Reyna scoret. <strong>Eirik</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Sture</strong> tippet USA videre og ler nå. <strong>Jan</strong> tippet Paraguay. <strong>Jan</strong> ler ikke."},
   {tag:"group",tagLabel:"GRUPPE B – I DAG",avatar:"flag:ca",
    headline:"Sveits møter Qatar i dag – <strong>Jon Magnar</strong> holder pusten",
-   sub:"<strong>Jon Magnar</strong> tippet Sveits videre fra gruppe B. Qatar er vertsnasjon fra 2022 og vet hvordan man spiller VM-fotball. Sveits er solide som alltid. Alle andre i konkurransen trenger egentlig ikke følge med – men <strong>Jon Magnar</strong> er spent nok for alle ni."},
-  {tag:"breaking",tagLabel:"KRISE FOR MAGNUS",avatar:"flag:za",
-   headline:"Sør-Afrika tapte 0-2 og er ute – <strong>Magnus</strong> sin reise er over",
-   sub:"Mexico 2-0 Sør-Afrika. <strong>Magnus</strong> tippet Sør-Afrika videre fra gruppe A. Det er nå matematisk umulig. VM er dag 2 og <strong>Magnus</strong> har allerede mistet én av tolv grupper. Han insisterer på at 'det er tidlig ennå'. Det er det ikke."},
+   sub:"<strong>Jon Magnar</strong> tippet Sveits videre fra gruppe B. Qatar er vertsnasjon fra 2022 og vet hvordan VM-fotball spilles. <strong>Jon Magnar</strong> er spent nok for alle ni deltakere."},
+  {tag:"breaking",tagLabel:"MAGNUS SIN KRISE",avatar:"flag:za",
+   headline:"Sør-Afrika ute – <strong>Magnus</strong> mistet gruppe A på dag 2",
+   sub:"Mexico 2-0 Sør-Afrika. <strong>Magnus</strong> tippet Sør-Afrika videre. Det er nå matematisk umulig. VM er dag 2 og han har allerede mistet én av tolv grupper. Han insisterer på at 'det er tidlig ennå'."},
   {tag:"scorer",tagLabel:"TOPPSCORER-DRAMA",avatar:"icon:search",
-   headline:"Ingen av de ni sine toppscorere har scoret – alle er like ille",
-   sub:"Kane, Haaland, Yamal, Álvarez, Dembélé, Olise – alle på 0 mål etter dag 2. Men Balogun (USA) har 2. <strong>Eirik</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Sture</strong> tippet ikke Balogun. Ingen tippet Balogun. Balogun bryr seg ikke."},
+   headline:"Ingen av de ni sine scorere har scoret – alle er like ille",
+   sub:"Kane, Haaland, Yamal, Álvarez, Dembélé, Olise – alle på 0 mål etter dag 2. Men Balogun (USA) har 2 mål. Ingen tippet Balogun. Balogun bryr seg ikke."},
   {tag:"group",tagLabel:"GRUPPE C – I MORGEN",avatar:"flag:br",
-   headline:"Brasil møter Morocco i morgen – 7 deltakere trekker pusten",
-   sub:"<strong>Magnus</strong> tippet Morocco videre og Haiti videre. 7 andre tippet Brasil videre. Vinícius Jr. er klar. Rodrygo er ute. <strong>Magnus</strong> smiler stille i hjørnet og kalkulerer sjansene for at Haiti slår Skottland. De er ikke gode."},
-  {tag:"injury",tagLabel:"CANADA-KRISE OVER?",avatar:"flag:ca",
-   headline:"Davies spilte fra start og ble matchvinner – <strong>Jon Magnar</strong> visste det",
-   sub:"Til tross for all frykten spilte Alphonso Davies fra start mot Bosnia. Han var involvert i mange av de beste sjansene. <strong>Jon Magnar</strong> tippet Sveits, men var allikevel stolt av Canada på vegne av alle nordmenn. Vi lar ham ha det."},
+   headline:"Brasil møter Morocco i morgen – 7 deltakere holder pusten",
+   sub:"<strong>Magnus</strong> tippet Morocco og Haiti. 7 andre tippet Brasil. Vinícius Jr. er klar. <strong>Magnus</strong> smiler stille i hjørnet og kalkulerer sjansene for at Haiti slår Skottland."},
+  {tag:"injury",tagLabel:"DAVIES SPILTE!",avatar:"flag:ca",
+   headline:"Davies spilte fra start – alt snakket om skaden var bortkastet",
+   sub:"Til tross for all frykten rundt kneskaden spilte Alphonso Davies fra start mot Bosnia og var involvert i mange sjanser. <strong>Jon Magnar</strong> tippet Sveits, men lot seg berolige allikevel."},
   {tag:"breaking",tagLabel:"GIO REYNA TRIVELA",avatar:"flag:us",
-   headline:"Gio Reyna satte inn USA sitt fjerde med et vakkert trivela – USA er klare",
-   sub:"Et av turneringens vakreste mål så langt. Reyna fikk ballen, snudde seg og satte inn med utsiden. <strong>Eirik</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Sture</strong> jublet. <strong>Jan</strong> så bort og telte fugler utenfor vinduet."},
+   headline:"Gio Reyna avsluttet USA-festen med et vakkert trivela",
+   sub:"Et av turneringens vakreste mål: Reyna fikk ballen, snudde seg og satte inn med utsiden. <strong>Eirik</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Sture</strong> jublet. <strong>Jan</strong> telte fugler utenfor vinduet."},
   {tag:"group",tagLabel:"GRUPPE I – 16. JUNI",avatar:"flag:no",
    headline:"Norge møter Irak om 3 dager – <strong>Magnus</strong> og <strong>Jon Magnar</strong> teller ned",
-   sub:"16. juni møter Norge Irak i Houston. <strong>Magnus</strong> trenger Haaland-mål og norsk seier. <strong>Jon Magnar</strong> vil ha Norge videre. Resten av konkurransen heier høflig på – men er innerst inne glad de ikke har lagt egg i den kurven."},
+   sub:"16. juni møter Norge Irak i Houston. <strong>Magnus</strong> trenger Haaland-mål og norsk seier. <strong>Jon Magnar</strong> vil ha Norge videre. Resten heier høflig på – men er glad de ikke satset på det selv."},
   {tag:"group",tagLabel:"DZEKO 40 ÅR",avatar:"flag:ca",
-   headline:"Edin Dzeko, 40 år og fortsatt VM-klar – Bosnia-gjengen er magisk",
-   sub:"Bosnia stilte med 40 år gamle Edin Dzeko i startoppstillingen mot Canada og holdt ledelsen til 78. minutt. <strong>Christian</strong> tippet Bosnia videre fra gruppe B. Han er den eneste. Han nikker nå til seg selv i speilet hver morgen."},
+   headline:"Edin Dzeko, 40 år, spilte fra start for Bosnia – og holdt ledelsen til 78.",
+   sub:"40 år gamle Dzeko stilte fra start og Bosnia ledet helt til 78. minutt. <strong>Christian</strong> er den eneste som tippet Bosnia videre fra gruppe B. Han nikker til seg selv i speilet hver morgen."},
   {tag:"scorer",tagLabel:"HAALAND-JAKT",avatar:"flag:no",
    headline:"Haaland er VM-kvalikens toppscorer med 16 mål – <strong>Magnus</strong> vet best",
-   sub:"<strong>Magnus</strong> tippet Haaland som toppscorer. Ingen andre. Etter dag 2 av VM har Haaland 0 mål – men 16 i kvaliken. <strong>Magnus</strong> har sagt 'jeg visste det' 17 ganger allerede. Vi anbefaler alle å la ham snakke ferdig."},
+   sub:"<strong>Magnus</strong> tippet Haaland som toppscorer. Etter dag 2 av VM har Haaland 0 mål. <strong>Magnus</strong> har sagt 'jeg visste det' 17 ganger allerede. Vi anbefaler alle å la ham snakke ferdig."},
   {tag:"breaking",tagLabel:"ÅPNINGSSEREMONI",avatar:"icon:camera",
-   headline:"Shakira og Burna Boy åpnet VM – Magnus var eneste som ikke applauderte",
-   sub:"87 000 tilskuere jublet. Shakira fremførte sine største hits. Burna Boy satt scenen i brann. Alle ni deltakere er enige om at det var spektakulært. <strong>Magnus</strong> applauderte ikke. Han sier det var fordi armene hans var for krysset til å klappe. Vi tror det ikke."}
+   headline:"Shakira og Burna Boy åpnet VM – Magnus applauderte ikke",
+   sub:"87 000 tilskuere jublet. Shakira i toppform. Burna Boy satt scenen i brann. <strong>Magnus</strong> applauderte ikke. Han sier armene var for krysset til å klappe. Vi tror det ikke."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
@@ -1146,12 +1069,34 @@ Avatar: velg passende emoji for historien`;
 
 let carouselIdx=0, carouselTimer=null, progressTimer=null;
 
+
+function getFlagSVG(code){
+  var flags={'mx':'🇲🇽','no':'🇳🇴','kr':'🇰🇷','ca':'🇨🇦','us':'🇺🇸','br':'🇧🇷','es':'🇪🇸','fr':'🇫🇷','za':'🇿🇦','nl':'🇳🇱','ar':'🇦🇷'};
+  var emoji=flags[code];
+  if(!emoji)return null;
+  return '<span style="font-size:48px;line-height:80px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+emoji+'</span>';
+}
+function getIconSVG(name){
+  var icons={
+    'search':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#1e3a8a"/><circle cx="34" cy="34" r="14" fill="none" stroke="#fff" stroke-width="5"/><line x1="44" y1="44" x2="58" y2="58" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>',
+    'injury':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#dc2626"/><rect x="34" y="18" width="12" height="44" rx="4" fill="#fff"/><rect x="18" y="34" width="44" height="12" rx="4" fill="#fff"/></svg>',
+    'camera':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#7c3aed"/><rect x="16" y="28" width="48" height="34" rx="5" fill="none" stroke="#fff" stroke-width="4"/><circle cx="40" cy="45" r="10" fill="none" stroke="#fff" stroke-width="4"/><rect x="28" y="20" width="14" height="10" rx="3" fill="#fff"/></svg>'
+  };
+  return icons[name]||null;
+}
+function buildAvatar(avatar){
+  if(!avatar)return '<span style="font-size:42px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">⚽</span>';
+  if(avatar.startsWith('flag:')){var s=getFlagSVG(avatar.slice(5));return s||'🏳';}
+  if(avatar.startsWith('icon:')){var s=getIconSVG(avatar.slice(5));return s||'📰';}
+  return '<span style="font-size:42px;display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+avatar+'</span>';
+}
+
 function buildCarousel(){
   const inner=document.getElementById('carousel-inner');
   if(!inner)return;
   inner.innerHTML=NEWS.map((n,i)=>`
     <div class="carousel-slide"><div class="carousel-slide-inner">
-      <div class="carousel-avatar">${n.avatar}</div>
+      <div class="carousel-avatar">${buildAvatar(n.avatar)}</div>
       <div class="carousel-left">
         <div class="carousel-tag ${n.tag}">${n.tagLabel}</div>
         <div class="carousel-headline">${n.headline}</div>
