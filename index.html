@@ -958,33 +958,21 @@ function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStora
 
 // ── AI-POWERED BREAKING NEWS ──────────────────────────────────────────────
 const FALLBACK_NEWS=[
-  {tag:"breaking",tagLabel:"NORGE OM UNDER EN TIME!",avatar:"flag:no",
-   headline:"Norge møter Irak kl. 18:00 ET – første VM-kamp siden 1998",
-   sub:"Haaland, Ødegaard og Sørloth er klare på Gillette Stadium i Foxborough. 28 år siden Norge sist var med i et VM. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge videre fra gruppe I. <strong>Magnus</strong> tippet Irak – og har dessuten satset alt på Haaland som toppscorer. Om under en time vet vi mer."},
-  {tag:"breaking",tagLabel:"MBAPPÉ HISTORISK",avatar:"flag:fr",
-   headline:"Frankrike 3-1 Senegal – Mbappé forbigår Giroud som Frankrikes største målscorer",
-   sub:"Mbappé scoret to ganger og Barcola en gang da Frankrike åpnet gruppe I med seier. Mbappé er nå Frankrikes mestscorende landslagsspiller. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Tore</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike videre og henter poeng for det akkurat nå. Olise leverte assist til første mål, men sto ikke selv på scoringslisten denne gangen."},
-
-  {tag:"breaking",tagLabel:"MBAPPÉ LEVERER",avatar:"flag:fr",
-   headline:"Mbappé scoret mot Senegal – Frankrike på topp 2 i gruppe I",
-   sub:"Mbappé satte inn etter 66 minutter, Barcola doblet senere. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Tore</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike videre fra gruppe I og henter poeng for det nå. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge fra samme gruppe."},
-  {tag:"group",tagLabel:"NORGE-FEBER",avatar:"flag:no",
-   headline:"Haaland og Norge klare mot Irak i Boston – <strong>Magnus</strong> og to andre venter spent",
-   sub:"Norges første VM siden 1998 starter mot Irak. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge videre fra gruppe I. <strong>Magnus</strong> tippet Irak. Forventningene er skyhøye rundt Haaland og Ødegaard sin 'golden generation'."},
-  {tag:"breaking",tagLabel:"MESSI I AKSJON",avatar:"flag:ar",
-   headline:"Argentina åpnet tittelforsvaret mot Algeria – alle åtte heier på samme lag",
-   sub:"Messi og co. startet gruppe J mot Algeria i Kansas City, ivrige etter å unngå en ny åpningsoverraskelse som i 2022. <strong>Eirik</strong>, <strong>Jon Magnar</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Tore</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> tippet alle Argentina videre fra gruppe J. <strong>Magnus</strong> er den eneste som tippet Jordan."},
-  {tag:"breaking",tagLabel:"KAPP VERDE SJOKKERER",avatar:"flag:za",
-   headline:"Kapp Verde holdt Spania til 0-0 – historiens største VM-overraskelse på oddstavlen",
-   sub:"Den lille øynasjonen holdt Spania nullet og skapte det som beskrives som det største oppgjøret mot odds i VM-historien så langt. <strong>Magnus</strong> er den eneste som tippet Kapp Verde videre fra gruppe H. De andre åtte tippet Spania, som fortsatt ligger på topp 2 etter ett poeng."},
-  {tag:"group",tagLabel:"EGYPT HOLDER STILLINGEN",avatar:"icon:search",
-   headline:"Egypt tok poeng mot Belgia i Seattle – 1-1 i gruppe G",
-   sub:"En sterk egyptisk innsats sikret uavgjort mot Belgia. Ingen av de ni deltakerne har tippet lag fra denne gruppen, men resultatet føyer seg inn i rekken av jevne kamper og overraskelser som har preget turneringens første uke."},
-  {tag:"scorer",tagLabel:"DAG 5: REKORD-UAVGJORTER",avatar:"icon:stats",
-   headline:"Fire uavgjorte kamper på én dag – VM 2026 fortsetter å overraske",
-   sub:"Saudi-Arabia holdt Uruguay 1-1, Egypt og Belgia delte poengene, og Kapp Verde sjokkerte Spania. Sverige vant til gjengjeld stort 5-1 over Tunisia. Ingen av de ni sine toppscorer-tips har truffet ennå – turneringen har vist seg vanskelig å spå."}  ,{tag:"scorer",tagLabel:"GULLSTØVEL-KAMP",avatar:"icon:stats",
-   headline:"Fire deler toppscorer-ledelsen med 2 mål – ingen av de ni sine favoritter er blant dem",
-   sub:"Balogun (USA), Havertz (Tyskland), Ayari (Sverige) og Elijah Just (New Zealand) topper Gullstøvelen med 2 mål hver etter runde 1. Kane, Haaland, Yamal, Álvarez, Dembélé og Olise – alle favorittene til de ni deltakerne – står fortsatt på 0. Hvis VM var slutt i dag, ville ingen av de ni fått sine 5 toppscorer-poeng."}
+  {tag:"breaking",tagLabel:"HAALAND LEVERER",avatar:"flag:no",
+   headline:"Norge 4-1 Irak – Haaland med to mål på VM-debut",
+   sub:"Haaland scoret i 29. og 43. minutt og Norge vant komfortabelt i Foxborough. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge videre fra gruppe I og ligger foreløpig på topp 2 etter kamp 1. <strong>Magnus</strong> tippet Irak – men har Haaland som toppscorer-tips, og den satsingen ser plutselig svært lovende ut."},
+  {tag:"breaking",tagLabel:"MESSI SKRIVER HISTORIE",avatar:"flag:ar",
+   headline:"Messi med hat trick mot Algeria – deler nå VM-rekorden for flest mål noensinne",
+   sub:"Argentina vant 3-0 og Messi ble med sine tre mål med på toppen av den evige VM-målscorerlisten. <strong>Eirik</strong>, <strong>Jon Magnar</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Tore</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> tippet alle Argentina videre fra gruppe J og henter poeng for det akkurat nå. <strong>Magnus</strong> er den eneste som tippet Jordan."},
+  {tag:"scorer",tagLabel:"GULLSTØVEL-KAMP",avatar:"icon:stats",
+   headline:"Messi og Haaland inn i toppscorer-kampen – men ingen av de ni sine favoritter leder ennå",
+   sub:"Etter Messi sitt hat trick og Haalands to mål er det duket for en åpen kamp om Gullstøvelen. <strong>Magnus</strong> har Haaland som sitt toppscorer-tips og henter nå 5 ekstra poeng hvis han holder ledelsen ut turneringen. De andre åtte har Kane, Yamal, Álvarez, Dembélé og Olise – alle fortsatt uten mål."},
+  {tag:"breaking",tagLabel:"SVERIGE SCORER FEM",avatar:"icon:search",
+   headline:"Sverige 5-1 Tunisia – Ayari og Isak gledet svenskene",
+   sub:"Isak, Gyökeres, Ayari og Svanberg sto alle på scoringslisten i en målfest natt til mandag. Ingen av de ni deltakerne har tippet lag fra denne gruppen, men kampen er et godt eksempel på hvor uforutsigbar denne turneringen har vært så langt."},
+  {tag:"group",tagLabel:"KAPP VERDE SJOKKERER IGJEN",avatar:"flag:za",
+   headline:"Kapp Verde holdt Spania til 0-0 – historiens største VM-overraskelse på odds",
+   sub:"Den lille øynasjonen holdt Spania nullet for andre kamp på rad mot odds. <strong>Magnus</strong> er fortsatt den eneste som har tippet Kapp Verde videre fra gruppe H. De andre åtte tippet Spania, som etter to kamper med ett poeng fortsatt kjemper for en topp-2-plass."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
