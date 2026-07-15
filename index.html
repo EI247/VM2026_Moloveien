@@ -958,21 +958,21 @@ function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStora
 
 // ── AI-POWERED BREAKING NEWS ──────────────────────────────────────────────
 const FALLBACK_NEWS=[
-  {tag:"breaking",tagLabel:"KANE LEVERER FOR STURE",avatar:"icon:camera",
-   headline:"England 4-2 Croatia – Harry Kane med to mål, Sture sitter med et stort smil",
-   sub:"Kane scoret to ganger på straffespark, Bellingham og Rashford fullførte målfesten i Dallas. <strong>Sture</strong> er den eneste av de ni som har tippet England til å vinne hele VM – og har dessuten Kane som toppscorer-tips, akkurat som <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Kenneth</strong>. Alle åtte utenom <strong>Magnus</strong> tippet England videre fra gruppe L, og henter poeng for det akkurat nå."},
-  {tag:"injury",tagLabel:"RONALDO-FADESEN",avatar:"icon:search",
-   headline:"Ronaldo målløs igjen – Portugal holdt 1-1 av VM-debutant DR Congo",
-   sub:"41-åringen spilte alle 90 minutter, men endte uten skudd på mål og brente to store sjanser. Det er nå 10 strake storturneringer uten mål utenom straffe for Ronaldo. <strong>Eirik</strong>, <strong>Jon Magnar</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Tore</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> tippet alle Portugal videre fra gruppe K – og må håpe stjernen finner formen igjen før det er for sent."},
-  {tag:"breaking",tagLabel:"GHANA MED SENT DRAMA",avatar:"icon:stats",
-   headline:"Ghana slo Panama 1-0 på mål i det 95. minutt – <strong>Magnus</strong> sin Panama-satsing fikk en tøff start",
-   sub:"Caleb Yirenkyi avgjorde helt på overtid i Toronto. <strong>Magnus</strong> er den eneste av de ni som har tippet Panama videre fra gruppe L. De andre åtte tippet England. Ghana topper nå gruppen sammen med England etter kamp 1."},
-  {tag:"group",tagLabel:"COLOMBIA OVERKJØRER UZBEKISTAN",avatar:"flag:us",
-   headline:"Colombia vant 3-1 over VM-debutant Uzbekistan – <strong>Magnus</strong> alene om Uzbekistan-satsingen",
-   sub:"Luis Díaz og co. var for sterke i Mexico City, selv om Uzbekistan satte sitt aller første VM-mål i historien. <strong>Magnus</strong> er den eneste som har tippet Uzbekistan videre fra gruppe K. De andre åtte tippet Portugal, som etter Ronaldo-fadesen plutselig deler 1. plass med Colombia og Congo DR."},
-  {tag:"scorer",tagLabel:"GULLSTØVEL-KAMP",avatar:"icon:stats",
-   headline:"Kane, Messi, Haaland og Mbappé alle inn i toppscorer-kampen samme uke",
-   sub:"Etter Kane sine to straffemål, Messi sitt hat trick, Haalands brace og Mbappés to mål er Gullstøvelen plutselig vidåpen. Seks av de ni deltakerne har en av disse fire som sitt toppscorer-tips. <strong>Jan</strong> sin satsing på Lamine Yamal og <strong>Jon Magnar</strong> sin på Dembélé venter fortsatt på sitt første mål."}
+  {tag:"breaking",tagLabel:"BELLINGHAM SENDER ENGLAND TIL SEMIFINALE",avatar:"icon:camera",
+   headline:"England slo Norge 2-1 etter ekstraomganger – Bellingham med to mål",
+   sub:"Schjelderup scoret for Norge i 36. minutt, Bellingham utlignet like før pause og avgjorde i 3. minutt av ekstraomgangene etter feil av Nyland. Haaland ble tatt av i ekstraomgangene målløs. <strong>Sture</strong> er den eneste som har tippet England til å vinne hele VM – hans drøm lever videre. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge videre fra gruppe I, og fikk de poengene – men Norges eventyr er nå over."},
+  {tag:"breaking",tagLabel:"SEMIFINALENE ER KLARE",avatar:"flag:ar",
+   headline:"Argentina møter England og Frankrike møter Spania – fire av de ni sine favoritter er med",
+   sub:"<strong>Tore</strong> tippet Argentina til å vinne VM, <strong>Sture</strong> tippet England. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Jon Magnar</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet enten Frankrike eller Spania som vinner. <strong>Magnus</strong> tippet Norge. Norge er ute. <strong>Magnus</strong> er eneste gjenværende uten en semifinalist som vinner-tips."},
+  {tag:"scorer",tagLabel:"MESSI LEDER GULLSTØVELEN",avatar:"flag:ar",
+   headline:"Messi leder med 15 VM-mål totalt – Bellingham og Kane på 6 i denne turneringen",
+   sub:"Messi er VM-historiens mestscorende noensinne med 15 mål totalt over karrieren. I denne turneringen leder Bellingham og Kane med 6 mål hver, etterfulgt av Messi. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong> og <strong>Sture</strong> har tippet Kane som toppscorer og er godt posisjonert for å hente 5 bonuspoeng. <strong>Magnus</strong> sin Haaland-satsing er over etter exit mot England."},
+  {tag:"breaking",tagLabel:"NORGES EVENTYR ER OVER",avatar:"flag:no",
+   headline:"Norge slo Brasil, men falt for England – Haaland endte turneringen målløs i sluttspillet",
+   sub:"Haaland scoret 4 mål i gruppespillet mot Irak og 2 i åttedelsfinale mot Brasil – men ble byttet ut i ekstraomgangene mot England uten mål. Norges første VM på 28 år endte i kvartfinale. <strong>Magnus</strong> sin satsing på Norge som VM-vinner er ute, men han har hatt en fantastisk VM-opplevelse som fan. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge fra gruppe I og fikk de 2 poengene."},
+  {tag:"group",tagLabel:"FRANKRIKE VS SPANIA",avatar:"flag:fr",
+   headline:"Frankrike møter Spania i semifinalen – seks deltakere heier på en av disse to",
+   sub:"<strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania som VM-vinner. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike. Mbappé og Yamal kan begge bli avgjørende, og toppscorer-racet mellom dem og Kane er åpent. Den som tippet riktig vinner her er godt posisjonert for 15 bonuspoeng."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
