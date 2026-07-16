@@ -569,6 +569,9 @@ const DEFAULT_PARTICIPANTS=[
   {name:"Michael",aka:"Olise",winner:"France",topscorer:"Michael Olise",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
   {name:"Jan",aka:"Ferguson",winner:"France",topscorer:"Lamine Yamal",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"Paraguay",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
   {name:"Sture",aka:"Dalglish",winner:"England",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"Norway",J:"Argentina",K:"Portugal",L:"England"}}
+]  ,{tag:"breaking",tagLabel:"MULIGE SLUTTSCENARIOER",avatar:"icon:stats",
+   headline:"Tre deltakere kan vinne – alt avgjøres i finalen og bronsefinalen",
+   sub:"<strong>Tore</strong> vinner hvis Argentina slår Spania i finalen – han leder da med 37p mot alle andres maks 24p, uansett toppscorer. <strong>Eirik</strong> vinner alene hvis Spania vinner OG Kane tar toppscoreren (44p). Hvis Spania vinner og Kane ikke tar toppscoreren deler <strong>Eirik</strong> og <strong>Jon Magnar</strong> seieren på 39p hver. <strong>Magnus</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> er alle matematisk ute – de kan ikke nå de andre uansett utfall."}
 ];
 
 let state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
@@ -608,17 +611,20 @@ function calcScore(p){
 }
 
 function calcMax(p){
-  // Max possible: remaining un-decided groups + winner + scorer
   const adv=state.results.advancedGroups;
   let max=calcScore(p).total;
-  // Undecided groups where they have a pick
-  for(const[g,t]of Object.entries(p.groups)){
+  // Undecided groups
+  for(const[g,t]of Object.entries(p.groups||{})){
     if(!t)continue;
-    const decided=(adv[g]||[]).length>=2;// group fully decided
-    if(!decided&&!(adv[g]||[]).includes(t))max+=2;// still possible
+    const decided=(adv[g]||[]).length>=2;
+    if(!decided&&!(adv[g]||[]).includes(t))max+=2;
   }
-  if(!state.results.winner&&p.winner)max+=15;
-  if(!state.results.topscorer&&p.topscorer)max+=5;
+  // Winner: only add 15 if still possible (Spain or Argentina in final)
+  const possibleWinners=['Spain','Argentina'];
+  if(!state.results.winner&&p.winner&&possibleWinners.includes(p.winner))max+=15;
+  // Topscorer: only add 5 if still possible (Kane, Messi, Mbappe still in contention)
+  const possibleScorers=['Harry Kane','Kylian Mbappé','Lionel Messi','Kylian Mbappe'];
+  if(!state.results.topscorer&&p.topscorer&&possibleScorers.includes(p.topscorer))max+=5;
   return max;
 }
 
@@ -669,6 +675,40 @@ function getPlayerImg(name){
   return null;
 }
 
+
+function canWin(p, ranked){
+  // Check if p can be a winner (sole or tied) in any remaining scenario
+  const possibleWinners=['Spain','Argentina'];
+  const possibleScorers=['Harry Kane','Kylian Mbappé','Kylian Mbappe','Lionel Messi'];
+  const scenarios=[];
+  // Build scenarios from possible outcomes
+  ['Spain','Argentina'].forEach(function(w){
+    ['Harry Kane','Kylian Mbappé','Lionel Messi','other'].forEach(function(s){
+      if(w==='none'||possibleWinners.includes(w)){
+        scenarios.push({w:w,s:s});
+      }
+    });
+  });
+  for(var si=0;si<scenarios.length;si++){
+    var sc=scenarios[si];
+    // Calculate score for all players in this scenario
+    var maxS=-1;
+    ranked.forEach(function(q){
+      if(!hasTips(q))return;
+      var qs=q.score.total;
+      if(!state.results.winner&&sc.w!=='none'&&q.winner===sc.w)qs+=15;
+      if(!state.results.topscorer&&possibleScorers.includes(sc.s)&&q.topscorer===sc.s)qs+=5;
+      if(qs>maxS)maxS=qs;
+    });
+    // Check if p achieves maxS
+    var ps=p.score.total;
+    if(!state.results.winner&&sc.w!=='none'&&p.winner===sc.w)ps+=15;
+    if(!state.results.topscorer&&possibleScorers.includes(sc.s)&&p.topscorer===sc.s)ps+=5;
+    if(ps>=maxS)return true;
+  }
+  return false;
+}
+
 function renderLeaderboard(ranked,tipsCount){
   const el=document.getElementById('leaderboard-list');
   if(!ranked.length){el.innerHTML=`<div class="empty"><div class="empty-icon">🏟️</div><div class="empty-ttl">Ingen deltakere</div></div>`;return;}
@@ -694,7 +734,8 @@ function renderLeaderboard(ranked,tipsCount){
     // Max possible tag
     let maxTag='';
     if(hasTips(p)&&state.results.advancedGroups&&Object.keys(state.results.advancedGroups).length>0){
-      if(p.max<leaderPts)maxTag=`<span class="max-tag danger">Ute</span>`;
+      const canStillWin=canWin(p,ranked);
+      if(!canStillWin)maxTag=`<span class="max-tag danger">Ute</span>`;
       else if(p.max===leaderPts&&rank!==1)maxTag=`<span class="max-tag warning">Maks ${p.max}p</span>`;
       else maxTag=`<span class="max-tag">Maks ${p.max}p</span>`;
     }
@@ -988,24 +1029,9 @@ function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStora
 
 // ── AI-POWERED BREAKING NEWS ──────────────────────────────────────────────
 const FALLBACK_NEWS=[
-  {tag:"breaking",tagLabel:"MESSI SENDER ARGENTINA TIL FINALEN",avatar:"flag:ar",
-   headline:"Argentina 2-1 England – Messi med to assists i sluttminuttene, Tore jubler alene",
-   sub:"England ledet til det 80. minutt, men Messi snudde kampen med to geniale assists og sendte Argentina til finalen. <strong>Tore</strong> er den eneste av de ni som har tippet Argentina som VM-vinner – han er nå ett steg unna 15 bonuspoeng. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania – de møter Argentina i finalen."},
-  {tag:"breaking",tagLabel:"SPANIA TIL FINALEN",avatar:"flag:fr",
-   headline:"Spania 2-0 Frankrike – Yamal og Dani Olmo avgjorde i Dallas",
-   sub:"Spania dominerte og vant mot Frankrike. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> har tippet Spania til å vinne hele VM – de er nå ett steg unna 15 bonuspoeng. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike som vinner – det er nå umulig."},
-  {tag:"scorer",tagLabel:"GULLSTØVELEN AVGJØRES I TO KAMPER",avatar:"icon:stats",
-   headline:"Messi 8 mål leder – men Kane og Mbappé spiller bronsefinalen og kan utfordre",
-   sub:"Messi leder med 8 mål og 4 assists. Mbappé har også 8 mål (3 assists) og spiller bronsefinalen for Frankrike mot England lørdag – ett mål setter ham foran Messi på assists. Kane har 6 mål og spiller samme kamp – trenger 3 mål for å utfordre. Yamal spiller finalen for Spania men har for få mål. For at <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong> eller <strong>Sture</strong> skal hente 5p på Kane, må han score minst 3 i bronsefinalen og Messi og Mbappé score 0 i finalen. Lite sannsynlig – men ikke umulig."},
-  {tag:"breaking",tagLabel:"FINALEN ER KLAR",avatar:"flag:ar",
-   headline:"Spania vs Argentina søndag – fire kan hente 15p på vinner-tipset",
-   sub:"MetLife Stadium i New Jersey er scenen. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania. <strong>Tore</strong> tippet Argentina. En av disse fire henter 15 bonuspoeng på søndag. <strong>Magnus</strong>, <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> henter ingen vinner-poeng uansett utfall."},
-  {tag:"breaking",tagLabel:"TO KAMPER IGJEN",avatar:"icon:camera",
-   headline:"Bronsefinale lørdag, finale søndag – alt avgjøres denne helgen",
-   sub:"Frankrike møter England i bronsefinalen lørdag. Mål her teller for Gullstøvelen – Mbappé og Kane kan begge score. Søndag er det Spania vs Argentina om VM-tittelen og 15 bonuspoeng til riktig vinner-tips. Alle poeng låses etter finalen. En av de ni vil vinne jobbkonkurransen – og med kun 5p skille på toppscorer, kan alt endres i løpet av to kamper."},
-  {tag:"scorer",tagLabel:"HVEM VINNER KONKURRANSEN?",avatar:"icon:stats",
-   headline:"Tore ~45% – Eirik ~30% – Jon Magnar ~25% – alle andre ute av løpet",
-   sub:"<strong>Tore</strong> er favoritt (~45%) – trenger kun Argentina-seier og leder da alene med 37p mot alle andres maks 24p. <strong>Eirik</strong> har ~30% – hvis Spania vinner og Kane tar toppscoreren, leder han med 44p. <strong>Jon Magnar</strong> har ~25% – hvis Spania vinner og Messi/Mbappé tar toppscoreren, deler han og Eirik seieren med 39p hver. <strong>Christian</strong> tippet Spania men har 2p mindre i grupper og kan aldri slå Eirik eller Jon Magnar. <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> tippet Frankrike eller England som vinner – begge er umulig. <strong>Magnus</strong> er på 2 gruppepoeng og er matematisk ute."}
+  {tag:"breaking",tagLabel:"MULIGE SLUTTSCENARIOER",avatar:"icon:stats",
+   headline:"Tre deltakere kan vinne – alt avgjøres i finalen og bronsefinalen",
+   sub:"<strong>Tore</strong> vinner hvis Argentina slår Spania i finalen – han leder da med 37p mot alle andres maks 24p, uansett toppscorer. <strong>Eirik</strong> vinner alene hvis Spania vinner OG Kane tar toppscoreren (44p). Hvis Spania vinner og Kane ikke tar toppscoreren, deler <strong>Eirik</strong> og <strong>Jon Magnar</strong> seieren på 39p hver. <strong>Magnus</strong>, <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> er alle matematisk ute."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
