@@ -568,7 +568,10 @@ const DEFAULT_PARTICIPANTS=[
   {name:"Tore",aka:"Barnes",winner:"Argentina",topscorer:"Julián Álvarez",groups:{A:"Mexico",B:"Switzerland",C:"Morocco",D:"Türkiye",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
   {name:"Michael",aka:"Olise",winner:"France",topscorer:"Michael Olise",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
   {name:"Jan",aka:"Ferguson",winner:"France",topscorer:"Lamine Yamal",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"Paraguay",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"France",J:"Argentina",K:"Portugal",L:"England"}},
-  {name:"Sture",aka:"Dalglish",winner:"England",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"Norway",J:"Argentina",K:"Portugal",L:"England"}}
+  {name:"Sture",aka:"Dalglish",winner:"England",topscorer:"Harry Kane",groups:{A:"Mexico",B:"Switzerland",C:"Brazil",D:"United States",E:"Germany",F:"Netherlands",G:"Belgium",H:"Spain",I:"Norway",J:"Argentina",K:"Portugal",L:"England"}}  ,{tag:"scorer",tagLabel:"HVEM VINNER KONKURRANSEN?",avatar:"icon:stats",
+   headline:"Tore 45% – Eirik 30% – Jon Magnar 25% – alle andre ute av løpet",
+   sub:"Basert på kampresultater og oddser: <strong>Tore</strong> «Barnes» er favoritt med ~45% – han trenger kun Argentina-seier og leder da med 37p mot andres maks 24p. <strong>Eirik</strong> «McManaman» har ~30% – trenger Spania-seier og helst Kane som toppscorer (44p alene). <strong>Jon Magnar</strong> «Aldridge» har ~25% – trenger Spania-seier og Messi/Mbappé som toppscorer, men deler da seieren med Eirik (39p hver). <strong>Christian</strong>, <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> kan ikke lenger vinne – vinner-tipset deres er eliminert. <strong>Magnus</strong> har 2 gruppPoeng og matematisk ingen sjanse."}
+
 ];
 
 let state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
@@ -894,6 +897,21 @@ async function fetchLiveResults(){
     });
     // Best 8 thirds only calculated when all 12 groups are complete
     if(thirds.length===12)thirds.sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf).slice(0,8).forEach(t=>{if(!advanced[t.grp])advanced[t.grp]=[];if(!advanced[t.grp].includes(t.team))advanced[t.grp].push(t.team);});
+    // Also detect advancement from knockout matches (covers 3rd-place teams once they play)
+    const koStages=['LAST_32','LAST_16','QUARTER_FINALS','SEMI_FINALS','FINAL','3RD_PLACE','PLAY_OFF_FOR_THIRD_PLACE'];
+    allMatches.filter(m=>koStages.includes(m.stage)).forEach(m=>{
+      [m.homeTeam,m.awayTeam].forEach(team=>{
+        if(!team||!team.name)return;
+        const tName=normName(team.name);
+        // Find which group this team was in
+        Object.entries(gp).forEach(([grp,teams])=>{
+          if(teams[tName]){
+            if(!advanced[grp])advanced[grp]=[];
+            if(!advanced[grp].includes(tName))advanced[grp].push(tName);
+          }
+        });
+      });
+    });
     state.results.advancedGroups=advanced;
 
     // Winner
@@ -958,21 +976,24 @@ function clearAll(){if(!confirm('Nullstille alle resultater?'))return;localStora
 
 // ── AI-POWERED BREAKING NEWS ──────────────────────────────────────────────
 const FALLBACK_NEWS=[
-  {tag:"breaking",tagLabel:"BELLINGHAM SENDER ENGLAND TIL SEMIFINALE",avatar:"icon:camera",
-   headline:"England slo Norge 2-1 etter ekstraomganger – Bellingham med to mål",
-   sub:"Schjelderup scoret for Norge i 36. minutt, Bellingham utlignet like før pause og avgjorde i 3. minutt av ekstraomgangene etter feil av Nyland. Haaland ble tatt av i ekstraomgangene målløs. <strong>Sture</strong> er den eneste som har tippet England til å vinne hele VM – hans drøm lever videre. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge videre fra gruppe I, og fikk de poengene – men Norges eventyr er nå over."},
-  {tag:"breaking",tagLabel:"SEMIFINALENE ER KLARE",avatar:"flag:ar",
-   headline:"Argentina møter England og Frankrike møter Spania – fire av de ni sine favoritter er med",
-   sub:"<strong>Tore</strong> tippet Argentina til å vinne VM, <strong>Sture</strong> tippet England. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Jon Magnar</strong>, <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet enten Frankrike eller Spania som vinner. <strong>Magnus</strong> tippet Norge. Norge er ute. <strong>Magnus</strong> er eneste gjenværende uten en semifinalist som vinner-tips."},
-  {tag:"scorer",tagLabel:"MESSI LEDER GULLSTØVELEN",avatar:"flag:ar",
-   headline:"Messi leder med 15 VM-mål totalt – Bellingham og Kane på 6 i denne turneringen",
-   sub:"Messi er VM-historiens mestscorende noensinne med 15 mål totalt over karrieren. I denne turneringen leder Bellingham og Kane med 6 mål hver, etterfulgt av Messi. <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong> og <strong>Sture</strong> har tippet Kane som toppscorer og er godt posisjonert for å hente 5 bonuspoeng. <strong>Magnus</strong> sin Haaland-satsing er over etter exit mot England."},
-  {tag:"breaking",tagLabel:"NORGES EVENTYR ER OVER",avatar:"flag:no",
-   headline:"Norge slo Brasil, men falt for England – Haaland endte turneringen målløs i sluttspillet",
-   sub:"Haaland scoret 4 mål i gruppespillet mot Irak og 2 i åttedelsfinale mot Brasil – men ble byttet ut i ekstraomgangene mot England uten mål. Norges første VM på 28 år endte i kvartfinale. <strong>Magnus</strong> sin satsing på Norge som VM-vinner er ute, men han har hatt en fantastisk VM-opplevelse som fan. <strong>Jon Magnar</strong> og <strong>Sture</strong> tippet Norge fra gruppe I og fikk de 2 poengene."},
-  {tag:"group",tagLabel:"FRANKRIKE VS SPANIA",avatar:"flag:fr",
-   headline:"Frankrike møter Spania i semifinalen – seks deltakere heier på en av disse to",
-   sub:"<strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania som VM-vinner. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike. Mbappé og Yamal kan begge bli avgjørende, og toppscorer-racet mellom dem og Kane er åpent. Den som tippet riktig vinner her er godt posisjonert for 15 bonuspoeng."}
+  {tag:"breaking",tagLabel:"MESSI SENDER ARGENTINA TIL FINALEN",avatar:"flag:ar",
+   headline:"Argentina 2-1 England – Messi med to assists i sluttminuttene, Tore jubler alene",
+   sub:"England ledet til det 80. minutt, men Messi snudde kampen med to geniale assists og sendte Argentina til finalen. <strong>Tore</strong> er den eneste av de ni som har tippet Argentina som VM-vinner – han er nå ett steg unna 15 bonuspoeng. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania – de møter Argentina i finalen."},
+  {tag:"breaking",tagLabel:"SPANIA TIL FINALEN",avatar:"flag:fr",
+   headline:"Spania 2-0 Frankrike – Yamal og Dani Olmo avgjorde i Dallas",
+   sub:"Spania dominerte og vant mot Frankrike. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> har tippet Spania til å vinne hele VM – de er nå ett steg unna 15 bonuspoeng. <strong>Kenneth</strong>, <strong>Michael</strong> og <strong>Jan</strong> tippet Frankrike som vinner – det er nå umulig."},
+  {tag:"scorer",tagLabel:"GULLSTØVELEN AVGJØRES I TO KAMPER",avatar:"icon:stats",
+   headline:"Messi 8 mål leder – men Kane og Mbappé spiller bronsefinalen og kan utfordre",
+   sub:"Messi leder med 8 mål og 4 assists. Mbappé har også 8 mål (3 assists) og spiller bronsefinalen for Frankrike mot England lørdag – ett mål setter ham foran Messi på assists. Kane har 6 mål og spiller samme kamp – trenger 3 mål for å utfordre. Yamal spiller finalen for Spania men har for få mål. For at <strong>Eirik</strong>, <strong>Christian</strong>, <strong>Kenneth</strong> eller <strong>Sture</strong> skal hente 5p på Kane, må han score minst 3 i bronsefinalen og Messi og Mbappé score 0 i finalen. Lite sannsynlig – men ikke umulig."},
+  {tag:"breaking",tagLabel:"FINALEN ER KLAR",avatar:"flag:ar",
+   headline:"Spania vs Argentina søndag – fire kan hente 15p på vinner-tipset",
+   sub:"MetLife Stadium i New Jersey er scenen. <strong>Eirik</strong>, <strong>Christian</strong> og <strong>Jon Magnar</strong> tippet Spania. <strong>Tore</strong> tippet Argentina. En av disse fire henter 15 bonuspoeng på søndag. <strong>Magnus</strong>, <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> henter ingen vinner-poeng uansett utfall."},
+  {tag:"breaking",tagLabel:"TO KAMPER IGJEN",avatar:"icon:camera",
+   headline:"Bronsefinale lørdag, finale søndag – alt avgjøres denne helgen",
+   sub:"Frankrike møter England i bronsefinalen lørdag. Mål her teller for Gullstøvelen – Mbappé og Kane kan begge score. Søndag er det Spania vs Argentina om VM-tittelen og 15 bonuspoeng til riktig vinner-tips. Alle poeng låses etter finalen. En av de ni vil vinne jobbkonkurransen – og med kun 5p skille på toppscorer, kan alt endres i løpet av to kamper."},
+  {tag:"scorer",tagLabel:"HVEM VINNER KONKURRANSEN?",avatar:"icon:stats",
+   headline:"Tore ~45% – Eirik ~30% – Jon Magnar ~25% – alle andre ute av løpet",
+   sub:"<strong>Tore</strong> er favoritt (~45%) – trenger kun Argentina-seier og leder da alene med 37p mot alle andres maks 24p. <strong>Eirik</strong> har ~30% – hvis Spania vinner og Kane tar toppscoreren, leder han med 44p. <strong>Jon Magnar</strong> har ~25% – hvis Spania vinner og Messi/Mbappé tar toppscoreren, deler han og Eirik seieren med 39p hver. <strong>Christian</strong> tippet Spania men har 2p mindre i grupper og kan aldri slå Eirik eller Jon Magnar. <strong>Kenneth</strong>, <strong>Michael</strong>, <strong>Jan</strong> og <strong>Sture</strong> tippet Frankrike eller England som vinner – begge er umulig. <strong>Magnus</strong> er på 2 gruppepoeng og er matematisk ute."}
 ];
 
 let NEWS = [...FALLBACK_NEWS];
