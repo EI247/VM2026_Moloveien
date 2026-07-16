@@ -694,7 +694,7 @@ function renderLeaderboard(ranked,tipsCount){
     const scorChip=p.topscorer?`<span class="chip scorer ${sok?'hit':''}">⚽ ${p.topscorer}${sok?' ✓':''}</span>`:'';
 
     // Group chips — only show hits and current leader
-    const grpChips=Object.entries(p.groups).map(([g,t])=>{
+    const grpChips=Object.entries(p.groups||{}).map(([g,t])=>{
       if(!t)return'';
       const hit=(adv[g]||[]).includes(t);
       if(hit)return`<span class="chip hit">${FLAGS[t]||''} ${t} ✓</span>`;
