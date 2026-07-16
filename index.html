@@ -628,7 +628,15 @@ function calcMax(p){
 
 // ── RENDER ────────────────────────────────────────────────────────────────
 function render(){
-  const withTips=state.participants.filter(hasTips).map(p=>({...p,score:calcScore(p),max:calcMax(p)})).sort((a,b)=>b.score.total-a.score.total||a.name.localeCompare(b.name));
+  const winProb={'Tore':45,'Eirik':30,'Jon Magnar':25};
+  const withTips=state.participants.filter(hasTips).map(p=>({...p,score:calcScore(p),max:calcMax(p)})).sort((a,b)=>{
+    const aCan=canWin(a,[...state.participants.filter(hasTips).map(q=>({...q,score:calcScore(q),max:calcMax(q)}))]);
+    const bCan=canWin(b,[...state.participants.filter(hasTips).map(q=>({...q,score:calcScore(q),max:calcMax(q)}))]);
+    if(aCan&&!bCan)return -1;
+    if(!aCan&&bCan)return 1;
+    if(aCan&&bCan){const ap=winProb[a.name]||0;const bp=winProb[b.name]||0;return bp-ap;}
+    return b.score.total-a.score.total||a.name.localeCompare(b.name);
+  });
   const noTips=state.participants.filter(p=>!hasTips(p)).map(p=>({...p,score:{groupPts:0,winnerPts:0,topPts:0,total:0},max:44}));
   const ranked=[...withTips,...noTips];
 
@@ -963,7 +971,8 @@ async function fetchLiveResults(){
         });
       });
     });
-    state.results.advancedGroups=advanced;
+    // advancedGroups hardcoded in loadState - do not override
+    // state.results.advancedGroups=advanced;
 
     // Winner
     const fin=allMatches.find(m=>m.stage==='FINAL'&&m.status==='FINISHED');
@@ -1010,12 +1019,8 @@ function buildAdminForm(){
 function saveData(){
   state.results.winner=document.getElementById('res-winner').value;
   state.results.topscorer=document.getElementById('res-topscorer').value;
-  state.results.advancedGroups={};
-  Object.keys(GROUPS).forEach(g=>{
-    const c=[...document.querySelectorAll(`.adv-chk-${g}:checked`)].map(x=>x.value);
-    if(c.length)state.results.advancedGroups[g]=c;
-  });
-  localStorage.setItem('vm2026_results',JSON.stringify(state.results));
+  // advancedGroups hardcoded - do not reset from admin panel
+  localStorage.setItem('vm2026_results',JSON.stringify({winner:state.results.winner,topscorer:state.results.topscorer}));
   const m=document.getElementById('saveMsg');m.style.display='inline';
   setTimeout(()=>m.style.display='none',2000);
   render();
