@@ -576,8 +576,23 @@ let state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results
 let prevRanks={};
 
 function loadState(){
-  state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:{}}};
-  try{const s=localStorage.getItem('vm2026_results');if(s)state.results=JSON.parse(s);}catch(e){}
+  // Hardcode final group results since tournament is complete
+  const finalGroups={
+    A:["Mexico","South Africa"],
+    B:["Switzerland","Canada","Bosnia and Herzegovina"],
+    C:["Brazil","Morocco"],
+    D:["United States","Australia","Paraguay"],
+    E:["Germany","Côte d'Ivoire","Ecuador"],
+    F:["Netherlands","Japan","Sweden"],
+    G:["Belgium","Egypt"],
+    H:["Spain","Cabo Verde"],
+    I:["France","Norway","Senegal"],
+    J:["Argentina","Austria","Algeria"],
+    K:["Colombia","Portugal","DR Congo"],
+    L:["England","Croatia","Ghana"]
+  };
+  state={participants:JSON.parse(JSON.stringify(DEFAULT_PARTICIPANTS)),results:{winner:"",topscorer:"",advancedGroups:finalGroups}};
+  try{const s=localStorage.getItem('vm2026_results');if(s){const saved=JSON.parse(s);state.results.winner=saved.winner||"";state.results.topscorer=saved.topscorer||"";}}catch(e){}
 }
 
 // ── DEMO MODE – viser fiktive resultater etter dag 1 ─────────────────────
